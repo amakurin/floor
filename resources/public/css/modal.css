@@ -1,0 +1,61 @@
+.modal-wrap {
+  /* The div that shows/hides. */
+  display:none;   /* starts out hidden */
+  z-index:40001;   /* High z-index to ensure it appears above all content */
+}
+
+.noscroll
+{
+  overflow: hidden;
+}
+
+.modal-overlay {
+  /* Shades out background when selector is active */
+  position:fixed; left: 0; top: 0; right: 0; bottom: 0; background-color:black; opacity:.5; /* Sets opacity so it's partly transparent */
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE transparency */
+  filter:alpha(opacity=50); /* More IE transparency */
+
+}
+
+.modal-outer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 40001;
+  overflow-y: scroll;
+}
+
+.modal { /* The actual box, centered in the fixed-position div */
+  margin-top: 100px;
+
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #00618b;
+  padding: 15px 20px;
+  min-height: 900px;
+  box-shadow: 0px 3px 7px rgba(2, 65, 85, 0.79);
+  -webkit-box-shadow: 0px 3px 7px rgba(2, 65, 85, 0.79);
+  -moz-box-shadow: 0px 3px 7px rgba(2, 65, 85, 0.79);
+}
+
+.modal .close {
+  position:absolute;
+  z-index:50;
+  top:0; right:0;
+  font-size: 28px;
+  margin: 8px;
+  cursor: pointer;
+  color: #777777;
+  text-decoration: none;
+}
+
+.modal .close:hover {
+  color: #333333;
+}
+
+
+
+

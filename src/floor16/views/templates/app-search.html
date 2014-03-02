@@ -1,0 +1,29 @@
+{% extends "floor16/views/templates/base.html" %}
+{% block content %}
+<section id="sec-home" >
+    <div id="spot" class="design-layer"></div>
+    <div id="icons" class="design-layer"></div>
+    <div id="cells" class="design-layer"></div>
+    <div class="container">
+        <div class="advert">
+            <div id="slogan" class="eight columns">
+                <h1><img src="/img/slogan.png" alt="Найди жилье сам! Прямая аренда от собственников!"></h1>
+                <p>Ежедневные обновления базы жилых объектов <br>
+                    SMS и E-mail рассылка подходящих вариантов <br>
+                    Гибкая система тарификации
+                </p>
+            </div>
+            <div id="scheme" class="offset-by-one six columns">
+                <img src="/img/scheme.png" alt="Удобный поиск. Ежедневные обновления. Автоподбор вариантов. SMS и E-mail рассылка. Онлайн консультации.">
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="app-search">
+            {{app-html|safe}}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
