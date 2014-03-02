@@ -9,3 +9,6 @@ pom.xml
 /.lein-*
 /.env
 *.log
+/structure.txt
+*.iml
+Procfile
