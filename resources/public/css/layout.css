@@ -863,8 +863,11 @@ li.pager-item {
   margin: 0 2px;
   border-radius: 4px;
   border: 1px solid;
+}
+
+li.pager-item a {
   padding: 2px 7px;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 li.pager-item.current {

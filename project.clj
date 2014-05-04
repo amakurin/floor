@@ -9,6 +9,7 @@
    [ring-server "0.3.1"]
    [org.clojure/clojurescript "0.0-2156"]
    [environ "0.4.0"]
+   [org.clojure/tools.reader "0.8.3"]
    ;[com.taoensso/timbre "2.7.1"]
    ;[markdown-clj "0.9.35"]
    ;[com.taoensso/tower "2.0.1"]
@@ -17,7 +18,6 @@
    [compojure "1.1.6"]
    [ring-middleware-format "0.3.2"]
    [liberator "0.10.0"]
-   [clauth "1.0.0-rc17"]
    [mysql/mysql-connector-java "5.1.28"]
    [korma "0.3.0-RC6"]
    [org.clojars.amakurin/lobos "1.0.4"]
@@ -25,11 +25,12 @@
    ;[com.postspectacular/rotor "0.1.0"]
    [crypto-random "1.1.0"]
    [com.cemerick/friend "0.2.0"]
-   [secretary "0.4.0"]
+   [secretary "1.0.2"]
    [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
    [clj-time "0.6.0"]
    [om "0.5.0"]
-   [gered/clj-rhino "0.2.2"]]
+   [gered/clj-rhino "0.2.2"]
+   [com.linuxense/javadbf	"0.4.0"]]
   :cljsbuild
   {:builds
    [{:id "dev"
@@ -46,7 +47,7 @@
      :source-paths ["src-cljs"],
      :compiler
      {:optimizations :whitespace,
-      ;:source-map "resources/public/js/site2.js.map",
+      :source-map "resources/public/js/site2.js.map",
       :pretty-print true,
       :output-to "resources/public/js/site2.js",
       :output-dir "resources/public/js/out",
@@ -54,6 +55,18 @@
       ;           "react/react.min.js"
                  ;"js/react-postlude.js"
       ;           ]
+      :externs ["react/externs/react.js"]
+      :closure-warnings {:non-standard-jsdoc :off}
+      }}
+    {:id "prod"
+     :source-paths ["src-cljs"],
+     :compiler
+     {:optimizations :advanced,
+      ;:source-map "resources/public/js/site2.js.map",
+      :pretty-print false,
+      :output-to "resources/public/js/site-prod.js",
+      ;:output-dir "resources/public/js/out",
+      :preamble ["react/react.min.js"]
       :externs ["react/externs/react.js"]
       :closure-warnings {:non-standard-jsdoc :off}
       }}

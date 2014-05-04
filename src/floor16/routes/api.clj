@@ -42,9 +42,9 @@
 ;  :available-media-types ["text/html"]
 ;  :handle-ok "<html>res-cities</html>")
 
-(defresource res-city [id]
-  :available-media-types ["text/html" "application/json"]
-  :handle-ok (fn [_] (format "<html>res-city id: %s</html>" ((db/get-user "test-id") :first_name))))
+;(defresource res-city [id]
+;  :available-media-types ["text/html" "application/json"]
+;  :handle-ok (fn [_] (format "<html>res-city id: %s</html>" ((db/get-user "test-id") :first_name))))
 
 (defroutes api-routes
   (ANY (api-url "cities") []
@@ -55,4 +55,5 @@
           (wrap-restful-response)
         )
   )
-  (ANY [(api-url "city/:id") :id #"[0-9]+"] [id] (res-city id)))
+;  (ANY [(api-url "city/:id") :id #"[0-9]+"] [id] (res-city id)))
+)

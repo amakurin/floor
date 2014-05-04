@@ -7,7 +7,7 @@
    [om.dom :as dom :include-macros true]
    [goog.events :as events]
    [goog.events.EventType]
-   [floor16.ui.utils :as uu]
+   [floor16.ui.generic :as gen]
    [floor16.auth :as auth]
    [floor16.navigation :as nav]
    [floor16.pages.search]
@@ -109,7 +109,7 @@
                  (let [mouse-handler
                        (fn [e]
                          (when (om/get-state owner [:active])
-                           (when-not (uu/in? e (om/get-node owner))
+                           (when-not (gen/in? e (om/get-node owner))
                              (set-active! false)
                              (set-error! false))))]
                    (events/listen js/document.body goog.events.EventType.MOUSEDOWN mouse-handler)

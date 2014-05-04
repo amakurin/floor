@@ -35,8 +35,10 @@
       (:scope cached))))
 
 (defn render [app state]
-  (let [root-sc (get-root-scope (str js-base-path "site2.js") true)
-        sc (js/new-scope nil root-sc)]
-    (js/eval sc
-             (str "var appStateEdn = '" (pr-str state)"';\n"
-                  app ".render(appStateEdn);\n"))))
+  (try
+    (let [root-sc (get-root-scope (str js-base-path "site2.js") true)
+          sc (js/new-scope nil root-sc)]
+      (js/eval sc
+               (str "var appStateEdn = \"" (clojure.string/escape (pr-str state) {\" "\\\"" \\ "\\\\"})"\";\n"
+                    app ".render(appStateEdn);\n")))
+    (catch Exception e (str (.getMessage e)))))

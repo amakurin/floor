@@ -26,7 +26,8 @@
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <!--<script type='text/javascript' id='lt_ws' src='http://localhost:52012/socket.io/lighttable/ws.js'></script>-->
+        <script type='text/javascript' id='lt_ws' src='http://localhost:48706/socket.io/lighttable/ws.js'></script>
+
 
 </head>
     <body>
@@ -43,9 +44,11 @@
         <!--{% script "/out/goog/base.js" %}-->
         <!--{% script "/js/site.js" %}-->
         {% script "/js/site2.js" %}
-
         <script type="text/javascript">{{app|safe}}.main("{{app-state|safe}}");</script>
-    </body>
+        <!--<script type="text/javascript">function ymapsInit() { {{app|safe}}.yinit();}; </script>
+        <script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&onload=ymapsInit" > </script>
+-->
+</body>
 </html>
 
 
