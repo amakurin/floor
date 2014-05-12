@@ -1,8 +1,10 @@
 (ns floor16.xhr
+  (:require-macros [clojure.core :refer [some-> some->>]]
+                   [cljs.core.async.macros :refer [go]])
   (:require [cljs.reader :as reader]
             [goog.events :as events]
+            [cljs.core.async :refer [put! <! >! chan]]
             [clojure.string :as string])
-  (:require-macros [clojure.core :refer [some-> some->>]])
   (:import [goog.net XhrIo]
            goog.net.EventType
            [goog.events EventType]))
@@ -91,11 +93,18 @@
      :headers (.getAllResponseHeaders xhr)
      :body (when (and raw-body (not (empty? raw-body))) (reader/read-string raw-body))}))
 
-(defn do-request [request on-complete]
+(defn cb-request [request on-complete]
   (let [xhr (XhrIo.)
         {:keys [url method body headers]} (pre-process request)]
     (events/listen xhr goog.net.EventType.COMPLETE
                    (fn [e](on-complete (create-response xhr))))
+    (. xhr (send url method body headers))))
+
+(defn chan-request [request ch]
+  (let [xhr (XhrIo.)
+        {:keys [url method body headers]} (pre-process request)]
+    (events/listen xhr goog.net.EventType.COMPLETE
+                   (fn [e] (put! ch (create-response xhr))))
     (. xhr (send url method body headers))))
 
 (defn accept [request t]

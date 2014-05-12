@@ -37,15 +37,19 @@
 
 (defn compose-raw-query [r]
   (fn [{:keys [mode-conf url-params result-params] :as context}]
-    (if (= (:view-type mode-conf) :list)
-      (r (if (empty? url-params) context (assoc-in context [:result-params :query-params :q] (encode-query url-params))))
-      (r context))))
+    (let [{:keys [settings]} @(app)
+          clear(->> url-params
+                    (remove (fn [[k v]] (or (nil? v) (and (coll? v)(empty? v)) (= v (k settings)))))
+                    (into {}))]
+      (if (= (:view-type mode-conf) :list)
+        (r (if (empty? clear) context (assoc-in context [:result-params :query-params :q] (encode-query clear))))
+        (r context)))))
 
 (defn compose-page-number [r]
   (fn [{:keys [url-update? o-page mode-conf url-params result-params] :as context}]
     (if (= (:view-type mode-conf) :list)
       (let [{op :o-page} url-params
-            page (if url-update? 0(or o-page op))]
+            page (if url-update? 1 (or o-page op))]
         (r (if page
              (-> context
                  (assoc :url-params (dissoc url-params :o-page))
@@ -62,13 +66,14 @@
     ((:url-composer @system) (merge context {:mode-conf mconf :result-params {}}))))
 
 (defn- handle-history-event [token]
-  ;warning! handle first event cuz it from server
-  (if (:server-state? @system)
-    (swap! system dissoc :server-state?)
-    (do
-      ;(println "event! history token: " token)
+  ;warning! handle first event cuz it is from server, but it never comes, i guess..
+;;   (if (:server-state? @system)
+;;     (swap! system dissoc :server-state?)
+;;     (do
+;;       (println "event! history token: " token)
       (sec/dispatch! (str "/" token))
-      )))
+      )
+;; ))
 
 (defn- retrieve-token [pathPrefix location]
   (str (subs (.-pathname location) (count pathPrefix))  (.-search location)))
@@ -94,11 +99,13 @@
   (fn [{:keys [mode mode-conf params result-state] :as context}]
     (let [{:keys [view-type query-path]} mode-conf
           query-params (:query-params params)
+          {:keys [settings]} @(app)
           qstr (get query-params "q")
           page (get query-params "page")]
       (if (= :list view-type)
         (h (update-in context (cons :result-state query-path)
                       merge
+                      settings
                       (when qstr (decode-query qstr))
                       ;;todo try\catch on read
                       (when page {:o-page (cljs.reader/read-string page)})))
@@ -161,8 +168,11 @@
 
 (defn goto [link]
   ;(when event (.preventDefault event))
-  (.setToken history (if (= \/(first link)) (subs link 1) link))
+  (.setToken history (if (= \/ (first link)) (subs link 1) link))
   )
 
 (defn url-update [context]
   (goto (url-to (assoc context :url-update? true))))
+
+(defn go-back []
+  (.. js/window -history back))

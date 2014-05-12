@@ -7,28 +7,22 @@
   [
    [org.clojure/core.memoize "0.5.6"]
    [ring-server "0.3.1"]
-   [org.clojure/clojurescript "0.0-2156"]
-   [environ "0.4.0"]
+   [org.clojure/clojurescript "0.0-2173" :scope "provided"]
    [org.clojure/tools.reader "0.8.3"]
-   ;[com.taoensso/timbre "2.7.1"]
-   ;[markdown-clj "0.9.35"]
-   ;[com.taoensso/tower "2.0.1"]
    [org.clojure/clojure "1.5.1"]
    [selmer "0.5.8"]
    [compojure "1.1.6"]
    [ring-middleware-format "0.3.2"]
-   [liberator "0.10.0"]
+   [org.clojars.r0man/environ "0.4.1-SNAPSHOT"]
    [mysql/mysql-connector-java "5.1.28"]
    [korma "0.3.0-RC6"]
-   [org.clojars.amakurin/lobos "1.0.4"]
-   [lib-noir "0.7.6"]
-   ;[com.postspectacular/rotor "0.1.0"]
+   [clj-sql-up "0.3.1"]
    [crypto-random "1.1.0"]
    [com.cemerick/friend "0.2.0"]
    [secretary "1.0.2"]
-   [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
+   [org.clojure/core.async "0.1.267.0-0d7780-alpha" :scope "provided"]
    [clj-time "0.6.0"]
-   [om "0.5.0"]
+   [om "0.6.2"]
    [gered/clj-rhino "0.2.2"]
    [com.linuxense/javadbf	"0.4.0"]]
   :cljsbuild
@@ -47,7 +41,7 @@
      :source-paths ["src-cljs"],
      :compiler
      {:optimizations :whitespace,
-      :source-map "resources/public/js/site2.js.map",
+      ;:source-map "resources/public/js/site2.js.map",
       :pretty-print true,
       :output-to "resources/public/js/site2.js",
       :output-dir "resources/public/js/out",
@@ -82,10 +76,16 @@
    :dev
    {:ring {:auto-reload? true, :reload-paths ["src" "resources"]}
     :dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]],
-    :env {:selmer-dev true}}}
+    :env {:selmer-dev true
+          :api-url "/api"
+          :default-select-limit 20
+          :database {:subprotocol "mysql"
+                     :subname "//localhost/caterpillar"
+                     :user "caterpillar"
+                     :password "111111"
+                     :delimiters "`"}}}}
   :url
   "http://example.com/FIXME"
-  :aot [#"^((?!lobos.migrations).)*$"]
   :plugins
   [[lein-ring "0.8.10"]
    [lein-environ "0.4.0"]

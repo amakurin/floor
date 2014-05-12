@@ -28,7 +28,7 @@
                        (assoc :app app)
                        (assoc :api-url url)))
   (when-let [t (auth-coockie cook/cget)]
-    (xh/do-request
+    (xh/cb-request
      (->{:method :get
          :url (api-url)}
                  (xh/bearer-authorization t))
@@ -56,7 +56,7 @@
 (defn do-login [creds] (do-login creds nil nil))
 (defn do-login [creds cb] (do-login creds cb nil))
 (defn do-login [creds cb err-cb]
-              (xh/do-request
+              (xh/cb-request
                (->{:method :post
                    :url (api-url)
                    :body {:grant_type "password"
@@ -67,7 +67,7 @@
                (handle-login-response cb err-cb)))
 (defn do-logout []
                (when-let [t (token)]
-                 (xh/do-request
+                 (xh/cb-request
                   (->{:method :delete
                       :url (api-url)}
                               (xh/bearer-authorization t))

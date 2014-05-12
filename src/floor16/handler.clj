@@ -2,11 +2,11 @@
   (:require [floor16.routes.frontend :refer [front-routes]]
             [floor16.routes.api :refer [api-routes]]
             [floor16.routes.oauth :refer [oauth-routes]]
-            [floor16.dal.schema :as schema]
             [environ.core :refer [env]]
             [selmer.parser :as parser]
             [compojure.core :refer [defroutes]]
             [compojure.route :as route]
+            [floor16.storage :as store]
             [compojure.handler :refer [api]]
             ))
 
@@ -22,7 +22,7 @@
    put any initialization code here"
   []
   (when (env :selmer-dev) (parser/cache-off!))
-  (when-not (schema/actualized?)(schema/actualize)))
+  (store/initialize (env :database)))
 
 (defn destroy
   "destroy will be called when your application\r

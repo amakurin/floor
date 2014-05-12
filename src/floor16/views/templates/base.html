@@ -26,12 +26,28 @@
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script type='text/javascript' id='lt_ws' src='http://localhost:48706/socket.io/lighttable/ws.js'></script>
+        <script type='text/javascript' id='lt_ws' src='http://localhost:62212/socket.io/lighttable/ws.js'></script>
 
 
-</head>
+    </head>
     <body>
         <header id="header">
+            <div class="container">
+                <h1 id="logo" class="four columns">
+                    <a href="/" title="Поисковый Робот ЭТАЖ-16. Перейти на главную страницу.">
+                        <img src="/img/logo.svg" alt="Робот ЭТАЖ-16. Умный поиск жилья без посредников.">
+                    </a>
+                </h1>
+                <div class="twelve columns">
+                    <nav id="main-menu">
+                        <ul>
+                            <li><a href="/agreement/">Пользовательское соглашение</a></li>
+                            <li><a href="/agent-place/">Уголок агента</a></li>
+                            <li>Вход</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </header>
         <section id="content" >
             {% block content %}
@@ -45,9 +61,7 @@
         <!--{% script "/js/site.js" %}-->
         {% script "/js/site2.js" %}
         <script type="text/javascript">{{app|safe}}.main("{{app-state|safe}}");</script>
-        <!--<script type="text/javascript">function ymapsInit() { {{app|safe}}.yinit();}; </script>
-        <script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&onload=ymapsInit" > </script>
--->
+        <!--<script type="text/javascript">function ymapsInit() { {{app|safe}}.yinit();}; </script>-->
 </body>
 </html>
 

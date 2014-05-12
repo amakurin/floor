@@ -1,59 +1,69 @@
 (ns floor16.routes.api
-  (:require [compojure.core :refer [defroutes ANY]]
-            [liberator.core :refer [resource defresource]]
+  (:use korma.core)
+  (:require [compojure.core :refer [defroutes context
+                                    ANY GET POST PUT
+                                    DELETE OPTIONS] :as com]
             [ring.middleware.format :refer [wrap-restful-format]]
             [ring.middleware.format-response :refer [wrap-restful-response]]
-            [floor16.dal.db :as db]))
+            [environ.core :refer [env]]
+            [floor16.http :as http]
+            [floor16.search :as srch]
+            ))
 
-;cities
-;city/:id
-;area-types
-;area-type/:id
-;city/:id/area-types
-;city/:id/areas type=metro,district,street
-;area/:id
-;appartment-types
-;appartment-type/:id
-;appartments type=room,1room,2room,3room,4room city-id area-id ...
-;appartment/:id
-;client-types
-;client-type/:id
-;clients type=realtor,householder,leaseholder
-;owner/:oid/clients
-;client/:id
-;users
-;owner/:oid/users
-;user/:id
-
-(defn api-url ([url] (format "/api/v1/%s" url))
-              ([url param regex] [(api-url url), param regex]))
-
-(def cities (atom [{:id 0
-                    :code "moskva"
-                    :caption "Москва"
-                    :area-types [:metro :district :street]
-                    }
-                   {:id 1
-                    :code "samara"
-                    :caption "Самара"
-                    :area-types [:district :street]}]))
-
-;(defresource res-cities
-;  :available-media-types ["text/html"]
-;  :handle-ok "<html>res-cities</html>")
-
-;(defresource res-city [id]
-;  :available-media-types ["text/html" "application/json"]
-;  :handle-ok (fn [_] (format "<html>res-city id: %s</html>" ((db/get-user "test-id") :first_name))))
+(defmacro res-dict [entity & [condition fields]]
+  `(try
+     (http/generic-response
+      (-> (select* ~entity)
+          (#(apply fields % (or ~fields [:id :name :mnemo])))
+          (#(if ~condition (where % ~condition) %))
+          (select)))
+     (catch Exception e# (http/gen-error))))
 
 (defroutes api-routes
-  (ANY (api-url "cities") []
-       (->
-        (resource
-           :available-media-types ["application/json" "application/edn"]
-           :handle-ok (fn [ctx] @cities));(get-in ctx [:representation :media-type])
-          (wrap-restful-response)
-        )
-  )
-;  (ANY [(api-url "city/:id") :id #"[0-9]+"] [id] (res-city id)))
-)
+  (->>
+   (context (env :api-url) []
+            (OPTIONS "/" []
+                     (http/options [:options] {:version "0.1.0"}))
+            (ANY "/" []
+                 (http/method-not-allowed [:options]))
+            (context "/cities" []
+                     (GET "/" []
+                          (res-dict :cities))
+                     (GET "/:id" [id]
+                          (res-dict :cities {:id id}))
+                     (GET "/:id/districts" [id]
+                          (res-dict :districts {:city id}))
+                     (GET "/:id/metros" [id]
+                          (res-dict :metros {:city id}))
+                     (OPTIONS "/" []
+                              (http/options [:options :get]))
+                     (ANY "/" []
+                          (http/method-not-allowed [:options :get])))
+            (context "/districts" []
+                     (GET "/:id" [id]
+                          (res-dict :districts {:city id}))
+                     (OPTIONS "/" []
+                              (http/options [:options :get]))
+                     (ANY "/" []
+                          (http/method-not-allowed [:options])))
+            (context "/metros" []
+                     (GET "/:id" [id]
+                          (res-dict :metros {:id id}))
+                     (OPTIONS "/" []
+                              (http/options [:options :get]))
+                     (ANY "/" []
+                          (http/method-not-allowed [:options])))
+            (context "/pub" []
+                     (GET "/:id" [id]
+                          (res-dict :metros {:id id}))
+                     (GET "/" req
+                          (let [{:keys [page q] :as params} (:params req)
+                                query (if q (srch/decode-query q req) (srch/empty-query req))
+                                data  (srch/search query page)]
+                            (http/generic-response data)))
+                     (OPTIONS "/" []
+                              (http/options [:options :get]))
+                     (ANY "/" []
+                          (http/method-not-allowed [:options]))))
+   (wrap-restful-response)
+   ))

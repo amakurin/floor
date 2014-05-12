@@ -47,6 +47,14 @@
     (response nil)
     (status 501)))
 
+(defn gen-error []
+  (->
+    (response nil)
+    (status 500)))
+
+(defn redirect-to [url]
+  (redirect url))
+
 (defn wrap-restful-response
   "Wrapper that tries to do the right thing with the response :body
   and provide a solid basis for a RESTful API. It will serialize to

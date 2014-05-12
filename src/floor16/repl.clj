@@ -1,6 +1,5 @@
 (ns floor16.repl
   (:use floor16.handler
-        floor16.dal.schema
         ring.server.standalone
         [ring.middleware file-info file]))
 
@@ -33,3 +32,7 @@
 (defn stop-server []
   (.stop @server)
   (reset! server nil))
+
+
+;; (start-server)
+;; (stop-server)
