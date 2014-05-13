@@ -254,7 +254,7 @@ color: #555;
 .extended-filter {
 border-radius: 3px;
 border: 1px solid #FFD200;
-padding: 45px 15px 20px;
+padding: 55px 15px 20px;
 position: relative;
 font-size: 13px;
 }
@@ -266,8 +266,8 @@ left: 0;
 right: 0;
 display: block;
 text-align: center;
-height: 32px;
-line-height: 32px;
+height: 37px;
+line-height: 37px;
 background: #FFD200;
 }
 
@@ -301,6 +301,117 @@ margin-bottom: 10px;
 .box-group-content{
   padding: 10px 0 0 0;
 }
+
+.ad-item, .ad-item .thumb {
+  margin-left: 0!important;
+}
+
+.ad-item {
+margin-bottom: 30px;
+padding-bottom: 30px;
+border-bottom: 1px solid #DDD;
+}
+
+.ad-item .thumb {
+border: 1px solid #DDD;
+border-radius: 3px;
+height: 90px;
+background-image: url('/img/nophoto.png');
+}
+
+.ad-item .address {
+font-size: 18px;
+font-weight: bold;
+margin-left: 0!important;
+margin-bottom: 5px;
+}
+
+.ad-item .cond {
+margin-right: 0!important;
+  text-align: center;
+}
+
+.ad-item .columns {
+margin-left: 0!important;
+}
+
+.digest {
+margin-left: 0!important;
+}
+
+.digest strong, .digest span {
+margin-right: 3px;
+white-space: nowrap;
+}
+
+span.price {
+margin-bottom: 5px;
+display: block;
+height: 20px;
+}
+
+.price .val {
+font-weight: bold;
+font-size: 25px;
+margin-right: 5px;
+}
+
+.price .cur {
+font-weight: bold;
+font-size: 18px;
+}
+
+div.price-details {
+height: 27px;
+margin-bottom: 5px;
+}
+
+span.show-phone:first-letter {
+text-transform: capitalize;
+}
+span.show-phone {
+background: #3D77E3;
+color: #fff;
+border-radius: 3px;
+height: 35px;
+line-height: 35px;
+}
+
+div.cond.three.columns {
+margin-left: 18px!important;
+}
+
+div.data-header {
+height: 32px;
+margin-bottom: 30px;
+padding-bottom: 5px;
+border-bottom: 1px solid #DDD;
+}
+
+div.total {
+color: #3D77E3;
+font-weight: bold;
+font-size: 21px;
+font-family: 'open-sans';
+margin-left: 0!important;
+float: left;
+width: 220px;
+}
+
+span.count-nums {
+font-size: 26px;
+margin-right: 5px;
+line-height: 32px;
+/* color: #2857B8; */
+}
+
+div.opts {
+width: 400px;
+float: left;
+}
+
+
+
 /*====== User Head ======*/
 #login-link, #menu .exit-link {
   text-transform: capitalize;

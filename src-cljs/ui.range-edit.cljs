@@ -93,15 +93,6 @@
       @state
       (get-in @state path))))
 
-(defn price-to-str [price]
-  (->> (str price)
-       reverse
-       (partition-all 3)
-       (map #(apply str %))
-       (s/join " ")
-       reverse
-       (apply str)))
-
 (defn range-textbox [range-value owner {:keys [bound comm]}]
   (om/component
    (let [handle-change (fn [e]
@@ -110,7 +101,7 @@
                            (om/refresh! owner)))]
      (dom/input #js {:type "text" :className (name bound)
                      :maxLength 7
-                     :value (price-to-str
+                     :value (glo/price-to-str
                              (if (om/get-state owner :editing)
                                (om/get-state owner :value)
                                (bound range-value)))

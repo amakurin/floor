@@ -5,6 +5,7 @@
    [cljs.core.async :refer [put! <! chan]]
    [om.core :as om :include-macros true]
    [om.dom :as dom :include-macros true]
+   [clojure.string :as s]
    [floor16.ui.generic :as gen]
    [floor16.ui.range-edit :as re]
    [floor16.lang :refer [l]]
@@ -106,12 +107,12 @@
                                          (om/build gen/select query
                                                    {:opts {:data-key :published
                                                            :placeholder (l :published)
-                                                           :className "four columns"
+                                                           :className "three columns"
                                                            :dict (dat/dict :pubsettings)
                                                            :after-update after-update}})
                                          (om/build gen/checkbtn query
                                                    {:opts {:data-key :with-photo
-                                                           :className "with-photo two columns"
+                                                           :className "with-photo three columns"
                                                            :after-update after-update}}))
                                 )
                        (let [url (nav/url-to {:mode :grid :url-params query})]
@@ -150,7 +151,7 @@
 (defn extended-filter [query owner opts]
   (om/component
    (let [after-update (after-update query)]
-     (dom/div #js{:className "four columns"}
+     (dom/div #js{:className "four columns offset-by-one"}
               (dom/div #js{:className "extended-filter"}
                        (dom/span #js{:className "box-header"} (l :additionals))
                        (om/build box-group query
@@ -278,11 +279,51 @@
                                          :caption (l :restrictions)}})
                        )))))
 
+(defn compose-digest[{:keys [appartment-type total-area
+                             floor floors
+                             building-type
+                             metro district] :as item}]
+  (dom/span #js{:className "digest"}
+            (dom/span #js{:className "first-line seven columns"}
 
-(defn ad-item-view [item owner opts]
+                      (dom/span nil appartment-type)
+                      (when total-area
+                        (dom/span nil
+                                  (dom/strong nil
+                                              total-area
+                                              "м"
+                                              (dom/sup nil 2)))))
+            (dom/span #js{:className "second-line seven columns"}
+                      (when floor (dom/span nil
+                                            "на"
+                                            (dom/strong nil floor)
+                                            "этаже"))
+                      (when floors (dom/span nil
+                                             (dom/strong nil floors)
+                                             "этажного"))
+                      (when building-type (dom/strong nil (s/replace building-type #"ый$" "ого")))
+                      (when (or floors building-type) "дома"))))
+
+(defn ad-item-view [{:keys [floor floors
+                            price
+                            address
+                            description] :as item} owner opts]
   (om/component
-   (dom/div #js{:className ""
-                :onClick #(nav/url-update {:mode :ad :url-params @item})} (pr-str item))))
+   (dom/div #js{:className "ad-item eleven columns"}
+            (dom/div #js{:className "thumb two columns"})
+            (dom/div #js{:className "descr six columns"}
+                     (dom/span #js{:className "address six columns"} (if address address (l :no-address)))
+                     (compose-digest item)
+;;                      (dom/span #js{:className "description"} description)
+                     )
+            (dom/div #js{:className "cond three columns"}
+                     (dom/span #js{:className "price"}
+                               (when price (dom/span #js{:className "val"} (glo/price-to-str price)))
+                                (when price (dom/span #js{:className "cur"} (l :rub)))
+                               (when-not price (l :no-price)))
+                     (dom/div #js{:className "price-details"})
+                     (dom/span #js{:className "show-phone three columns"} "показать номер"))
+            )))
 
 (defn ad-view [cursor owner]
   (om/component
@@ -299,7 +340,8 @@
                                :side-filter extended-filter
                                :header-opts {:sort {:view gen/sort-select}}
                                :main-container-class "container"
-                               :data-container-class "twelve columns"
+                               :data-container-class "eleven columns"
+                               :data-header-class "clearfix"
                                :empty-text (l :empty-search)
                                :item-view ad-item-view
                                :res (dat/res :ads)

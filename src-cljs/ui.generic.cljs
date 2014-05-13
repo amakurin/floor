@@ -151,9 +151,9 @@
    (dom/div #js{:className "empty"} empty-text)))
 
 (defn data-header [{:keys [query data] :as cursor} owner
-                   {:keys [header-opts]}]
+                   {:keys [header-opts data-header-class]}]
   (om/component
-   (dom/div #js{:className "data-header"}
+   (dom/div #js{:className (str "data-header " data-header-class)}
             (when-let [total (:total data)]
               (dom/div #js{:className "total"}
                        (dom/span #js{:className "count-nums"} total)
@@ -175,7 +175,7 @@
                                       (.scrollTo js/window 0 0))))}
                    (or text index)))))
 
-(defn data-pager [{:keys [query data] :as cursor} owner {:keys [list-mode] :as opts}]
+(defn data-pager [{:keys [query data] :as cursor} owner {:keys [list-mode ] :as opts}]
   (om/component
    (let [max-pages 9
          middle (quot max-pages 2)
@@ -220,6 +220,7 @@
                          item-view kw-id res
                          main-container-class
                          data-container-class
+                         data-header-class
                          list-mode item-view-mode]}]
   (reify
     om/IRenderState
@@ -234,7 +235,8 @@
                                                (when (:loading data) (om/build load-progress data))
                                                (if data-head
                                                  (om/build data-head cursor)
-                                                 (om/build data-header cursor {:opts {:header-opts header-opts}}))
+                                                 (om/build data-header cursor {:opts {:header-opts header-opts
+                                                                                      :data-header-class data-header-class}}))
                                                (if no-items?
                                                  (if data-empty
                                                    (om/build data-empty {:empty-text empty-text})

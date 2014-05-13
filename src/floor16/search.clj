@@ -3,6 +3,7 @@
             [floor16.views.layout :as lt]
             [floor16.views.reactor :as react]
             [floor16.storage :as db]
+            [clojure.string :as s]
             [korma.core :as k]
             [korma.sql.fns :as kf]
             [clj-time.core :as tc]
@@ -17,45 +18,7 @@
          {:id 7 :mnemo :last-week :name "за неделю"}
          {:id 1 :mnemo :last-day :name "за сутки"}])
 
-(def conf {:total-area {:pred range-pred
-                        :bounds {:btm 0 :top 200}}
-           :living-area {:pred range-pred
-                         :bounds {:btm 0 :top 100}}
-           :kitchen-area {:pred range-pred
-                          :bounds {:btm 0 :top 50}}
-           :floor {:pred range-pred
-                   :bounds {:btm 0 :top 30}}
-           :floors {:pred range-pred
-                    :bounds {:btm 0 :top 30}}
-           :price {:pred range-pred
-                   :bounds {:btm 0 :top 50000}}
-           :distance {:pred distance-pred
-                      :bounds {:btm 0 :top 60}}
-           :toilet {:pred in-pred}
-           :metro {:pred in-pred}
-           :building-type {:pred in-pred}
-           :district {:pred in-pred}
-           :appartment-type {:pred appartment-type-pred}
-           :with-photo {:pred with-photo-pred}
-           :published {:pred published-pred}
-           :balcony {:pred balcony-pred}
 
-           :city           {:pred as-is-pred }
-           :furniture      {:pred as-is-pred }
-           :internet       {:pred as-is-pred }
-           :tv             {:pred as-is-pred }
-           :frige          {:pred as-is-pred }
-           :washer         {:pred as-is-pred }
-           :conditioner    {:pred as-is-pred }
-           :parking        {:pred as-is-pred }
-           :intercom       {:pred as-is-pred }
-           :security       {:pred as-is-pred }
-           :concierge      {:pred as-is-pred }
-           :kids           {:pred as-is-pred }
-           :pets           {:pred as-is-pred }
-           :not-only-russo {:pred as-is-pred }
-           :only-russo     {:pred as-is-pred }
-           })
 
 (defn appartment-type-pred [k v]
   (if (or (not (vector? v)) (empty? v)) {}
@@ -112,6 +75,46 @@
   (if (or (number? v)(string? v)(false? v)(true? v))
     {k v}
     {}))
+
+(def conf {:total-area {:pred range-pred
+                        :bounds {:btm 0 :top 200}}
+           :living-area {:pred range-pred
+                         :bounds {:btm 0 :top 100}}
+           :kitchen-area {:pred range-pred
+                          :bounds {:btm 0 :top 50}}
+           :floor {:pred range-pred
+                   :bounds {:btm 0 :top 30}}
+           :floors {:pred range-pred
+                    :bounds {:btm 0 :top 30}}
+           :price {:pred range-pred
+                   :bounds {:btm 0 :top 50000}}
+           :distance {:pred distance-pred
+                      :bounds {:btm 0 :top 60}}
+           :toilet {:pred in-pred}
+           :metro {:pred in-pred}
+           :building-type {:pred in-pred}
+           :district {:pred in-pred}
+           :appartment-type {:pred appartment-type-pred}
+           :with-photo {:pred with-photo-pred}
+           :published {:pred published-pred}
+           :balcony {:pred balcony-pred}
+
+           :city           {:pred as-is-pred }
+           :furniture      {:pred as-is-pred }
+           :internet       {:pred as-is-pred }
+           :tv             {:pred as-is-pred }
+           :frige          {:pred as-is-pred }
+           :washer         {:pred as-is-pred }
+           :conditioner    {:pred as-is-pred }
+           :parking        {:pred as-is-pred }
+           :intercom       {:pred as-is-pred }
+           :security       {:pred as-is-pred }
+           :concierge      {:pred as-is-pred }
+           :kids           {:pred as-is-pred }
+           :pets           {:pred as-is-pred }
+           :not-only-russo {:pred as-is-pred }
+           :only-russo     {:pred as-is-pred }
+           })
 
 (defn get-search-settings []
   (->> conf
@@ -172,9 +175,27 @@
 (defn key-is? [k]
   #(= k (first %)))
 
-(defn post-process[{:keys [imgs distance] :as m}]
-  (merge m {:distance (when distance (meter->min-walk distance))
-            :imgs (when imgs (edn/read-string imgs))}))
+(defn prepare-description [desc]
+  (-> desc
+   (s/replace #"[\n\r?]+" " ")
+   (s/replace #"\s+" " ")
+   (s/replace #"\s+" " ")
+   (s/replace
+    #"(?iux)
+    (?<![\d])
+    (?: \b(?: мобильный|моб|сотовый|сот)[\.\:]?\s?)?
+    (?: \b(?: телефон|тел|т)[\.\:]?\s?)?
+    (?: \+\s?)?
+    (?: [78][\.\-\s]?)?
+    (?: \(\d{3}\)\s?|(?: \d\s?[\.\-]?\s?){3})
+    (?: (?: \d\s?[\.\-\s]?\s?){6,7}|(?: \d\s?[\.\-\s]?\s?){4})
+    \b(?![\d])" "")
+   (s/replace #"[\.\s\,]+$" ".")))
+
+(defn post-process[{:keys [imgs distance description] :as m}]
+  (merge m (when distance {:distance (meter->min-walk distance)})
+           (when imgs {:imgs (edn/read-string imgs)})
+         (when description {:description (prepare-description description)})))
 
 (defn try-parse-int [s]
   (if (number? s) s
@@ -182,7 +203,10 @@
       (Integer. s)
       (catch NumberFormatException e nil))))
 
-(defn select-resource [entity & [{:keys [query q-convert exclude-field-preds post-process page limit]
+(defn select-resource [entity & [{:keys [query q-convert
+                                         fields joins
+                                         exclude-field-preds
+                                         post-process page limit]
                                   :or {q-convert identity
                                        post-process identity
                                        exclude-field-preds [(val-nil?)]}}]]
@@ -204,20 +228,46 @@
      (->>
       (-> (k/select* entity)
           (k/where (if (map? condition) condition (apply kf/pred-and condition)))
+          (#(if fields (apply k/fields % fields) %))
+          (#(if joins (joins %) %))
           (k/offset offset)
           (k/limit limit)
-          (k/exec))
+           (k/exec))
       (map post-process)
       (map #(apply exclude-fields % exclude-field-preds))
       vec
       )}))
 
+(defn search-joins [srch]
+  (-> srch
+   (k/join :districts (= :districts.id :district ))
+   (k/join :metros (= :metros.id :metro ))
+   (k/join :appartment-types (= :appartment-types.id :appartment-type ))
+   (k/join :building-types (= :building-types.id :building-type ))
+   ))
+
 (defn search [q & [page limit]]
   (select-resource :pub {:query q :page page :limit limit
                          :q-convert #(default-converter % conf)
+                         :fields [:seoid :created :price
+                                  :floor :floors
+                                  :address :distance
+                                  :total-area :living-area :kitchen-area
+                                  :description :thumb
+                                  :deposit :counters :plus-utilities
+                                  :plus-electricity :plus-water :plus-gas
+                                  :balcony :loggia :bow-window
+                                  :furniture :internet
+                                  :tv :frige :washer :conditioner
+                                  :parking :intercom :security :concierge
+                                  :only-russo :kids :pets :addiction
+                                  [:districts.name :district]
+                                  [:appartment-types.name :appartment-type]
+                                  [:building-types.name :building-type]
+                                  [:metros.name :metro]]
+                         :joins search-joins
                          :post-process post-process
-                         :exclude-field-preds [(val-nil?)(key-is? :phone)(key-is? :id)(key-is? :src-date)]}))
-
+                         }))
 
 (defn gen-validate [raw-query]
   (let [allowed-pattern #"[a-zA-Z][a-zA-Z\-\d\?]+"

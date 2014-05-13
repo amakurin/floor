@@ -1,5 +1,6 @@
 (ns floor16.global
   (:require
+   [clojure.string :as s]
    [goog.dom :as gd]))
 
 (def server-side? false)
@@ -30,3 +31,12 @@
   (let [target (.-target e)]
     (or (identical? target el)
         (not (nil? (gd/getAncestor target (el-matcher el)))))))
+
+(defn price-to-str [price]
+  (->> (str price)
+       reverse
+       (partition-all 3)
+       (map #(apply str %))
+       (s/join " ")
+       reverse
+       (apply str)))
