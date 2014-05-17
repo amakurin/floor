@@ -6,6 +6,7 @@
             [clojure.string :as s]
             [korma.core :as k]
             [korma.sql.fns :as kf]
+            [clj-time.coerce :as tco]
             [clj-time.core :as tc]
             [clj-time.format :as tf]
             [clj-time.local :as tl]
@@ -18,7 +19,8 @@
          {:id 7 :mnemo :last-week :name "за неделю"}
          {:id 1 :mnemo :last-day :name "за сутки"}])
 
-
+(def os [{:id 0 :mnemo [:created :DESC] :name "дате публикации"}
+         {:id 1 :mnemo [:price :ASC] :name "цене жилья"}])
 
 (defn appartment-type-pred [k v]
   (if (or (not (vector? v)) (empty? v)) {}
@@ -99,6 +101,7 @@
            :published {:pred published-pred}
            :balcony {:pred balcony-pred}
 
+           :seoid          {:pred as-is-pred }
            :city           {:pred as-is-pred }
            :furniture      {:pred as-is-pred }
            :internet       {:pred as-is-pred }
@@ -122,6 +125,7 @@
        (map (fn [[k v]] [k (:bounds v)]))
        (into {})
        (merge {:published 0
+               :order 0
                :appartment-type []
                :toilet []
                :building-type []
@@ -192,10 +196,59 @@
     \b(?![\d])" "")
    (s/replace #"[\.\s\,]+$" ".")))
 
-(defn post-process[{:keys [imgs distance description] :as m}]
-  (merge m (when distance {:distance (meter->min-walk distance)})
-           (when imgs {:imgs (edn/read-string imgs)})
-         (when description {:description (prepare-description description)})))
+(defn same-date? [d1 d2]
+  (and (= (tc/year d1)(tc/year d2))
+       (= (tc/month d1)(tc/month d2))
+       (= (tc/day d1)(tc/day d2))))
+
+(defn post-process[{:keys [imgs distance description thumb address created lat lng appartment-type-mnemo] :as m} include]
+  (-> m
+      (#(if distance
+          (assoc % :distance (max 1 (meter->min-walk distance)))
+          %))
+
+      (#(if (and (include :imgs) imgs)
+          (assoc % :imgs (->>(edn/read-string imgs)
+                             (map (fn [x] (str (env :img-server-url) x)))
+                             vec))
+          (dissoc % :imgs)))
+
+      (#(if (and (include :imgs-cnt) imgs)
+          (assoc % :imgs-cnt (count(edn/read-string imgs)))
+          (dissoc % :imgs-cnt)))
+
+      (#(if (and (include :thumb) thumb)
+          (assoc % :thumb (str (env :img-server-url) thumb))
+          (dissoc % :thumb)))
+
+      (#(if (and (include :description) description)
+          (assoc % :description (prepare-description description))
+          (dissoc % :description)))
+
+      (#(if address
+          (assoc % :address (s/replace address #"[\s\.\,_\-]+$" ""))
+          %))
+
+      (#(if (and (include :lat-lng) lat lng)
+          (merge % {:lat (Float. lat) :lng (Float. lng)})
+          (dissoc % :lat :lng)))
+
+      (#(if (and (include :appartment-type-mnemo) appartment-type-mnemo)
+          (merge % {:appartment-type-mnemo (let [app-type (read-string appartment-type-mnemo)]
+                                             (if (#{:appartment4 :appartment5 :appartment6 :appartment7} app-type)
+                                               :appartment4 app-type))})
+          (dissoc % :appartment-type-mnemo)))
+
+      (#(if created
+          (let [td (tc/today)
+                yd (tc/minus td (tc/days 1))
+                created (tco/from-sql-time created)
+                created-str (cond
+                             (same-date? created td)(str "Сегодня в " (tf/unparse (tf/formatters :hour-minute) created))
+                             (same-date? created yd)(str "Вчера в "(tf/unparse (tf/formatters :hour-minute) created))
+                             :else (tf/unparse (tf/formatter "dd.MM.yy в hh:mm") created))]
+            (assoc % :created created-str))
+          %))))
 
 (defn try-parse-int [s]
   (if (number? s) s
@@ -204,7 +257,7 @@
       (catch NumberFormatException e nil))))
 
 (defn select-resource [entity & [{:keys [query q-convert
-                                         fields joins
+                                         fields joins order
                                          exclude-field-preds
                                          post-process page limit]
                                   :or {q-convert identity
@@ -230,9 +283,10 @@
           (k/where (if (map? condition) condition (apply kf/pred-and condition)))
           (#(if fields (apply k/fields % fields) %))
           (#(if joins (joins %) %))
+          (#(if order (apply k/order % order) %))
           (k/offset offset)
           (k/limit limit)
-           (k/exec))
+          (k/exec))
       (map post-process)
       (map #(apply exclude-fields % exclude-field-preds))
       vec
@@ -244,16 +298,17 @@
    (k/join :metros (= :metros.id :metro ))
    (k/join :appartment-types (= :appartment-types.id :appartment-type ))
    (k/join :building-types (= :building-types.id :building-type ))
+   (k/join :layout-types (= :layout-types.id :toilet))
    ))
 
-(defn search [q & [page limit]]
+(defn search [{:keys [order] :as q} & [page limit]]
   (select-resource :pub {:query q :page page :limit limit
                          :q-convert #(default-converter % conf)
                          :fields [:seoid :created :price
                                   :floor :floors
                                   :address :distance
                                   :total-area :living-area :kitchen-area
-                                  :description :thumb
+                                  :description :imgs :thumb
                                   :deposit :counters :plus-utilities
                                   :plus-electricity :plus-water :plus-gas
                                   :balcony :loggia :bow-window
@@ -266,8 +321,41 @@
                                   [:building-types.name :building-type]
                                   [:metros.name :metro]]
                          :joins search-joins
-                         :post-process post-process
+                         :order (when order (:mnemo (get os order)))
+                         :post-process #(post-process % #{:imgs-cnt :thumb})
                          }))
+
+
+(defn by-seoid [seoid]
+  (->>
+   (select-resource :pub {:query {:seoid seoid} :page 1 :limit 1
+                          :q-convert #(default-converter % conf)
+                          :fields [:seoid :created :price
+                                   :floor :floors
+                                   :address :distance
+                                   :total-area :living-area :kitchen-area
+                                   :description :imgs :thumb
+                                   :deposit :counters :plus-utilities
+                                   :plus-electricity :plus-water :plus-gas
+                                   :balcony :loggia :bow-window
+                                   :furniture :internet
+                                   :tv :frige :washer :conditioner
+                                   :parking :intercom :security :concierge
+                                   :only-russo :kids :pets :addiction
+                                   [:districts.name :district]
+                                   [:appartment-types.mnemo :appartment-type-mnemo]
+                                   [:appartment-types.fullname :appartment-type]
+                                   [:building-types.name :building-type]
+                                   [:layout-types.name :toilet]
+                                   [:metros.name :metro]
+                                   :lat :lng :person-name]
+                          :joins search-joins
+                          :post-process #(post-process % #{:imgs-cnt :imgs :description :lat-lng :appartment-type-mnemo})
+                          })
+  :items
+  first))
+
+(by-seoid "sdam-1-komn-kv-v-samare-KjTYYY")
 
 (defn gen-validate [raw-query]
   (let [allowed-pattern #"[a-zA-Z][a-zA-Z\-\d\?]+"

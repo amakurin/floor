@@ -13,7 +13,7 @@
              :rub "руб."
              :floor "этаж"
              :no-address "без указания адреса"
-             :no-price "-"
+             :no-price "цена по договоренности"
              :city "Город"
              :flat "квартира"
              :district "район"
@@ -22,6 +22,8 @@
              :dont-care "не важно"
              :with-photo "только с фото"
              :balcony "балкон"
+             :loggia "лоджия"
+             :bow-window "эркер"
              :furniture "мебель"
              :internet "интернет"
              :tv "телевизор"
@@ -34,6 +36,9 @@
              :concierge "консьерж"
              :pets "можно с животными"
              :kids "можно с детьми"
+             :no-pets "с животными нельзя"
+             :no-kids "с детьми нельзя"
+             :addiction "без вредных привычек"
              :additionals "дополнительные параметры"
              :area "площадь"
              :floors "этажность"
@@ -46,6 +51,9 @@
              :restrictions "предрассудки"
              :not-only-russo "без ограничений"
              :only-russo "только для славян"
+             :has "есть"
+             :hasnt "нет"
+             :person-name "арендодатель"
              }
 
         })
@@ -60,6 +68,9 @@
        (or (= d0 0 ) (>= d0 5 )) 5
        (>= d0 2) 2
        :else 1))))
+
+(defn ru-floor-ending [n]
+  (get {1 "" 2 "-х" 5 "-ти"} (ru-plural-form n)))
 
 (defn l [kw &[n]]
   (if-let [word (kw (vocabulary))]

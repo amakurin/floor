@@ -151,15 +151,19 @@
    (dom/div #js{:className "empty"} empty-text)))
 
 (defn data-header [{:keys [query data] :as cursor} owner
-                   {:keys [header-opts data-header-class]}]
+                   {:keys [header-opts
+                           data-header-class
+                           data-header-total-kword
+                           data-header-total-class
+                           data-header-opts-class]}]
   (om/component
    (dom/div #js{:className (str "data-header " data-header-class)}
             (when-let [total (:total data)]
-              (dom/div #js{:className "total"}
+              (dom/div #js{:className (str "total " data-header-total-class)}
                        (dom/span #js{:className "count-nums"} total)
-                       (dom/span #js{:className "count-words"} (l :ad total))))
-            (apply dom/div #js{:className "opts"}
-                   (map #(om/build (-> % val :view) query {:opts (-> % val :opts)}) header-opts))
+                       (dom/span #js{:className "count-words"} (l (or data-header-total-kword :total-kw) total))))
+            (apply dom/div #js{:className (str "opts " data-header-opts-class)}
+                   (map #(-> % val :view) header-opts))
             )))
 
 (defn page-item [query owner {:keys [index current? text className list-mode]}]
@@ -191,27 +195,24 @@
          right (+ cur-pg (min can-right (max middle (- to-show cur-pg))))
          ]
      (apply dom/ul #js{:className "data-pager"}
-             (concat
-;              (if (= cur-pg 0) []
-                [(om/build page-item query {:opts {:index (when (> cur-pg 1) (dec cur-pg))
-                                                   :text (l :data-pager-prev)
-                                                   :list-mode list-mode
-                                                   :className (str "prev" (when (<= cur-pg 1) " disabled"))}})];)
+            (concat
+             [(om/build page-item query {:opts {:index (when (> cur-pg 1) (dec cur-pg))
+                                                :text (l :data-pager-prev)
+                                                :list-mode list-mode
+                                                :className (str "prev" (when (<= cur-pg 1) " disabled"))}})]
+             (map #(om/build page-item query {:react-key %
+                                              :opts {:index % :current? (= % cur-pg) :list-mode list-mode}})
+                  (range (inc left) (inc right)))
 
-              (map #(om/build page-item query {:react-key %
-                                               :opts {:index % :current? (= % cur-pg) :list-mode list-mode}})
-                   (range (inc left) (inc right)))
-
-;              (if (= cur-pg (dec pg-count)) []
-                [(om/build page-item query {:opts {:index (when (< cur-pg pg-count )(inc cur-pg))
-                                                   :text (l :data-pager-next)
-                                                   :list-mode list-mode
-                                                   :className (str "next" (when (>= cur-pg pg-count ) " disabled"))}})])))));)
+             [(om/build page-item query {:opts {:index (when (< cur-pg pg-count )(inc cur-pg))
+                                                :text (l :data-pager-next)
+                                                :list-mode list-mode
+                                                :className (str "next" (when (>= cur-pg pg-count ) " disabled"))}})])))))
 
 
 (defn load-progress [data owner opts]
   (om/component
-   (dom/div #js{:className "load-progress"} "gen-load-progress")))
+   (dom/div #js{:className "load-progress"})))
 
 (defn list-view [{:keys [query data] :as cursor} owner
                  {:keys [top-filter side-filter
@@ -221,6 +222,9 @@
                          main-container-class
                          data-container-class
                          data-header-class
+                         data-header-total-kword
+                         data-header-total-class
+                         data-header-opts-class
                          list-mode item-view-mode]}]
   (reify
     om/IRenderState
@@ -236,13 +240,17 @@
                                                (if data-head
                                                  (om/build data-head cursor)
                                                  (om/build data-header cursor {:opts {:header-opts header-opts
-                                                                                      :data-header-class data-header-class}}))
+                                                                                      :data-header-class data-header-class
+                                                                                      :data-header-total-kword data-header-total-kword
+                                                                                      :data-header-total-class data-header-total-class
+                                                                                      :data-header-opts-class data-header-opts-class
+                                                                                      }}))
                                                (if no-items?
                                                  (if data-empty
                                                    (om/build data-empty {:empty-text empty-text})
                                                    (om/build empty-view {:empty-text empty-text}))
                                                  (apply dom/ul nil
-                                                        (map #(dom/li #js{:key (kw-id %)}
+                                                        (map #(dom/li #js{:key (kw-id %) :className "data-item clearfix"}
                                                                       (om/build item-view %))
                                                              items)))
                                                (when-not no-items? (om/build data-pager cursor {:opts {:list-mode list-mode}})))

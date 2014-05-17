@@ -49,7 +49,7 @@
       ;           "react/react.min.js"
                  ;"js/react-postlude.js"
       ;           ]
-      :externs ["react/externs/react.js"]
+      :externs ["react/externs/react.js" "google_maps_api_v3.js"]
       :closure-warnings {:non-standard-jsdoc :off}
       }}
     {:id "prod"
@@ -78,6 +78,7 @@
     :dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]],
     :env {:selmer-dev true
           :api-url "/api"
+          :img-server-url "http://img.floor16.loc/"
           :default-select-limit 20
           :database {:subprotocol "mysql"
                      :subname "//localhost/caterpillar"

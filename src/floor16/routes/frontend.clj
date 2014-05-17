@@ -13,15 +13,16 @@
 
 (defn get-query-dicts [q]
   (let [city (:city q)
-        res {:pubsettings srch/ps}]
-      (if city
-        (merge res {[:cities city :metros] (k/select :metros
-                                                     (k/fields :id :mnemo :name :city)
-                                                     (k/where {:city city}))
-                    [:cities city :districts] (k/select :districts
-                                                     (k/fields :id :mnemo :name :city)
-                                                     (k/where {:city city}))})
-        res)))
+        pubsettings {:pubsettings srch/ps}
+        ordersettings {:ordersettings srch/os}]
+    (merge pubsettings ordersettings
+           (when city
+             {[:cities city :metros] (k/select :metros
+                                               (k/fields :id :mnemo :name :city)
+                                               (k/where {:city city}))
+              [:cities city :districts] (k/select :districts
+                                                  (k/fields :id :mnemo :name :city)
+                                                  (k/where {:city city}))}))))
 
 (defn list-specific-state [rconf req]
   (let [{:keys [resource-key]} rconf
@@ -34,8 +35,12 @@
 (defn item-specific-state [rconf req]
   (let [{:keys [data-key resource-key]} rconf
         dk (get-in req [:params data-key])
-        data (if resource-key (db/by-key resource-key dk) {})]
-    {:current {:key dk :data data}}))
+        data (if (and dk resource-key) (srch/by-seoid dk) {})
+        query (merge (srch/empty-query req) (when-let [atmnemo (:appartment-type-mnemo data)] {:appartment-type [atmnemo]}))
+        dicts (get-query-dicts query)]
+    {:current {:key dk :data (if (:appartment-type-mnemo data) (dissoc data :appartment-type-mnemo) data)}
+     :query query :dicts dicts
+     :settings (srch/get-search-settings)}))
 
 (defn default-make-state[{:keys [rkw rconf req] :as context}]
   (let [{:keys [mode view-type dicts resource-key]} rconf
@@ -105,7 +110,7 @@
                        :view-type :item-view
                        :data-key :seoid
                        :dicts (dicts-set-default)
-                       :resource-key :some
+                       :resource-key :pub
                        :validate item-validate
                        }
                       }
