@@ -35,12 +35,15 @@
         (r (assoc-in context [:result-params dk] dv)))
       (r context))))
 
+(defn clear-query [q]
+  (let [{:keys [settings]} @(app)]
+    (->> q
+         (remove (fn [[k v]] (or (nil? v) (and (coll? v)(empty? v)) (= v (k settings)))))
+         (into {}))))
+
 (defn compose-raw-query [r]
   (fn [{:keys [mode-conf url-params result-params] :as context}]
-    (let [{:keys [settings]} @(app)
-          clear(->> url-params
-                    (remove (fn [[k v]] (or (nil? v) (and (coll? v)(empty? v)) (= v (k settings)))))
-                    (into {}))]
+    (let [clear (clear-query url-params)]
       (if (= (:view-type mode-conf) :list)
         (r (if (empty? clear) context (assoc-in context [:result-params :query-params :q] (encode-query clear))))
         (r context)))))
@@ -117,7 +120,7 @@
       (let [dk (:data-key mode-conf)
             dv (dk params)]
         (assert dv (str "Data-key (" dk ") value is missed in params: " params))
-        (h (assoc-in context [:result-state :current] (dat/current-for dv))))
+        (h (assoc-in context [:result-state :current] (dat/current-for dv mode-conf))))
       (h context))))
 
 (defn handle-route [{:keys [mode mode-conf result-state] :as context}]
@@ -133,7 +136,7 @@
 
 (defn default-data-load [{:keys [resource-key query-path data-path]}]
   (let [res (dat/res resource-key)]
-    (dat/load-by-query res {:query-path query-path :data-path data-path})))
+    (dat/load-by-query res {:query (clear-query (get-in @(app) query-path)) :data-path data-path})))
 
 (defn- init-routes [modes]
   (doseq [[mode conf] modes]

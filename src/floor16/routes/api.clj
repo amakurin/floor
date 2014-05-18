@@ -3,6 +3,7 @@
   (:require [compojure.core :refer [defroutes context
                                     ANY GET POST PUT
                                     DELETE OPTIONS] :as com]
+            [ring.util.response :refer [not-found]]
             [ring.middleware.format :refer [wrap-restful-format]]
             [ring.middleware.format-response :refer [wrap-restful-response]]
             [environ.core :refer [env]]
@@ -55,7 +56,7 @@
                           (http/method-not-allowed [:options])))
             (context "/pub" []
                      (GET "/:id" [id]
-                          (res-dict :metros {:id id}))
+                          (http/generic-response (srch/by-seoid id)))
                      (GET "/" req
                           (let [{:keys [page q] :as params} (:params req)
                                 query (if q (srch/decode-query q req) (srch/empty-query req))
@@ -64,6 +65,14 @@
                      (OPTIONS "/" []
                               (http/options [:options :get]))
                      (ANY "/" []
-                          (http/method-not-allowed [:options]))))
+                          (http/method-not-allowed [:options])))
+            (context "/private" []
+                     (GET "/:id" [id]
+                          (let [phone (->(select :pub (fields :phone) (where {:seoid id}) (limit 1))
+                                         first :phone)]
+                            (if phone
+                              (http/generic-response (read-string phone))
+                              (not-found {:id id}))))
+                     ))
    (wrap-restful-response)
    ))

@@ -355,8 +355,6 @@
   :items
   first))
 
-(by-seoid "sdam-1-komn-kv-v-samare-KjTYYY")
-
 (defn gen-validate [raw-query]
   (let [allowed-pattern #"[a-zA-Z][a-zA-Z\-\d\?]+"
         allowed-predicate #(or (string? %) (number? %) (true? %) (false? %) (vector? %) (keyword? %) (map? %))]

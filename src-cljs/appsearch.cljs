@@ -7,6 +7,8 @@
    [om.dom :as dom :include-macros true]
    [clojure.string :as s]
    [floor16.ui.generic :as gen]
+   [floor16.maps :as maps]
+   [floor16.photo :as pht]
    [floor16.ui.range-edit :as re]
    [floor16.lang :refer [l] :as lng]
    [floor16.navigation :as nav]
@@ -28,7 +30,9 @@
           :resource-key :pub}
    :ad {:route "/ads/:seoid"
         :view-type :item-view
+        :resource-key :pub
         :data-key :seoid
+        :current-path [:current]
         }})
 
 (defn after-update [query] #(nav/url-update {:mode :grid :url-params @query}))
@@ -120,33 +124,12 @@
                                   (dom/a #js{:href url
                                              :className "search-btn"
                                              :onClick (fn [e]
-                                                        (.preventDefault e)
                                                         (nav/goto url)
+                                                        (.preventDefault e)
                                                         )} "Найти жилье")))
                        )))))
 
 
-(defn box-group [cursor owner {:keys [init-opened
-                                      view
-                                      caption] :as opts}]
-  (reify
-    om/IInitState
-    (init-state [_] {:opened init-opened})
-    om/IRenderState
-    (render-state [this {:keys [opened]}]
-                  (dom/div #js {:className "box-group"}
-                           (dom/span #js{:className "box-group-header clearfix"
-                                         :onClick #(om/set-state! owner :opened
-                                                                  (not opened))}
-                                     (dom/div #js{:className
-                                                  (str "box-arrow "
-                                                       (if opened
-                                                         "arrow-down"
-                                                         "arrow-right"))})
-                                     (dom/span #js{:className "box-caption"} caption))
-                           (when opened
-                             (dom/div #js{:className "box-group-content"}
-                                      view))))))
 
 (defn extended-filter [query owner opts]
   (om/component
@@ -154,7 +137,7 @@
      (dom/div #js{:className "four columns offset-by-one"}
               (dom/div #js{:className "extended-filter"}
                        (dom/span #js{:className "box-header"} (l :additionals))
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (dom/div nil
                                                   (om/build re/range-editor (:total-area query)
@@ -180,7 +163,7 @@
                                                                     :after-update after-update}})
                                                   )
                                          :caption (l :area)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (dom/div nil
                                                   (om/build re/range-editor (:floor query)
@@ -198,7 +181,7 @@
                                                                     :caption "этажей в доме "
                                                                     :after-update after-update}}))
                                          :caption (l :floors)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build gen/checkbtn-list query
                                                    {:opts {:data-key :building-type
@@ -207,7 +190,7 @@
                                                            :after-update after-update
                                                            }})
                                          :caption (l :building-type)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build gen/checkbtn-list query
                                                    {:opts {:data-key :toilet
@@ -216,7 +199,7 @@
                                                            :after-update after-update
                                                            }})
                                          :caption (l :toilet)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build gen/checkbtn-list
                                                    query
@@ -233,7 +216,7 @@
                                                             {:id :conditioner }
                                                             {:id :parking     }]}})
                                          :caption (l :facilities)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build gen/checkbtn-list
                                                    query
@@ -245,7 +228,7 @@
                                                             {:id :security    }
                                                             {:id :concierge   }]}})
                                          :caption (l :safety)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build re/range-editor (:distance query)
                                                    {:opts {:min-bottom (get-in @astate [:settings :distance :btm])
@@ -255,7 +238,7 @@
                                                            :caption "До метро пешком, мин "
                                                            :after-update after-update}})
                                          :caption (l :distance)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build gen/checkbtn-list
                                                    query
@@ -266,7 +249,7 @@
                                                            [{:id :kids    }
                                                             {:id :pets    }]}})
                                          :caption (l :kidsnpets)}})
-                       (om/build box-group query
+                       (om/build gen/box-group query
                                  {:opts {:view
                                          (om/build gen/checkbtn-list
                                                    query
@@ -367,17 +350,26 @@
                             description imgs-cnt
                             thumb] :as item} owner opts]
   (let [url (nav/url-to {:mode :ad :url-params item})
-        title (compose-title item :area)]
+        title (compose-title item :area)
+        link-handler (fn [e]
+                       (when (= 0 (.-button e))
+                         (nav/goto url)
+                         (if-let [n (.getElementById js/document "ad")]
+                                      (.scrollTo js/window 0 (.-offsetTop n))
+                                      (.scrollTo js/window 0 0))
+                         (.preventDefault e)))]
     (dom/div #js{:className "ad-item eleven columns"}
              (dom/span #js{:className "pub-date"} (get-time-text item))
              (dom/a #js{:className "thumb two columns"
-                        :href url :title (compose-title item :photo)}
+                        :href url :title (compose-title item :photo)
+                        :onClick link-handler}
                     (when thumb (dom/img #js{:src thumb :alt (compose-str item)}))
                     (when (and imgs-cnt (< 0 imgs-cnt))
                       (dom/span #js{:className "photo-count"} imgs-cnt)))
              (dom/div #js{:className "descr six columns"}
                       (dom/a #js{:className "address six columns"
-                                 :href url :title title}
+                                 :href url :title title
+                                 :onClick link-handler}
                              (if address address (l :no-address)))
                       (compose-digest item))
              (dom/div #js{:className "cond three columns"}
@@ -447,115 +439,54 @@
                                     (dom/td nil person-name)))
                           ))))
 
-(defn map-viewer [{:keys [lat lng] :as cursor} owner
-                  {:keys [map-zoom  className marker-text] :or {map-zoom 15} :as opts}]
-  (reify
-    om/IInitState
-    (init-state [this] {:radius 40 :has-pano true :build-map false})
-    om/IDidMount
-    (did-mount [this]
-               (let [service (google.maps.StreetViewService.)
-                     lat-lng (google.maps.LatLng. lat lng)
-                     max-radius 2000
-                     svs-handler (fn svs-handler [data status]
-                                   (let [r (om/get-state owner :radius)]
-                                     (cond
-                                      (= status google.maps.StreetViewStatus.OK)
-                                      (om/set-state! owner {:has-pano true :build-map true :pano-lat-lng (.. data -location -latLng)})
-                                      (<= r max-radius)
-                                      (let [new-rad (+ r (if (<= r (/ max-radius 2)) 50 100))]
-                                        (om/set-state! owner :radius new-rad)
-                                        (.getPanoramaByLocation service lat-lng new-rad svs-handler))
-                                      :else (om/set-state! owner {:has-pano false :build-map true}))))
-                     ]
-                 (.getPanoramaByLocation service lat-lng (om/get-state owner :radius) svs-handler)
-                 ))
-    om/IDidUpdate
-    (did-update [this prev-props prev-state]
-                (when-let [build-map (om/get-state owner :build-map)]
-                  (let [lat-lng (google.maps.LatLng. lat lng)
-                        gmap (google.maps.Map. (.getElementById js/document "map") #js{:center lat-lng :zoom map-zoom :panControl false})
-                        marker (google.maps.Marker. #js{:position lat-lng :map gmap :title marker-text})
-                        ]
-                    (when-let [pano-lat-lng (om/get-state owner :pano-lat-lng)]
-                      (.setStreetView gmap
-                                      (google.maps.StreetViewPanorama.
-                                       (.getElementById js/document "pano")
-                                       #js{:position pano-lat-lng  :addressControl false :pov #js{:heading 50 :pitch 0}}
-                                       ))))
-                  (om/set-state! owner :build-map false)))
-    om/IRenderState
-    (render-state [this {:keys [has-pano]}]
-                  (dom/div #js{:className (str "map-viewer " className)}
-                           (dom/div #js{:id "map" :className (if has-pano "eight columns alpha" "sixteen columns alpha omega no-pano")})
-                           (when has-pano (dom/div #js{:id "pano" :className "eight columns omega"}))
-                           ))))
-
-(defn photo-viewer [imgs owner {:keys [className img-alt] :as opts}]
-  (reify
-    om/IInitState
-    (init-state [this] {:current 0})
-    om/IRenderState
-    (render-state [this {:keys [current] :or {current 0}}]
-                  (let [total (count imgs)]
-                  (dom/div #js{:className (str "photo-viewer " className)}
-                           (dom/img #js{:src (get imgs current)
-                                        :alt (str img-alt " фото: " (inc current) " из " total)
-                                        :onClick #(om/set-state! owner :current (mod (inc current) total))})
-                           (when (> total 1)
-                             (dom/span #js{:className "arrow prev"
-                                         :onClick #(om/set-state! owner :current (mod (dec current) total))}))
-                           (when (> total 1)
-                             (dom/span #js{:className "arrow next"
-                                         :onClick #(om/set-state! owner :current (mod (inc current) total))}))
-                           (dom/span #js{:className "photo-number"} (str (inc current)"/"total))
-                           )))))
-
 (defn ad-view [{:keys [query current] :as cursor} owner]
   (let [{:keys [appartment-type
                 price deposit plus-utilities
                 address lat
                 imgs
-                description created] :as data} (:data current)]
+                description created
+                loading] :as data} (:data current)]
     (om/component
-     (dom/div #js{:className "ad-view"}
-              (om/build simple-filter query)
-              (dom/div #js{:className "container"}
-                       (dom/h2 #js{:className "ad-header row sixteen columns"}
-                               (dom/span #js{:className "twelve columns alpha"}
-                                         (dom/span #js{:className "rent-word"} "сдается ")
-                                         (dom/span #js{:className "app-type"} (str " " appartment-type))
-                                         (dom/span #js{:className "pub"} (str "опубликовано " created)))
-                               (dom/span #js{:className "price-wrap four columns omega"}
-                                         (render-price data "")
-                                         (dom/span #js{:className "price-details"}
-                                                   (when price
-                                                     (str (when deposit "+ депозит ")
-                                                          (when plus-utilities "+ ком.платежи"))))))
-                       (dom/div #js{:className "six columns"}
-                                (dom/div #js{:className "info"}
+     (if loading
+       (dom/div nil loading)
+       (dom/div #js{:className "ad-view" :id "ad"}
+                (om/build simple-filter query)
+                (dom/div #js{:className "container"}
+                         (dom/h2 #js{:className "ad-header row sixteen columns"}
+                                 (dom/span #js{:className "twelve columns alpha"}
+                                           (dom/span #js{:className "rent-word"} "сдается ")
+                                           (dom/span #js{:className "app-type"} (str " " appartment-type))
+                                           (dom/span #js{:className "pub"} (str "опубликовано " created)))
+                                 (dom/span #js{:className "price-wrap four columns omega"}
+                                           (render-price data "")
+                                           (dom/span #js{:className "price-details"}
+                                                     (when price
+                                                       (str (when deposit "+ депозит ")
+                                                            (when plus-utilities "+ ком.платежи"))))))
+                         (dom/div #js{:className "six columns"}
+                                  (dom/div #js{:className (str "info" (when (empty? imgs) " auto"))}
 
-                                         (dom/span #js{:className "address"}
-                                                   (if address address (l :no-address)))
+                                           (dom/span #js{:className "address"}
+                                                     (if address address (l :no-address)))
 
-                                         (render-metdis data "")
+                                           (render-metdis data "")
 
-                                         (render-props data)
+                                           (render-props data)
 
-                                         (dom/span #js{:className "show-phone"} "показать номер")
-                                         ))
-                       (when (seq imgs)
-                         (dom/div #js{:className "ten columns"}
-                                  (om/build photo-viewer imgs {:opts {:img-alt (compose-str data)}})))
-                       (when description
-                         (dom/div #js{:className (str "description " (if (seq imgs) "sixteen" "ten") " columns")}
-                                  (dom/h3 #js{:className ""} "описание")
-                                  (dom/p nil description)))
-                       (when lat
-                         (dom/div #js{:className "location sixteen columns"}
-                                  (dom/h3 #js{:className ""} "расположение")
-                                  (om/build map-viewer data {:opts {:className "row sixteen columns alpha omega"}})))
-                       )))))
+                                           (dom/span #js{:className "show-phone"} "показать номер")
+                                           ))
+                         (when (seq imgs)
+                           (dom/div #js{:className "ten columns"}
+                                    (om/build pht/photo-viewer imgs {:opts {:img-alt (compose-str data)}})))
+                         (when description
+                           (dom/div #js{:className (str "description " (if (seq imgs) "sixteen" "ten") " columns")}
+                                    (dom/h3 #js{:className ""} "описание")
+                                    (dom/p nil description)))
+                         (when lat
+                           (dom/div #js{:className "location sixteen columns"}
+                                    (dom/h3 #js{:className ""} "расположение")
+                                    (om/build maps/map-viewer data {:opts {:className "row sixteen columns alpha omega"}})))
+                         ))))))
 
 
 

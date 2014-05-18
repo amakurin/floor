@@ -34,7 +34,8 @@
   (load-all [this owner k] [this cb]))
 
 (defprotocol IResource
-  (load-by-query [this q cursor] [this q cursor korks][this context]))
+  (load-by-query [this q cursor] [this q cursor korks][this context])
+  (load-by-key [this k context]))
 
 (defn api-url [path]
   (str "/api" path))
@@ -117,17 +118,24 @@
                      (request-res res-key
                                    #(if korks (om/update! cursor korks %) (om/update! cursor %))
                                    {:q q}))
-      (load-by-query [this {:keys [query-path data-path] :as cntx}]
+      (load-by-query [this {:keys [query query-path data-path] :as cntx}]
                      (swap! (app) assoc-in (kconj data-path :loading) true)
                      (request-res res-key
                                    #(swap! (app) assoc-in data-path %)
-                                   {:q (get-in @(app) query-path)}))
+                                   {:q (or query (get-in @(app) query-path))}))
+      (load-by-key [this k {:keys [current-path] :as cntx}]
+                     (swap! (app) assoc-in (concat current-path [:data :loading]) true)
+                     (request-res res-key
+                                   #(swap! (app) assoc-in (kconj current-path :data) %)
+                                   {:id k}))
       )))
 
-(defn current-for [id]
+(defn current-for [id {:keys [resource-key] :as context}]
   (let [items (get-in @(app) [:data :items])
         i (first-for :id id items)
-        surrogate (when (map? i) (:surrogate i))]
+        surrogate (when (map? i) (:surrogate i))
+        r (res resource-key)]
+    (load-by-key r id context)
     {:key id
      :surrogate surrogate
      :data {:loading true}}

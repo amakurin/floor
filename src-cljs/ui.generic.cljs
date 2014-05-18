@@ -257,4 +257,25 @@
                                       (when side-filter (om/build side-filter query)))
                              )))))
 
+(defn box-group [cursor owner {:keys [init-opened
+                                      view
+                                      caption] :as opts}]
+  (reify
+    om/IInitState
+    (init-state [_] {:opened init-opened})
+    om/IRenderState
+    (render-state [this {:keys [opened]}]
+                  (dom/div #js {:className "box-group"}
+                           (dom/span #js{:className "box-group-header clearfix"
+                                         :onClick #(om/set-state! owner :opened
+                                                                  (not opened))}
+                                     (dom/div #js{:className
+                                                  (str "box-arrow "
+                                                       (if opened
+                                                         "arrow-down"
+                                                         "arrow-right"))})
+                                     (dom/span #js{:className "box-caption"} caption))
+                           (when opened
+                             (dom/div #js{:className "box-group-content"}
+                                      view))))))
 

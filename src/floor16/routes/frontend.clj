@@ -1,5 +1,6 @@
 (ns floor16.routes.frontend
   (:require [compojure.core :refer [defroutes GET]]
+            [ring.util.response :refer [not-found]]
             [floor16.http :as http]
             [floor16.views.layout :as lt]
             [floor16.views.reactor :as react]
@@ -38,9 +39,10 @@
         data (if (and dk resource-key) (srch/by-seoid dk) {})
         query (merge (srch/empty-query req) (when-let [atmnemo (:appartment-type-mnemo data)] {:appartment-type [atmnemo]}))
         dicts (get-query-dicts query)]
-    {:current {:key dk :data (if (:appartment-type-mnemo data) (dissoc data :appartment-type-mnemo) data)}
-     :query query :dicts dicts
-     :settings (srch/get-search-settings)}))
+    (if (empty? data) {:error 404}
+      {:current {:key dk :data (if (:appartment-type-mnemo data) (dissoc data :appartment-type-mnemo) data)}
+       :query query :dicts dicts
+       :settings (srch/get-search-settings)})))
 
 (defn default-make-state[{:keys [rkw rconf req] :as context}]
   (let [{:keys [mode view-type dicts resource-key]} rconf
@@ -63,18 +65,22 @@
           app (when app (str app-base-ns "." app))
           contex {:rkw rkw :rconf rc :req req}
           app-state (when app (if make-state (make-state contex) (default-make-state contex)))
+          error (:error app-state)
           app-html (when app (react/render app app-state))
           ;app-html ""
           params (if-not app {}
                    (-> {}
                        (assoc :app app)
                        (assoc :app-state (clojure.string/escape (pr-str app-state) {\" "\\\"" \\ "\\\\"}))
-                       (assoc :app-html app-html)))]
-      (lt/render template params))
+                       (assoc :app-html app-html)
+                       (#(if error (assoc % :error error) %))))]
+        (lt/render template params))
     (http/redirect-to "/")))
 
 (defn item-validate [{:keys [seoid]}]
-  (not (nil? seoid)))
+  (and (not (nil? seoid))
+       (= 1 (-> (k/select :pub (k/aggregate (count :*) :cnt) (k/where {:seoid seoid}))
+                first :cnt))))
 
 (defn list-validate [{:keys [page q]}]
   (and
@@ -126,4 +132,5 @@
 (defroutes front-routes
   (r-get :init)
   (r-get :ads-search)
-  (r-get :ads-item))
+  (r-get :ads-item)
+)

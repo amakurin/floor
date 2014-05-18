@@ -338,7 +338,6 @@ border-bottom: 1px solid rgba(61, 119, 227, 0.14);
   margin: -1px -31px 0;
   border-radius: 3px;
   border: 1px solid #84AFFF;
-  cursor:pointer;
 }
 
 .data-item .additionals {
@@ -657,10 +656,13 @@ text-transform:capitalize;
 .ad-view .info {
 border-radius: 3px;
 border: 1px solid #84AFFF;
-  padding: 20px;
-  height: 320px;
+  padding: 20px 20px 70px;
+  height: 270px;
   position:relative;
   margin-bottom: 30px;
+}
+.ad-view .info.auto {
+  height: auto;
 }
 
 .ad-view .info .address {
