@@ -265,7 +265,7 @@ float: left;
 
 nav#main-menu {
 float: right;
-font-size: 18px;
+font-size: 20px;
 text-transform: uppercase;
 margin: 11px 0 0 0;
 }
@@ -349,6 +349,9 @@ margin-bottom: 10px;
   padding: 10px 0 0 0;
 }
 
+.box-group-content .range-edit-wrapper.no-text-boxes {
+margin-bottom: 10px;
+}
 .ad-item, .ad-item .thumb {
   margin-left: 0!important;
 }
@@ -1533,7 +1536,7 @@ background: #B8C8EB;
 }
 .range-edit-wrapper input[type=text]{
   position: absolute;
-  width: 60px;
+  width: 55px;
   top: 0px;
 }
 .range-edit-wrapper .bounds {
