@@ -45,17 +45,23 @@
        :query query :dicts dicts
        :settings (srch/get-search-settings req)})))
 
+(defn agent-specific-state [rconf req]
+  (let [{:keys [resource-key]} rconf
+        query (srch/empty-query req)
+        dicts (get-query-dicts query)]
+    {:query query :dicts dicts :data {}
+     :settings (srch/get-search-settings req)}))
+
 (defn default-make-state[{:keys [rkw rconf req] :as context}]
-  (let [{:keys [mode view-type dicts resource-key]} rconf
+  (let [{:keys [mode view-type dicts resource-key spec-state]} rconf
         dicts (into {} (map (fn [k] [k (k/select k)]) dicts))
         state {:app-mode mode :dicts dicts}
         ]
     (merge-with merge state
-           (when (= :item-view view-type) (item-specific-state rconf req))
-           (when (= :list view-type) (list-specific-state rconf req)))))
+           (when spec-state (spec-state rconf req)))))
 
 (defn validate-params [params rc]
-  (if-let [{:keys [validate]} rc]
+  (if-let [validate (:validate rc)]
     (validate params)
     true))
 
@@ -120,6 +126,12 @@
          (when price (str " за " price "р."))
          " от собственника, без посредников и комиссий")))
 
+(defn agents-title [state]
+  "База агентов недвижимости в Самаре")
+
+(defn agents-description [state]
+  "Полная база агентов по аренде недвижимости в Самаре. Проверка по номеру телефона.")
+
 (defn do-route [rkw rc req]
   (if (validate-params (:params req) rc)
     (let [{:keys [template app make-state]} rc
@@ -162,6 +174,7 @@
                        :mode :grid
                        :view-type :list
                        :dicts (dicts-set-default)
+                       :spec-state list-specific-state
                        :validate list-validate
                        :create-seo-title list-title
                        :create-seo-description list-description}
@@ -172,6 +185,7 @@
                        :mode :grid
                        :view-type :list
                        :dicts (dicts-set-default)
+                       :spec-state list-specific-state
                        :resource-key :pub
                        :validate list-validate
                        :create-seo-title list-title
@@ -182,6 +196,7 @@
                        :app "appsearch"
                        :mode :ad
                        :view-type :item-view
+                       :spec-state item-specific-state
                        :data-key :seoid
                        :dicts (dicts-set-default)
                        :resource-key :pub
@@ -189,6 +204,17 @@
                        :create-seo-title item-title
                        :create-seo-description item-description
                        }
+                      :agents
+                      {:route "/agents/"
+                       :template "app-search.html"
+                       :app "appsearch"
+                       :mode :agents
+                       :view-type :static
+                       :spec-state agent-specific-state
+                       :dicts (dicts-set-default)
+                       :resource-key :agents
+                       :create-seo-title agents-title
+                       :create-seo-description agents-description}
                       }
                      ))
 
@@ -203,4 +229,5 @@
   (r-get :init)
   (r-get :ads-search)
   (r-get :ads-item)
+  (r-get :agents)
 )

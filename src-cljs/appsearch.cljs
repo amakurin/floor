@@ -36,7 +36,14 @@
         :resource-key :pub
         :data-key :seoid
         :current-path [:current]
-        }})
+        }
+   :agents {:route "/ads/:seoid"
+            :view-type :static
+            :resource-key :pub
+            :data-key :seoid
+            :current-path [:current]
+            }
+   })
 
 (defn after-update [query] #(nav/url-update {:mode :grid :url-params @query}))
 
@@ -122,12 +129,12 @@
                                                            :className "with-photo three columns"
                                                            :after-update after-update}}))
                                 )
-                       (let [url (nav/url-to {:mode :grid :url-params query})]
+                       (let [url (nav/url-to {:mode :grid :url-params (assoc query :o-page 1)})]
                          (dom/div #js{:className "two columns"}
                                   (dom/a #js{:href url
                                              :className "search-btn"
                                              :onClick (fn [e]
-                                                        (nav/goto url true)
+                                                        (nav/goto url true true)
                                                         (.preventDefault e)
                                                         )} "Найти жилье")))
                        )))))
@@ -343,7 +350,9 @@
 (defn phone-button [{:keys [seoid phone] :as cursor} owner {:keys [className title]
                                                             :or {title (l :phone-button)}:as opts}]
   (om/component
-   (let [response-handler (fn [x] (om/update! cursor :phone x))]
+   (let [response-handler (fn [x]
+                            (when (= 200 (:status x))
+                              (om/update! cursor :phone (:body x))))]
      (if phone
        (dom/span #js{:className (str "show-phone opened "(when (> (count phone) 1) "cnt ") className)} (s/join " " phone))
        (dom/span #js{:className (str "show-phone " className)
@@ -465,7 +474,7 @@
        (dom/div #js{:className "ad-view" :id "ad"}
                 (om/build simple-filter query)
                 (dom/div #js{:className "container"}
-                         (dom/h2 #js{:className "ad-header row sixteen columns"}
+                         (dom/h1 #js{:className "ad-header row sixteen columns"}
                                  (dom/span #js{:className "twelve columns alpha"}
                                            (dom/span #js{:className "rent-word"} "сдается ")
                                            (dom/span #js{:className "app-type"} (str " " appartment-type))
@@ -493,14 +502,67 @@
                                     (om/build pht/photo-viewer imgs {:opts {:img-alt (compose-str data)}})))
                          (when description
                            (dom/div #js{:className (str "description " (if (seq imgs) "sixteen" "ten") " columns")}
-                                    (dom/h3 #js{:className ""} "описание")
+                                    (dom/h2 #js{:className ""} "описание")
                                     (dom/p nil description)))
                          (when lat
                            (dom/div #js{:className "location sixteen columns"}
-                                    (dom/h3 #js{:className ""} "расположение")
+                                    (dom/h2 #js{:className ""} "расположение")
                                     (om/build maps/map-viewer data {:opts {:className "row sixteen columns alpha omega"}})))
                          ))))))
 
+(defn agents-view [{:keys [query] :as cursor} owner]
+  (let [response-handler (fn [x]
+                           (cond
+                            (= 200 (:status x))(om/set-state! owner :agent (assoc (:body x) :phone (om/get-state owner :value)))
+                            (= 404 (:status x))(om/set-state! owner :agent :not-found)
+                            :else (om/set-state! owner :error "Произошла непредвиденная ошибка. Программист уже в курсе.")))
+        agent-handler (fn [e]
+                        (let [phone (om/get-state owner :value)]
+                          (if (< (count phone) 10)
+                            (om/set-state! owner :error "Номер должен состоять из десяти цифр и должен включать код города, если это городской номер.")
+                            (do
+                              (om/update-state! owner #(dissoc % :error))
+                              (dat/api-get :agents response-handler phone))
+                          )))
+        format-value (fn [v] (-> v
+                                 (s/replace #"\D" "")
+                                 (#(subs % (max 0 (- (count %)10))))
+                                 ))]
+    (om/component
+     (dom/div #js{:className "agents-view"}
+              (om/build simple-filter query)
+              (dom/div #js{:className "container"}
+                       (dom/h1 #js{:className "ad-header row sixteen columns"} "Данные агента по номеру телефона")
+                       (dom/div #js{:className "ag-phone sixteen columns"}
+                                (dom/span #js{:className "label three columns alpha omega"} "Укажите номер телефона:")
+                                (dom/span #js{:className "ag-phone-input two columns alpha"}
+                                          (dom/span nil "+7 ")
+                                          (dom/input #js{:type "text" :maxLength 10
+                                                         :placeholder "9991234567"
+                                                         :value (om/get-state owner :value)
+                                                         :onPaste (fn [e]
+                                                                    (om/set-state! owner :value
+                                                                                   (format-value (.getData (.. e -clipboardData) "Text")))
+                                                                    (.preventDefault e))
+                                                         :onChange (fn [e] (om/set-state! owner :value
+                                                                                          (format-value (.. e -target -value))))
+                                                         :onKeyDown #(when (= glo/ENTER (glo/key-event->keycode %))
+                                                                       (agent-handler %))}))
+                                (dom/span #js{:className "check-phone-button two columns"
+                                              :onClick agent-handler} "Проверить"))
+                       (when-let [error (om/get-state owner :error)]
+                         (dom/span #js{:className "error sixteen columns " :key "error"} error))
+                       (when-let [{:keys [phone seen last-seen last-url] :as ag} (om/get-state owner :agent)]
+                         (dom/span #js{:className (str "agent sixteen columns " (when (= :not-found ag) "not-found"))
+                                       :key "agi"}
+                                   (when (= ag :not-found)
+                                     "Нет данных по агенту с заданным номером. Это может означать как то, что номер не принадлежит агенту, так и то, что агент еще не успел угодить в базу данных.")
+                                   (when (not= ag :not-found)
+                                     (dom/span nil
+                                     (str "Агент с номером +7" phone " был встречен как минимум " seen " "(l :times seen)
+                                          ". Последний раз его видели " last-seen " по следующей ссылке: ")
+                                     (dom/a #js{:href last-url :target "_blank"} "Перейти")))))
+                       )))))
 
 
 (defn app [{:keys [app-mode query data current] :as cursor} owner]
@@ -509,6 +571,8 @@
             (cond
              (= :ad app-mode)
              (om/build ad-view cursor)
+             (= :agents app-mode)
+             (om/build agents-view cursor)
              :else
              (om/build gen/list-view cursor
                        {:opts {:top-filter simple-filter

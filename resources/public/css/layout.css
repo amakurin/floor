@@ -16,6 +16,52 @@
 
 /* #Site Styles
 ================================================== */
+
+html, body, #wrap {
+  height: 100%;
+}
+
+body > #wrap {
+  height: auto; min-height: 100%;
+}
+
+#content {
+  padding-bottom: 200px;
+}
+
+footer {
+position: relative;
+margin-top: -100px;
+height: 20px;
+clear: both;
+background: #E6E6E6;
+padding: 40px 0;
+}
+
+#footer-menu li {
+display: inline;
+margin-right: 20px;
+}
+
+#footer-menu li a {
+font-family: 'open-sans';
+font-size: 20px;
+text-decoration: none;
+color: #999;
+text-transform: uppercase;
+}
+
+#footer-menu li a:hover {
+color: #666;
+}
+
+.copyright {
+color: #AAA;
+font-size: 12px;
+text-align: right;
+line-height: 23px;
+}
+
 .empty {
 padding: 20px 0;
 }
@@ -608,7 +654,7 @@ height: 400px;
   background: url('/img/loader.gif') no-repeat 50% 50% #F5F5F5;
 }
 
-.ad-view h2 {
+h1 {
 font-family: 'open-sans';
 font-size: 35px;
 margin: 10px 0 30px;
@@ -770,7 +816,7 @@ font-size: 15px;
 font-weight: bold;
 }
 
-.ad-view h3 {
+.ad-view h2 {
 font-family: Arial;
 text-transform: uppercase;
 font-weight: bold;
@@ -784,6 +830,51 @@ margin-bottom:0;
 margin-bottom:30px;
 }
 
+/*=======Agents View==========*/
+.ag-phone {
+margin-top: 20px;
+}
+
+.ag-phone .label{
+  font-size:13px;
+}
+.ag-phone span {
+  line-height: 28px;
+}
+.ag-phone-input{
+  position: relative;
+}
+
+.ag-phone-input span{
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  color: #1C479F;
+}
+
+.ag-phone-input input[type=text]{
+  padding-left: 23px;
+width: 80px;
+color: #1C479F;
+}
+
+.check-phone-button {
+background: #3D77E3;
+color: #fff;
+border-radius: 3px;
+font-size: 13px;
+text-align: center;
+cursor: pointer;
+  height: 29px;
+}
+
+.agent, .error {
+font-size: 13px;
+margin: 20px;
+}
+.error {
+color: #FF3300;
+}
 /*====== User Head ======*/
 #login-link, #menu .exit-link {
   text-transform: capitalize;
@@ -811,6 +902,7 @@ margin: 2px 30px 0 0;
 
 ::-webkit-input-placeholder { /* WebKit browsers */
   font-style:italic;
+  color: #AAA!important;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
   font-style:italic;
@@ -928,111 +1020,6 @@ sup {
 
 /* #Page Styles
 ================================================== */
-#sec-home {
-/*   background: #339bb4 url(../img/pattern.png) repeat; */
-  min-height: 900px;
-  /*overflow: hidden;*/
-}
-
-#sec-home .advert{
-  clear:both;
-}
-
-.design-layer {
-  width: 100%;
-  height: 600px;
-  position: absolute;
-  top:0px;
-  left:0px;
-}
-
-#spot {
-  background: transparent url(../img/light-spot.png) no-repeat 50% 0;
-}
-
-#icons {
-  background: url(../img/icons.png) no-repeat 50% 0;
-  top:30px;
-  left:-15px;
-}
-#cells {
-  background: url(../img/cells.png) no-repeat 50% 0;
-  top: 65px;
-}
-#slogan {
-  padding: 70px 0 0 20px;
-  position: relative;
-}
-
-#slogan h1{
-  margin-bottom: 30px;
-}
-
-#slogan p{
-  color: #1d5e6e;
-  font-family: open-sans;
-  font-size: 22px;
-  line-height: 24px;
-  text-shadow: 1px 1px 1px #4AC3E0;
-}
-
-#scheme {
-  padding-top: 40px;
-  position: relative;
-}
-
-#outer-filter {
-  border-radius: 17px;
-  border: 1px solid #36a2be;
-}
-
-#inner-filter {
-  background-color: #00618b;
-  border-radius: 16px;
-  border-bottom: 1px solid #4AC3E0;
-  border-top: 1px solid #13516B;
-  padding: 15px 20px;
-}
-#filter {
-  margin: 20px 0 20px 0;
-}
-#filter h2{
-  color: #ffffff;
-  font-family: open-sans;
-  font-size: 17px;
-  line-height: 17px;
-  margin-bottom: 8px;
-}
-
-#filter-submit, .filter-rt-corner {
-  margin-right: 0!important;
-}
-
-#filter-wrapper{
-  position: relative;
-}
-#filter-to-extended{
-  top: 16px;
-  right: -22px;
-  width: 22px;
-  min-height: 160px;
-  position: absolute;
-  border: 0;
-  border-radius: 0px 6px 6px 0px;
-  padding: 0;
-  background: #ffc742 url(../img/filter-to-extended.png) no-repeat 4px 50%
-}
-
-#filter-to-extended:hover{
-  right: -25px;
-  width: 25px;
-  background-position: 7px 50%;
-}
-
-#filter-to-extended:focus {
-  outline: none;
-}
-
 .radio-list{
   list-style: none;
   height: 35px;
@@ -1620,15 +1607,18 @@ display: block;
 
 /* NEW AGE!!!
 ================================================== */
-ul.data-pager{
-  list-style: none;
+ul.data-pager {
+list-style: none;
+text-align: center;
+margin-top: 20px;
 }
 
 li.pager-item {
-  float: left;
-  margin: 0 2px;
-  border-radius: 4px;
-  border: 1px solid;
+display: inline-block;
+margin: 0 -1px 0 0;
+border: 1px solid #E1E7F5;
+line-height: 29px;
+padding: 0 5px;
 }
 
 li.pager-item a {
@@ -1638,6 +1628,11 @@ li.pager-item a {
 
 li.pager-item.current {
   font-weight: bold;
+  background: #ff6c00;
+}
+
+li.pager-item.current a {
+  color: #fff;
 }
 
 li.pager-item.next {

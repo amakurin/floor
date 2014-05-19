@@ -178,7 +178,7 @@
       )))
 
 (defn url-update [context]
-  (goto (url-to (assoc context :url-update? true))))
+  (goto (url-to (assoc context :url-update? true)) true))
 
 (defn go-back []
   (.. js/window -history back))

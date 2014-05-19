@@ -387,6 +387,20 @@
    first
    :phone))
 
+(defn agent-by-phone [phone]
+  (->>
+   (select-resource :agents
+                    {:query (if (not= \9 (first phone))
+                              (kf/pred-or (kf/pred-= :phone phone)
+                                          (kf/pred-= :phone (subs phone 3)))
+                              {:phone phone }) :page 1 :limit 1
+                          :fields [[:url :last-url] [:updates :seen] [:changed :last-seen]]
+                          :post-process #(merge % {:seen (inc (:seen %))
+                                                   :last-seen (tf/unparse (tf/formatter "dd.MM.yy в hh:mm") (tco/from-sql-time (:last-seen %)))})
+                          })
+   :items
+   first))
+
 (defn gen-validate [raw-query]
   (let [allowed-pattern #"[a-zA-Z][a-zA-Z\-\d\?]+"
         allowed-predicate #(or (string? %) (number? %) (true? %) (false? %) (vector? %) (keyword? %) (map? %))]

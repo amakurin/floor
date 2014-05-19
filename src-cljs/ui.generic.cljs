@@ -194,20 +194,28 @@
          left (- cur-pg (min cur-pg (max (inc middle) (- to-show can-right))))
          right (+ cur-pg (min can-right (max middle (- to-show cur-pg))))
          ]
-     (apply dom/ul #js{:className "data-pager"}
-            (concat
-             [(om/build page-item query {:opts {:index (when (> cur-pg 1) (dec cur-pg))
-                                                :text (l :data-pager-prev)
-                                                :list-mode list-mode
-                                                :className (str "prev" (when (<= cur-pg 1) " disabled"))}})]
+     (cond
+      (> pg-count 2)
+      (apply dom/ul #js{:className "data-pager"}
+             (concat
+              [(om/build page-item query {:opts {:index (when (> cur-pg 1) (dec cur-pg))
+                                                 :text (l :data-pager-prev)
+                                                 :list-mode list-mode
+                                                 :className (str "prev" (when (<= cur-pg 1) " disabled"))}})]
+              (map #(om/build page-item query {:react-key %
+                                               :opts {:index % :current? (= % cur-pg) :list-mode list-mode}})
+                   (range (inc left) (inc right)))
+
+              [(om/build page-item query {:opts {:index (when (< cur-pg pg-count )(inc cur-pg))
+                                                 :text (l :data-pager-next)
+                                                 :list-mode list-mode
+                                                 :className (str "next" (when (>= cur-pg pg-count ) " disabled"))}})]))
+      (= pg-count 2)
+      (apply dom/ul #js{:className "data-pager"}
              (map #(om/build page-item query {:react-key %
                                               :opts {:index % :current? (= % cur-pg) :list-mode list-mode}})
-                  (range (inc left) (inc right)))
-
-             [(om/build page-item query {:opts {:index (when (< cur-pg pg-count )(inc cur-pg))
-                                                :text (l :data-pager-next)
-                                                :list-mode list-mode
-                                                :className (str "next" (when (>= cur-pg pg-count ) " disabled"))}})])))))
+                  (range (inc left) (inc right))))
+      :else (dom/span nil)))))
 
 
 (defn load-progress [data owner opts]

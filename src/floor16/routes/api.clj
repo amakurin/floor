@@ -71,6 +71,13 @@
                           (if-let [phone (srch/phone-by-seoid id)]
                             (http/generic-response phone)
                             (not-found {:id id})))
-                     ))
+                     )
+            (context "/agents" []
+                     (GET "/:phone" [phone]
+                          (if-let [agent-info (srch/agent-by-phone phone)]
+                            (http/generic-response agent-info)
+                            (not-found {:phone phone})))
+                     )
+            )
    (wrap-restful-response)
    ))

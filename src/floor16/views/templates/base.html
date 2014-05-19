@@ -29,18 +29,17 @@
 
     </head>
     <body>
+<div id="wrap">
         <header id="header">
             <div class="container">
-                <h1 id="logo" class="four columns">
-                    <a href="/" title="Поисковый Робот ЭТАЖ-16. Перейти на главную страницу.">
-                        <img src="/img/logo.svg" alt="Робот ЭТАЖ-16. Умный поиск жилья без посредников.">
-                    </a>
-                </h1>
+                <a id="logo" class="four columns" href="/" title="Поисковый Робот ЭТАЖ-16. Перейти на главную страницу.">
+                    <img src="/img/logo.svg" alt="Робот ЭТАЖ-16. Умный поиск жилья без посредников.">
+                </a>
                 <div class="twelve columns">
                     <nav id="main-menu">
                         <ul>
                             <li><a href="/agreement/">Пользовательское соглашение</a></li>
-                            <li><a href="/agent-place/">Уголок агента</a></li>
+                            <li><a href="/agents/" title="Проверка агента по номеру телефона">Уголок агента</a></li>
                             <li id="user-menu"></li>
                         </ul>
                     </nav>
@@ -61,20 +60,21 @@
         {% script "/js/site2.js" %}
         <script type="text/javascript">{{app|safe}}.main("{{app-state|safe}}");</script>
         <!--<script type="text/javascript">function ymapsInit() { {{app|safe}}.yinit();}; </script>-->
+</div>
+        <footer>
+            <div class="container">
+                <div class="ten columns">
+                    <nav id="footer-menu">
+                        <ul>
+                            <li><a href="/agreement/">Пользовательское соглашение</a></li>
+                            <li><a href="/agents/" title="Проверка агента по номеру телефона">Уголок агента</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="copyright six columns">
+                    Copyright 2013-2014 by Alexey Makurin and Anna Glushkova
+                </div>
+            </div>
+        </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
