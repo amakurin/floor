@@ -169,10 +169,13 @@
   (when app-modes (init-routes app-modes)))
 
 
-(defn goto [link]
+(defn goto [link & [always-update?]]
   ;(when event (.preventDefault event))
-  (.setToken history (if (= \/ (first link)) (subs link 1) link))
-  )
+  (let [link (if (= \/ (first link)) (subs link 1) link)]
+    (if (= link (.getToken history))
+      (when always-update? (sec/dispatch! (str "/" link)))
+      (.setToken history (if (= \/ (first link)) (subs link 1) link))
+      )))
 
 (defn url-update [context]
   (goto (url-to (assoc context :url-update? true))))

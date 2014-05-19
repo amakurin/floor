@@ -118,13 +118,15 @@
            :not-only-russo {:pred as-is-pred }
            :only-russo     {:pred as-is-pred }
            })
+(defn default-city [req] 0)
 
-(defn get-search-settings []
+(defn get-search-settings [req]
   (->> conf
        (filter #(> (-> % val count) 1))
        (map (fn [[k v]] [k (:bounds v)]))
        (into {})
-       (merge {:published 0
+       (merge {:city (default-city req)
+               :published 0
                :order 0
                :appartment-type []
                :toilet []
@@ -295,6 +297,7 @@
 (defn search-joins [srch]
   (-> srch
    (k/join :districts (= :districts.id :district ))
+   (k/join :cities (= :cities.id :pub.city ))
    (k/join :metros (= :metros.id :metro ))
    (k/join :appartment-types (= :appartment-types.id :appartment-type ))
    (k/join :building-types (= :building-types.id :building-type ))
@@ -342,6 +345,7 @@
                                    :tv :frige :washer :conditioner
                                    :parking :intercom :security :concierge
                                    :only-russo :kids :pets :addiction
+                                   [:cities.name :city]
                                    [:districts.name :district]
                                    [:appartment-types.mnemo :appartment-type-mnemo]
                                    [:appartment-types.fullname :appartment-type]
@@ -354,6 +358,34 @@
                           })
   :items
   first))
+
+(defn prepare-phone [{:keys [phone city-code] :as m}]
+  (let [phone (read-string phone)
+        country-code "+7"]
+    {:phone
+    (->> phone
+         (map (fn [p]
+                (let [cnt (count p)]
+                  (cond (= 10 cnt)
+                        (str country-code "(" (subs p 0 3) ")" (subs p 3 6)"-"(subs p 6 8)"-"(subs p 8))
+                        (= 7 cnt)
+                        (str country-code "(" city-code ")" (subs p 0 3)"-"(subs p 3 5)"-"(subs p 5))
+                        :else p
+                        ))))
+         vec)}))
+
+(defn phone-by-seoid [seoid]
+  (->>
+   (select-resource :pub {:query {:seoid seoid} :page 1 :limit 1
+                          :q-convert #(default-converter % conf)
+                          :fields [:phone
+                                   [:cities.default-phone-code :city-code]]
+                          :joins #(-> % (k/join :cities (= :cities.id :city)))
+                          :post-process prepare-phone
+                          })
+   :items
+   first
+   :phone))
 
 (defn gen-validate [raw-query]
   (let [allowed-pattern #"[a-zA-Z][a-zA-Z\-\d\?]+"
@@ -373,8 +405,6 @@
              rule (kw rules)]
          (if (and rule (rule v)) (assoc r kw v) r)))
      {} q)))
-
-(defn default-city [req] 0)
 
 (defn empty-query [req]
   {:city (default-city req)})

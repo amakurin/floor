@@ -22,7 +22,10 @@
 
 (def app-modes
   {:init {:route "/"
-          :view-type :list}
+          :view-type :list
+          :data-path [:data]
+          :query-path [:query]
+          :resource-key :pub}
    :grid {:route "/ads/"
           :view-type :list
           :data-path [:data]
@@ -124,7 +127,7 @@
                                   (dom/a #js{:href url
                                              :className "search-btn"
                                              :onClick (fn [e]
-                                                        (nav/goto url)
+                                                        (nav/goto url true)
                                                         (.preventDefault e)
                                                         )} "Найти жилье")))
                        )))))
@@ -337,6 +340,16 @@
 (defn get-time-text [{:keys [created] :as item}]
   created)
 
+(defn phone-button [{:keys [seoid phone] :as cursor} owner {:keys [className title]
+                                                            :or {title (l :phone-button)}:as opts}]
+  (om/component
+   (let [response-handler (fn [x] (om/update! cursor :phone x))]
+     (if phone
+       (dom/span #js{:className (str "show-phone opened "(when (> (count phone) 1) "cnt ") className)} (s/join " " phone))
+       (dom/span #js{:className (str "show-phone " className)
+                     :onClick #(dat/api-get :private response-handler seoid)} title)
+       ))))
+
 (defn render-price [{:keys [price deposit plus-utilities] :as item} & [className]]
   (dom/span #js{:className (str (when-not price "no ") "price " className)}
             (when price (dom/span #js{:className "val"} (glo/price-to-str price)))
@@ -377,7 +390,7 @@
                       (dom/div #js{:className "price-details"} (when price
                                                                  (str (when deposit "+ депозит ")
                                                                       (when plus-utilities "+ ком.платежи"))))
-                      (dom/span #js{:className "show-phone three columns"} "показать номер"))
+                      (om/build phone-button item {:opts {:className "three columns"}}))
              (dom/span #js{:className "additionals offset-by-two nine columns"}
                        (dom/span #js{:className "icons"}
                                  (render-has item true)
@@ -473,7 +486,7 @@
 
                                            (render-props data)
 
-                                           (dom/span #js{:className "show-phone"} "показать номер")
+                                           (om/build phone-button data)
                                            ))
                          (when (seq imgs)
                            (dom/div #js{:className "ten columns"}
@@ -494,7 +507,9 @@
   (om/component
    (dom/div nil
             (cond
-             (= :grid app-mode)
+             (= :ad app-mode)
+             (om/build ad-view cursor)
+             :else
              (om/build gen/list-view cursor
                        {:opts {:top-filter simple-filter
                                :side-filter extended-filter
@@ -515,15 +530,14 @@
                                :data-header-total-class "four columns"
                                :data-header-opts-class "seven columns"
                                :empty-text (l :empty-search)
+                               :loading-text (l :loading-search)
                                :item-view ad-item-view
                                :res (dat/res :ads)
                                :list-mode :grid}})
-             (= :ad app-mode)
-             (om/build ad-view cursor)
-             :else
+;;              :else
              ;; WARN: this is really strange behaviour of react which gets
              ;; Invariant exception cuz of same simple filter in a grid
-             (om/build simple-filter query {:react-key "init"})
+;;              (om/build simple-filter query {:react-key "init"})
              ))))
 
 (defn prepare-data [{:keys [app-mode query settings current] :as data}]

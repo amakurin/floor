@@ -16,9 +16,10 @@
 
 /* #Site Styles
 ================================================== */
-.clear {
-  clear:both;
+.empty {
+padding: 20px 0;
 }
+
 .disabled{
   pointer-events: none;
 }
@@ -692,6 +693,19 @@ padding-bottom: 20px;
 color: #111;
 padding-right: 20px;
 
+}
+
+.show-phone {
+  cursor:pointer;
+}
+
+.show-phone.opened {
+  cursor:default;
+}
+.show-phone.cnt {
+line-height: 24px;
+height: auto;
+padding: 10px 0;
 }
 
 .ad-view .show-phone {

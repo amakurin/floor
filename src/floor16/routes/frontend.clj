@@ -6,6 +6,7 @@
             [floor16.views.reactor :as react]
             [floor16.storage :as db]
             [floor16.search :as srch]
+            [clojure.string :as s]
             [korma.core :as k]
             [clojure.tools.reader.edn :as edn]
             [clj-rhino :as js]))
@@ -31,7 +32,7 @@
         query (if q (srch/decode-query q req) (srch/empty-query req))
         data  (srch/search query page)
         dicts (get-query-dicts query)]
-    {:query query :data data :dicts dicts :settings (srch/get-search-settings)}))
+    {:query query :data data :dicts dicts :settings (srch/get-search-settings req)}))
 
 (defn item-specific-state [rconf req]
   (let [{:keys [data-key resource-key]} rconf
@@ -42,7 +43,7 @@
     (if (empty? data) {:error 404}
       {:current {:key dk :data (if (:appartment-type-mnemo data) (dissoc data :appartment-type-mnemo) data)}
        :query query :dicts dicts
-       :settings (srch/get-search-settings)})))
+       :settings (srch/get-search-settings req)})))
 
 (defn default-make-state[{:keys [rkw rconf req] :as context}]
   (let [{:keys [mode view-type dicts resource-key]} rconf
@@ -57,6 +58,67 @@
   (if-let [{:keys [validate]} rc]
     (validate params)
     true))
+
+(def default-title "Робот ЭТАЖ16")
+
+(defn get-title [state rc]
+  (if-let [{:keys [create-seo-title]} rc]
+    (create-seo-title state)
+    default-title))
+
+(defn get-description [state rc]
+  (if-let [{:keys [create-seo-description]} rc]
+    (create-seo-description state)
+    default-title))
+
+(defn convert-district [district]
+  (s/replace district #"(ий|ый)$" "ом"))
+
+(defn convert-city [city]
+  (-> city
+      (s/replace #"а$" "е")
+      (s/replace #"(ч)$" #(str (last %1) "и"))
+      (s/replace #"(ь)$" "и")
+      (s/replace #"[крдгзтлв]$" #(str (last %1) "е"))))
+
+(defn list-title [{:keys [query dicts] :as state}]
+  (let [{:keys [city]} query
+        cities (:cities dicts)
+        city (->> cities (filter #(= (:id %) city)) first :name)]
+    (str "Снять квартиру в " (convert-city city) " без посредников")))
+
+(defn list-description [{:keys [query dicts] :as state}]
+  (let [{:keys [city]} query
+        cities (:cities dicts)
+        city (->> cities (filter #(= (:id %) city)) first :name)]
+    (str "Умный поиск жилья в "(convert-city city) ". Предложения от собственников без посредников и комиссий.")))
+
+(defn convert-app-type [appartment-type]
+  (-> appartment-type
+      (s/replace #"комнатная" "комнатную")
+      (s/replace #"я$" "ю")
+      (s/replace #"а$" "у")
+      ))
+
+(defn item-title [{:keys [current] :as state}]
+  (let [{:keys [appartment-type city price total-area]} (:data current)]
+    (str "Снять " (convert-app-type appartment-type) " в " (convert-city city)
+         (if price
+           (str " без посредников за " price "р")
+           (str " " total-area "квм от собственника")))))
+
+(defn item-description [{:keys [current] :as state}]
+  (let [{:keys [appartment-type
+                city
+                price
+                total-area floor floors
+                district]} (:data current)]
+    (str "Сдается " appartment-type " в " (convert-city city)
+         (when district (str ", в " (convert-district district) " р-не"))
+         (when total-area (str ", площадь " (int total-area) "квм"))
+         (when floor (str " на " floor " этаже" (when floors (str " " floors " этажного дома"))))
+         (when price (str " за " price "р."))
+         " от собственника, без посредников и комиссий")))
 
 (defn do-route [rkw rc req]
   (if (validate-params (:params req) rc)
@@ -73,6 +135,8 @@
                        (assoc :app app)
                        (assoc :app-state (clojure.string/escape (pr-str app-state) {\" "\\\"" \\ "\\\\"}))
                        (assoc :app-html app-html)
+                       (assoc :title (get-title app-state rc))
+                       (assoc :description (get-description app-state rc))
                        (#(if error (assoc % :error error) %))))]
         (lt/render template params))
     (http/redirect-to "/")))
@@ -98,7 +162,9 @@
                        :mode :grid
                        :view-type :list
                        :dicts (dicts-set-default)
-                       :validate list-validate}
+                       :validate list-validate
+                       :create-seo-title list-title
+                       :create-seo-description list-description}
                       :ads-search
                       {:route "/ads/"
                        :template "app-search.html"
@@ -107,7 +173,9 @@
                        :view-type :list
                        :dicts (dicts-set-default)
                        :resource-key :pub
-                       :validate list-validate}
+                       :validate list-validate
+                       :create-seo-title list-title
+                       :create-seo-description list-description}
                       :ads-item
                       {:route "/ads/:seoid"
                        :template "app-search.html"
@@ -118,6 +186,8 @@
                        :dicts (dicts-set-default)
                        :resource-key :pub
                        :validate item-validate
+                       :create-seo-title item-title
+                       :create-seo-description item-description
                        }
                       }
                      ))

@@ -146,7 +146,7 @@
   (om/component
    (dom/div #js{:className ""} "gen-view-select")))
 
-(defn empty-view [{:keys [empty-text]} owner]
+(defn empty-view [cursor owner {:keys [empty-text] :as opts}]
   (om/component
    (dom/div #js{:className "empty"} empty-text)))
 
@@ -160,7 +160,7 @@
    (dom/div #js{:className (str "data-header " data-header-class)}
             (when-let [total (:total data)]
               (dom/div #js{:className (str "total " data-header-total-class)}
-                       (dom/span #js{:className "count-nums"} total)
+                       (dom/span #js{:className "count-nums"} (if (= 0 total) (l :no) total))
                        (dom/span #js{:className "count-words"} (l (or data-header-total-kword :total-kw) total))))
             (apply dom/div #js{:className (str "opts " data-header-opts-class)}
                    (map #(-> % val :view) header-opts))
@@ -217,7 +217,7 @@
 (defn list-view [{:keys [query data] :as cursor} owner
                  {:keys [top-filter side-filter
                          data-head header-opts
-                         data-empty empty-text
+                         data-empty empty-text loading-text
                          item-view kw-id res
                          main-container-class
                          data-container-class
@@ -231,12 +231,13 @@
     (render-state [this state]
                   (let [kw-id (or kw-id :id)
                         items (:items data)
-                        no-items? (empty? items)]
+                        no-items? (empty? items)
+                        loading? (:loading data)]
                     (dom/div #js{:id "list-view"}
                              (when top-filter (om/build top-filter query))
                              (dom/div #js{:className (str "main-container " main-container-class)}
                                       (dom/div #js{:className (str "data-container " data-container-class)}
-                                               (when (:loading data) (om/build load-progress data))
+                                               (when loading? (om/build load-progress data))
                                                (if data-head
                                                  (om/build data-head cursor)
                                                  (om/build data-header cursor {:opts {:header-opts header-opts
@@ -247,8 +248,8 @@
                                                                                       }}))
                                                (if no-items?
                                                  (if data-empty
-                                                   (om/build data-empty {:empty-text empty-text})
-                                                   (om/build empty-view {:empty-text empty-text}))
+                                                   (om/build data-empty data {:opts {:empty-text (if loading? loading-text empty-text)}})
+                                                   (om/build empty-view data {:opts {:empty-text (if loading? loading-text empty-text)}}))
                                                  (apply dom/ul nil
                                                         (map #(dom/li #js{:key (kw-id %) :className "data-item clearfix"}
                                                                       (om/build item-view %))
@@ -267,8 +268,9 @@
     (render-state [this {:keys [opened]}]
                   (dom/div #js {:className "box-group"}
                            (dom/span #js{:className "box-group-header clearfix"
-                                         :onClick #(om/set-state! owner :opened
-                                                                  (not opened))}
+                                         :onMouseDown (fn [e]
+                                                    (om/set-state! owner :opened(not opened))
+                                                    (.preventDefault e))}
                                      (dom/div #js{:className
                                                   (str "box-arrow "
                                                        (if opened

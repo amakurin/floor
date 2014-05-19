@@ -13,7 +13,7 @@
    ))
 
 (defn map-viewer [{:keys [lat lng] :as cursor} owner
-                  {:keys [map-zoom  className marker-text] :or {map-zoom 15} :as opts}]
+                  {:keys [map-zoom  className marker-text map-near-zoom] :or {map-zoom 14 map-near-zoom 16} :as opts}]
   (reify
     om/IInitState
     (init-state [this] {:radius 40 :has-pano true :build-map false})
@@ -26,7 +26,9 @@
                                    (let [r (om/get-state owner :radius)]
                                      (cond
                                       (= status google.maps.StreetViewStatus.OK)
-                                      (om/set-state! owner {:has-pano true :build-map true :pano-lat-lng (.. data -location -latLng)})
+                                      (om/set-state! owner {:radius r :max-radius max-radius
+                                                            :has-pano true :build-map true
+                                                            :pano-lat-lng (.. data -location -latLng)})
                                       (<= r max-radius)
                                       (let [new-rad (+ r (if (<= r (/ max-radius 2)) 50 100))]
                                         (om/set-state! owner :radius new-rad)
@@ -37,18 +39,23 @@
                  ))
     om/IDidUpdate
     (did-update [this prev-props prev-state]
-                (when-let [build-map (om/get-state owner :build-map)]
-                  (let [lat-lng (google.maps.LatLng. lat lng)
-                        gmap (google.maps.Map. (.getElementById js/document "map") #js{:center lat-lng :zoom map-zoom :panControl false})
-                        marker (google.maps.Marker. #js{:position lat-lng :map gmap :title marker-text})
-                        ]
-                    (when-let [pano-lat-lng (om/get-state owner :pano-lat-lng)]
-                      (.setStreetView gmap
-                                      (google.maps.StreetViewPanorama.
-                                       (.getElementById js/document "pano")
-                                       #js{:position pano-lat-lng  :addressControl false :pov #js{:heading 50 :pitch 0}}
-                                       ))))
-                  (om/set-state! owner :build-map false)))
+                (let [{:keys [build-map radius max-radius]} (om/get-state owner)]
+                  (when build-map
+                    (let [lat-lng (google.maps.LatLng. lat lng)
+                          gmap (google.maps.Map. (.getElementById js/document "map")
+                                                 #js{:center lat-lng
+                                                     :zoom (if (and radius (<= radius (/ max-radius 4)))
+                                                             map-near-zoom map-zoom)
+                                                     :panControl false})
+                          marker (google.maps.Marker. #js{:position lat-lng :map gmap :title marker-text})
+                          ]
+                      (when-let [pano-lat-lng (om/get-state owner :pano-lat-lng)]
+                        (.setStreetView gmap
+                                        (google.maps.StreetViewPanorama.
+                                         (.getElementById js/document "pano")
+                                         #js{:position pano-lat-lng  :addressControl false :pov #js{:heading 50 :pitch 0}}
+                                         ))))
+                    (om/set-state! owner :build-map false))))
     om/IRenderState
     (render-state [this {:keys [has-pano]}]
                   (dom/div #js{:className (str "map-viewer " className)}

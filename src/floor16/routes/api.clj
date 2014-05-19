@@ -68,11 +68,9 @@
                           (http/method-not-allowed [:options])))
             (context "/private" []
                      (GET "/:id" [id]
-                          (let [phone (->(select :pub (fields :phone) (where {:seoid id}) (limit 1))
-                                         first :phone)]
-                            (if phone
-                              (http/generic-response (read-string phone))
-                              (not-found {:id id}))))
+                          (if-let [phone (srch/phone-by-seoid id)]
+                            (http/generic-response phone)
+                            (not-found {:id id})))
                      ))
    (wrap-restful-response)
    ))
