@@ -43,6 +43,9 @@
    :not-found {:route :any
             :view-type :static
             }
+   :none {:route :any
+            :view-type :static
+            }
    })
 
 (defn after-update [query] #(nav/url-update {:mode :grid :url-params @query}))
@@ -90,7 +93,7 @@
                                                            :className "two columns"
                                                            :after-update after-update}})
                                          )
-                                (dom/div #js{:className "appartments"}
+                                (dom/div #js{:className "appartments clearfix"}
                                          (dom/span #js{:className "flats-label"} (str (l :flat) ":"))
                                          (om/build gen/checkbtn (:appartment-type query)
                                                    {:opts {:data-key :appartment1
@@ -136,7 +139,7 @@
                                              :onClick (fn [e]
                                                         (nav/goto url true true)
                                                         (.preventDefault e)
-                                                        )} "Найти жилье")))
+                                                        )} (l :find-habitation))))
                        )))))
 
 
@@ -155,21 +158,21 @@
                                                                     :max-top (get-in @astate [:settings :total-area :top])
                                                                     :step 1
                                                                     :no-text-boxes true
-                                                                    :caption "общая, кв.м. "
+                                                                    :caption (dom/span nil (str (l :total-area) ", " (l :meter-short)) (dom/sup nil "2"))
                                                                     :after-update after-update}})
                                                   (om/build re/range-editor (:living-area query)
                                                             {:opts {:min-bottom (get-in @astate [:settings :living-area :btm])
                                                                     :max-top (get-in @astate [:settings :living-area :top])
                                                                     :step 1
                                                                     :no-text-boxes true
-                                                                    :caption "жилая, кв.м. "
+                                                                    :caption (dom/span nil (str (l :living-area) ", " (l :meter-short)) (dom/sup nil "2"))
                                                                     :after-update after-update}})
                                                   (om/build re/range-editor (:kitchen-area query)
                                                             {:opts {:min-bottom (get-in @astate [:settings :kitchen-area :btm])
                                                                     :max-top (get-in @astate [:settings :kitchen-area :top])
                                                                     :step 1
                                                                     :no-text-boxes true
-                                                                    :caption "кухня, кв.м. "
+                                                                    :caption (dom/span nil (str (l :kitchen-area) ", " (l :meter-short)) (dom/sup nil "2"))
                                                                     :after-update after-update}})
                                                   )
                                          :caption (l :area)}})
@@ -181,14 +184,14 @@
                                                                     :max-top (get-in @astate [:settings :floor :top])
                                                                     :step 1
                                                                     :no-text-boxes true
-                                                                    :caption "этаж "
+                                                                    :caption (l :floor)
                                                                     :after-update after-update}})
                                                   (om/build re/range-editor (:floors query)
                                                             {:opts {:min-bottom (get-in @astate [:settings :floors :btm])
                                                                     :max-top (get-in @astate [:settings :floors :top])
                                                                     :step 1
                                                                     :no-text-boxes true
-                                                                    :caption "этажей в доме "
+                                                                    :caption (l :floors-in-building)
                                                                     :after-update after-update}}))
                                          :caption (l :floors)}})
                        (om/build gen/box-group query
@@ -245,7 +248,7 @@
                                                            :max-top (get-in @astate [:settings :distance :top])
                                                            :step 1
                                                            :no-text-boxes true
-                                                           :caption "До метро пешком, мин "
+                                                           :caption (l :to-metro-walking)
                                                            :after-update after-update}})
                                          :caption (l :distance)}})
                        (om/build gen/box-group query
@@ -287,7 +290,7 @@
   (dom/span #js{:className className}
             (when metro (dom/strong #js{:className "metro"} (dom/i nil) metro))
             (when metro  (dom/span #js{:className "distance"
-                                       :title "пешком"} (str "(∼" distance " мин.) ")))
+                                       :title (l :walking)} (str "(∼" distance " мин.) ")))
             (when district (dom/strong #js{:className "district"} (dom/i nil) district))))
 
 (defn compose-digest[{:keys [appartment-type total-area
@@ -554,7 +557,7 @@
                          (dom/span #js{:className (str "agent sixteen columns " (when (= :not-found ag) "not-found"))
                                        :key "agi"}
                                    (when (= ag :not-found)
-                                     "Нет данных по агенту с заданным номером. Это может означать как то, что номер не принадлежит агенту, так и то, что агент еще не успел угодить в базу данных.")
+                                     (l :agent-not-found-message))
                                    (when (not= ag :not-found)
                                      (dom/span nil
                                      (str "Агент с номером +7" phone " был встречен как минимум " seen " "(l :times seen)
@@ -564,51 +567,60 @@
 
 (defn not-found-view [cursor owner opts]
   (dom/div #js{:className "not-found container"}
-           (dom/h1 #js{:className "row sixteen columns"} "Ошибка 404")
+           (dom/h1 #js{:className "row sixteen columns"} (l :not-found-404-title))
            (dom/span #js{:className "sixteen columns"}
-                     "Запрашиваемая страница не найдена. Если вы перешли по ссылке на объявление, оно могло быть помечено как агентское и снято с публикации. Кроме того, в самой ссылке могла быть допущена ошибка. Проверьте правильность ввода или воспользуйтесь поиском - скорее всего вы найдете множество аналогичных предложений.")
+                     (l :not-found-404-message))
            ))
 
 (defn app [{:keys [app-mode query data current] :as cursor} owner]
-  (om/component
-   (dom/div nil
-            (om/build simple-filter query)
-            (cond
-             (= :not-found app-mode)
-             (om/build not-found-view cursor)
-             (= :ad app-mode)
-             (om/build ad-view cursor)
-             (= :agents app-mode)
-             (om/build agents-view cursor)
-             :else
-             (om/build gen/list-view cursor
-                       {:opts {:side-filter extended-filter
-                               :header-opts {:sort {:view
-                                                    (dom/span nil
-                                                    (dom/span #js{:className "order-label four columns"} "Сортировать по")
-                                                    (om/build gen/select query
-                                                              {:opts {:data-key :order
-                                                                      :placeholder (l :order)
-                                                                      :className "three columns"
-                                                                      :dict (dat/dict :ordersettings)
-                                                                      :after-update (after-update query)}}))
-                                                    }}
-                               :main-container-class "container"
-                               :data-container-class "eleven columns"
-                               :data-header-class "clearfix"
-                               :data-header-total-kword :ad
-                               :data-header-total-class "four columns"
-                               :data-header-opts-class "seven columns"
-                               :empty-text (l :empty-search)
-                               :loading-text (l :loading-search)
-                               :item-view ad-item-view
-                               :res (dat/res :ads)
-                               :list-mode :grid}})
-;;              :else
-             ;; WARN: this is really strange behaviour of react which gets
-             ;; Invariant exception cuz of same simple filter in a grid
-;;              (om/build simple-filter query {:react-key "init"})
-             ))))
+  (reify
+    om/IDidUpdate
+;;     WARN! awful dirty code from lazy ars. Remove asap by implementing static pages!
+    (did-update [this prev-props prev-state]
+                (if (= :none app-mode)
+                  (glo/node-visible "agreement" true)
+                  (glo/node-visible "agreement" false)))
+    om/IRender
+    (render [this]
+            (dom/div nil
+                     (om/build simple-filter query)
+                     (cond
+                      (= :none app-mode) ""
+                      (= :not-found app-mode)
+                      (om/build not-found-view cursor)
+                      (= :ad app-mode)
+                      (om/build ad-view cursor)
+                      (= :agents app-mode)
+                      (om/build agents-view cursor)
+                      :else
+                      (om/build gen/list-view cursor
+                                {:opts {:side-filter extended-filter
+                                        :header-opts {:sort {:view
+                                                             (dom/span nil
+                                                                       (dom/span #js{:className "order-label four columns"} "Сортировать по")
+                                                                       (om/build gen/select query
+                                                                                 {:opts {:data-key :order
+                                                                                         :placeholder (l :order)
+                                                                                         :className "three columns"
+                                                                                         :dict (dat/dict :ordersettings)
+                                                                                         :after-update (after-update query)}}))
+                                                             }}
+                                        :main-container-class "container"
+                                        :data-container-class "eleven columns"
+                                        :data-header-class "clearfix"
+                                        :data-header-total-kword :ad
+                                        :data-header-total-class "four columns"
+                                        :data-header-opts-class "seven columns"
+                                        :empty-text (l :empty-search)
+                                        :loading-text (l :loading-search)
+                                        :item-view ad-item-view
+                                        :res (dat/res :ads)
+                                        :list-mode :grid}})
+                      ;;              :else
+                      ;; WARN: this is really strange behaviour of react which gets
+                      ;; Invariant exception cuz of same simple filter in a grid
+                      ;;              (om/build simple-filter query {:react-key "init"})
+                      )))))
 
 (defn prepare-data [{:keys [app-mode query settings current] :as data}]
   (if query

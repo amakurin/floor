@@ -1,7 +1,8 @@
 (ns floor16.global
   (:require
    [clojure.string :as s]
-   [goog.dom :as gd]))
+   [goog.dom :as gd]
+   [goog.style :as gs]))
 
 (def server-side? false)
 
@@ -31,6 +32,10 @@
   (let [target (.-target e)]
     (or (identical? target el)
         (not (nil? (gd/getAncestor target (el-matcher el)))))))
+
+(defn node-visible [id vis]
+  (when-let [node (gd/$ id)]
+    (gs/showElement node vis)))
 
 (defn price-to-str [price]
   (->> (str price)

@@ -61,7 +61,7 @@
       :output-to "resources/public/js/site-prod.js",
       ;:output-dir "resources/public/js/out",
       :preamble ["react/react.min.js"]
-      :externs ["react/externs/react.js"]
+      :externs ["react/externs/react.js" "externs/google_maps_api_v3.js"]
       :closure-warnings {:non-standard-jsdoc :off}
       }}
     ]}

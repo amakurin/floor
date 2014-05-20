@@ -215,13 +215,22 @@
                        :resource-key :agents
                        :create-seo-title agents-title
                        :create-seo-description agents-description}
+                      :agreement
+                      {:route "/agreement/"
+                       :template "agreement.html"
+                       :app "appsearch"
+                       :mode :none
+                       :view-type :static
+                       :spec-state static-state
+                       :dicts (dicts-set-default)
+                       :create-seo-title (fn [_]"Пользовательское соглашение")
+                       :create-seo-description (fn [_]"Пользовательское соглашение")}
                       }
                      ))
 
 (defn r-get[rkw]
   (let [{:keys [route] :as rc} (rkw @route-conf)]
     (GET route {:as req}
-         (println req)
          (do-route rkw rc req))
     ))
 
@@ -230,7 +239,7 @@
   (r-get :ads-search)
   (r-get :ads-item)
   (r-get :agents)
-)
+  (r-get :agreement))
 
 (defn response-not-found [req]
   (let [rc {:route ""

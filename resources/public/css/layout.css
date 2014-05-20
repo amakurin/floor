@@ -270,18 +270,6 @@ text-transform: uppercase;
 margin: 11px 0 0 0;
 }
 
-@media only screen and (max-width: 959px) and (min-width: 768px){
-nav#main-menu {
-font-size: 16px;
-}
-}
-
-@media only screen and (max-width: 767px) and (min-width: 480px){
-nav#main-menu ul{
-    display: none;
-
-}
-}
 
 #main-menu li, #user-menu-top li {
   float: left;
@@ -663,6 +651,13 @@ font-size: 35px;
 margin: 10px 0 30px;
 }
 
+h2 {
+font-family: 'open-sans';
+font-size: 20px;
+  margin: 20px 0 0 0;
+}
+
+
 .ad-header .price-wrap {
 text-align: right;
 }
@@ -773,7 +768,6 @@ border-radius: 3px;
 overflow: hidden;
 height: 360px;
   border: 1px solid #84AFFF;
-  margin-bottom: 30px;
 }
 
 .photo-viewer img {
@@ -1159,7 +1153,6 @@ sup {
 
 
 .popup-select.chosen .cancel {
-  text-align: left;
   border-radius: 0;
   position: absolute;
   right: 28px;
@@ -1216,7 +1209,7 @@ sup {
   border: 1px solid #13516B;
   border-radius: 6px;
   box-shadow: 0px 1px 2px rgba(4, 22, 27, 0.69);
-  z-index 1;
+  z-index: 1;
 }
 
 .popup.drop-down {
@@ -1653,7 +1646,48 @@ li.pager-item.prev {
 @media only screen and (max-width: 959px) {}
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (min-width: 768px) and (max-width: 959px) {}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  nav#main-menu, #footer-menu li a {
+    font-size: 17px;
+  }
+
+.gen-select .value, .gen-select .placeholder,
+.extended-filter, .box-header, .gen-checkbtn label,ul.data-pager {
+  font-size: 12px!important;
+}
+
+.object-types .appartments .gen-checkbtn {
+  margin-left: 3px;
+}
+
+.appartments .gen-checkbtn label {
+  padding: 0 3px;
+}
+
+.ad-item .thumb {
+height: 68px!important;
+background-position: -14px -10px;
+}
+.ad-item .thumb img {
+width:76px;
+}
+
+.digest{
+font-size:13px;
+}
+
+.copyright {
+  font-size: 9px;
+  color: #888;
+}
+
+.ag-phone .label {
+  width: 160px!important;
+}
+.ag-phone-input {
+width: 100px!important;
+}
+}
 
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
@@ -1674,6 +1708,133 @@ li.pager-item.prev {
   {
     width: 380px;
   }
+
+#header{
+  height:auto;
+    padding-bottom: 20px;
+  }
+
+  nav#main-menu{
+  float: none;
+  }
+  nav#main-menu ul{
+  font-size:17px;
+  }
+
+  nav#main-menu ul li:first-child{
+  margin-left: 0;
+  }
+
+#app-search .simple-filter {
+  height: auto;
+  padding: 20px 0;
+}
+
+.simple-filter .location, .simple-filter .object-types, .simple-filter .price,
+.simple-filter .city, .simple-filter .metro, .simple-filter .district,
+.object-types .rooms .gen-checkbtn, .object-types .appartments,
+.options .published {
+margin: 0 0 10px 0!important;
+}
+
+.object-types .rooms{
+margin:0!important;
+}
+
+a.search-btn, div.data-header{
+height:auto!important;
+}
+
+.opts .order-label{
+text-align:left!important;
+}
+
+.ad-item .thumb {
+width: 100px!important;
+}
+
+.ad-item .descr {
+width: 200px!important;
+min-height: 103px;
+margin-left: 10px!important;
+}
+
+.ad-item .descr .columns{
+margin-left: 10px!important;
+}
+
+.ad-item  div.cond.three.columns {
+margin-left: 0px!important;
+}
+
+.ad-item .price {
+display: inline-block!important;
+}
+
+.ad-item .price-details {
+display: inline-block;
+margin-left: 10px;
+}
+
+.ad-item .descr {
+min-height: 0;
+}
+
+.ad-item .address {
+width: 310px!important;
+}
+
+.ad-item .show-phone{
+margin: 10px 0!important;
+}
+
+.data-item .additionals {
+margin-top: 5px!important;
+}
+
+.additionals .icons {
+ margin-left: 0px!important;
+}
+
+ul.data-pager {
+font-size:12px;
+  margin:20px 0!important;
+}
+
+ul.data-pager li{
+padding:0;
+}
+
+ul.data-pager li a{
+padding:2px 12px;
+}
+
+.ag-phone .label {
+  width: 160px!important;
+}
+.ag-phone-input {
+width: 120px!important;
+}
+
+.ag-phone .check-phone-button {
+width: 100px!important;
+}
+.ag-phone {
+margin-top: 40px!important;
+}
+
+#footer-menu ul{
+  margin-bottom:10px;
+}
+
+#footer-menu li a {
+font-size: 17px;
+}
+
+.copyright {
+text-align: left!important;
+}
+
 }
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
@@ -1686,6 +1847,7 @@ li.pager-item.prev {
   }
 
 }
+
 
 
 /* #Font-Face
