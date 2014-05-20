@@ -1,10 +1,10 @@
 (ns floor16.handler
-  (:require [floor16.routes.frontend :refer [front-routes]]
+  (:require [floor16.routes.frontend :refer [front-routes] :as front]
             [floor16.routes.api :refer [api-routes]]
             [floor16.routes.oauth :refer [oauth-routes]]
             [environ.core :refer [env]]
             [selmer.parser :as parser]
-            [compojure.core :refer [defroutes]]
+            [compojure.core :refer [defroutes ANY]]
             [compojure.route :as route]
             [floor16.storage :as store]
             [compojure.handler :refer [api]]
@@ -13,7 +13,7 @@
 (defroutes
   app-routes
   (route/resources "/")
-  (route/not-found "Not Found"))
+  (ANY "*" {:as req} (front/response-not-found req)))
 
 (defn init
   "init will be called once when\r

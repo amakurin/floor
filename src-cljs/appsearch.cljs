@@ -37,11 +37,11 @@
         :data-key :seoid
         :current-path [:current]
         }
-   :agents {:route "/ads/:seoid"
+   :agents {:route "/agents/"
             :view-type :static
-            :resource-key :pub
-            :data-key :seoid
-            :current-path [:current]
+            }
+   :not-found {:route :any
+            :view-type :static
             }
    })
 
@@ -472,7 +472,6 @@
      (if loading
        (dom/div nil loading)
        (dom/div #js{:className "ad-view" :id "ad"}
-                (om/build simple-filter query)
                 (dom/div #js{:className "container"}
                          (dom/h1 #js{:className "ad-header row sixteen columns"}
                                  (dom/span #js{:className "twelve columns alpha"}
@@ -530,7 +529,6 @@
                                  ))]
     (om/component
      (dom/div #js{:className "agents-view"}
-              (om/build simple-filter query)
               (dom/div #js{:className "container"}
                        (dom/h1 #js{:className "ad-header row sixteen columns"} "Данные агента по номеру телефона")
                        (dom/div #js{:className "ag-phone sixteen columns"}
@@ -564,19 +562,27 @@
                                      (dom/a #js{:href last-url :target "_blank"} "Перейти")))))
                        )))))
 
+(defn not-found-view [cursor owner opts]
+  (dom/div #js{:className "not-found container"}
+           (dom/h1 #js{:className "row sixteen columns"} "Ошибка 404")
+           (dom/span #js{:className "sixteen columns"}
+                     "Запрашиваемая страница не найдена. Если вы перешли по ссылке на объявление, оно могло быть помечено как агентское и снято с публикации. Кроме того, в самой ссылке могла быть допущена ошибка. Проверьте правильность ввода или воспользуйтесь поиском - скорее всего вы найдете множество аналогичных предложений.")
+           ))
 
 (defn app [{:keys [app-mode query data current] :as cursor} owner]
   (om/component
    (dom/div nil
+            (om/build simple-filter query)
             (cond
+             (= :not-found app-mode)
+             (om/build not-found-view cursor)
              (= :ad app-mode)
              (om/build ad-view cursor)
              (= :agents app-mode)
              (om/build agents-view cursor)
              :else
              (om/build gen/list-view cursor
-                       {:opts {:top-filter simple-filter
-                               :side-filter extended-filter
+                       {:opts {:side-filter extended-filter
                                :header-opts {:sort {:view
                                                     (dom/span nil
                                                     (dom/span #js{:className "order-label four columns"} "Сортировать по")

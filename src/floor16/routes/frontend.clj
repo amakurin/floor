@@ -1,6 +1,6 @@
 (ns floor16.routes.frontend
   (:require [compojure.core :refer [defroutes GET]]
-            [ring.util.response :refer [not-found]]
+            [ring.util.response :refer [not-found status]]
             [floor16.http :as http]
             [floor16.views.layout :as lt]
             [floor16.views.reactor :as react]
@@ -45,7 +45,7 @@
        :query query :dicts dicts
        :settings (srch/get-search-settings req)})))
 
-(defn agent-specific-state [rconf req]
+(defn static-state [rconf req]
   (let [{:keys [resource-key]} rconf
         query (srch/empty-query req)
         dicts (get-query-dicts query)]
@@ -210,7 +210,7 @@
                        :app "appsearch"
                        :mode :agents
                        :view-type :static
-                       :spec-state agent-specific-state
+                       :spec-state static-state
                        :dicts (dicts-set-default)
                        :resource-key :agents
                        :create-seo-title agents-title
@@ -231,3 +231,16 @@
   (r-get :ads-item)
   (r-get :agents)
 )
+
+(defn response-not-found [req]
+  (let [rc {:route ""
+            :template "app-search.html"
+            :app "appsearch"
+            :mode :not-found
+            :view-type :static
+            :spec-state static-state
+            :dicts (dicts-set-default)
+            :create-seo-title (fn [_] "Страница не найдена")
+            :create-seo-description (fn [_] "Страница не найдена, возможно она была удалена, либо вы неправильно ввели ссылку.")}
+        ]
+     (status (.render (do-route :not-found rc req) req) 404)))
