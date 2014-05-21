@@ -115,7 +115,8 @@
      (dom/div #js{:className (str "gen-checkbtn " className)
                   :onClick (fn [e]
                              (bool-upd data-key (not v) cursor)
-                             (when after-update (after-update)))}
+                             (when after-update (after-update)))
+                  }
               (dom/input #js {:type "checkbox" :checked (boolean v)
                               :onChange (fn [e]
                                           (bool-upd data-key (.. e -target -checked) cursor)
@@ -178,9 +179,7 @@
                        :onClick (fn[e] (.preventDefault e)
                                   (when url
                                     (nav/goto url)
-                                    (if-let [n (.getElementById js/document "list-view")]
-                                      (.scrollTo js/window 0 (.-offsetTop n))
-                                      (.scrollTo js/window 0 0))))}
+                                    (glo/scroll-to-or-top "list-view")))}
                    (or text index)))))
 
 (defn data-pager [{:keys [query data] :as cursor} owner {:keys [list-mode ] :as opts}]

@@ -40,8 +40,8 @@
 (defn api-url [path]
   (str "/api" path))
 
-(defn api-get [res-key cb & [param]]
-  (let [url (api-url (str "/" (name res-key) (when param (str "/" (if (string? param) param (pr-str param))))))]
+(defn api-get [res-key cb & [p]]
+  (let [url (api-url (str "/" (name res-key) (when p (str "/" (if (string? p) p (pr-str p))))))]
     (if (:local? @system) (cb {})
       (xhr/cb-request {:method :get :url url} #(cb %)))))
 

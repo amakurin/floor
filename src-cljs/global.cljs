@@ -40,6 +40,15 @@
 (defn node-set-props [node props]
   (gd/setProperties node props))
 
+(defn get-offset-vbound [node bound]
+  (if (= :top bound) (.-offsetTop node) (+ (.-offsetTop node)(.-offsetHeight node))))
+
+(defn scroll-to-or-top [id & [vbound]]
+  (let [vbound (or vbound :top)]
+    (if-let [node (gd/$ id)]
+      (.scrollTo js/window 0 (get-offset-vbound node vbound))
+      (.scrollTo js/window 0 0))))
+
 (defn price-to-str [price]
   (->> (str price)
        reverse

@@ -52,7 +52,7 @@
 
 (defn simple-filter [query owner]
   (om/component
-   (dom/div #js{:className "simple-filter"}
+   (dom/div #js{:id "sf" :className "simple-filter"}
             (let [after-update (after-update query)]
               (dom/div #js{:className "container"}
                        (dom/div #js{:className "location four columns"}
@@ -379,9 +379,8 @@
         link-handler (fn [e]
                        (when (= 0 (.-button e))
                          (nav/goto url)
-                         (if-let [n (.getElementById js/document "ad")]
-                                      (.scrollTo js/window 0 (.-offsetTop n))
-                                      (.scrollTo js/window 0 0))
+                         ;WARN! this one dont work, cuz of full remount i guess.
+                         (glo/scroll-to-or-top "sf" :bottom)
                          (.preventDefault e)))]
     (dom/div #js{:className "ad-item eleven columns"}
              (dom/span #js{:className "pub-date"} (get-time-text item))
@@ -512,7 +511,7 @@
                                     (om/build maps/map-viewer data {:opts {:className "row sixteen columns alpha omega"}})))
                          ))))))
 
-(defn agents-view [{:keys [query] :as cursor} owner]
+(defn agents-view [{:keys [query] :as cursor} owner opts]
   (let [response-handler (fn [x]
                            (cond
                             (= 200 (:status x))(om/set-state! owner :agent (assoc (:body x) :phone (om/get-state owner :value)))
@@ -520,6 +519,7 @@
                             :else (om/set-state! owner :error "Произошла непредвиденная ошибка. Программист уже в курсе.")))
         agent-handler (fn [e]
                         (let [phone (om/get-state owner :value)]
+                          (println phone (om/get-state owner))
                           (if (< (count phone) 10)
                             (om/set-state! owner :error "Номер должен состоять из десяти цифр и должен включать код города, если это городской номер.")
                             (do
@@ -575,8 +575,8 @@
 (defn app [{:keys [app-mode query data current] :as cursor} owner]
   (reify
     om/IDidUpdate
-;;     WARN! awful dirty code from lazy ars. Remove asap by implementing static pages!
     (did-update [this prev-props prev-state]
+;;     WARN! awful dirty code from lazy ars. Remove asap by implementing static pages!
                 (if (= :none app-mode)
                   (glo/node-visible "agreement" true)
                   (glo/node-visible "agreement" false)))
@@ -629,7 +629,7 @@
 
 (defn ^:export main [edn-data]
   (let [data (-> edn-data cljs.reader/read-string prepare-data)]
-    (println "Main: " data)
+;;     (println "Main: " data)
     (reset! astate data)
     (dat/init-data {:app-state astate})
     (nav/init-nav {:app-state astate

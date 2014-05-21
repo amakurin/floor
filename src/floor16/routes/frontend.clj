@@ -231,7 +231,9 @@
 (defn r-get[rkw]
   (let [{:keys [route] :as rc} (rkw @route-conf)]
     (GET route {:as req}
-         (do-route rkw rc req))
+         (if (:old-ie? req)
+           (.render (lt/render "oldbrowser.html") req)
+           (do-route rkw rc req)))
     ))
 
 (defroutes front-routes

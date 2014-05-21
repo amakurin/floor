@@ -2,6 +2,7 @@
   (:require [floor16.routes.frontend :refer [front-routes] :as front]
             [floor16.routes.api :refer [api-routes]]
             [floor16.routes.oauth :refer [oauth-routes]]
+            [floor16.middleware :as mw]
             [environ.core :refer [env]]
             [selmer.parser :as parser]
             [compojure.core :refer [defroutes ANY]]
@@ -35,5 +36,5 @@
   oauth-routes
   app-routes)
 
-(def app (api all-routes))
+(def app (-> all-routes api mw/wrap-check-browser))
 
