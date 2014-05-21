@@ -38438,24 +38438,24 @@ floor16.global.key_event__GT_keycode = function key_event__GT_keycode(e) {
   return e.keyCode;
 };
 floor16.global.key__GT_keyword = function key__GT_keyword(code) {
-  var pred__118220 = cljs.core._EQ_;
-  var expr__118221 = code;
-  if (cljs.core.truth_(pred__118220.call(null, floor16.global.UP_ARROW, expr__118221))) {
+  var pred__123004 = cljs.core._EQ_;
+  var expr__123005 = code;
+  if (cljs.core.truth_(pred__123004.call(null, floor16.global.UP_ARROW, expr__123005))) {
     return new cljs.core.Keyword(null, "prev", "prev", 1017353637);
   } else {
-    if (cljs.core.truth_(pred__118220.call(null, floor16.global.DOWN_ARROW, expr__118221))) {
+    if (cljs.core.truth_(pred__123004.call(null, floor16.global.DOWN_ARROW, expr__123005))) {
       return new cljs.core.Keyword(null, "next", "next", 1017282149);
     } else {
-      if (cljs.core.truth_(pred__118220.call(null, floor16.global.ENTER, expr__118221))) {
+      if (cljs.core.truth_(pred__123004.call(null, floor16.global.ENTER, expr__123005))) {
         return new cljs.core.Keyword(null, "select", "select", 4402849902);
       } else {
-        if (cljs.core.truth_(pred__118220.call(null, floor16.global.TAB, expr__118221))) {
+        if (cljs.core.truth_(pred__123004.call(null, floor16.global.TAB, expr__123005))) {
           return new cljs.core.Keyword(null, "exit", "exit", 1017031824);
         } else {
-          if (cljs.core.truth_(pred__118220.call(null, floor16.global.ESC, expr__118221))) {
+          if (cljs.core.truth_(pred__123004.call(null, floor16.global.ESC, expr__123005))) {
             return new cljs.core.Keyword(null, "exit", "exit", 1017031824);
           } else {
-            throw new Error([cljs.core.str("No matching clause: "), cljs.core.str(expr__118221)].join(""));
+            throw new Error([cljs.core.str("No matching clause: "), cljs.core.str(expr__123005)].join(""));
           }
         }
       }
@@ -38480,9 +38480,12 @@ floor16.global.node_visible = function node_visible(id, vis) {
     return null;
   }
 };
+floor16.global.node_set_props = function node_set_props(node, props) {
+  return goog.dom.setProperties(node, props);
+};
 floor16.global.price_to_str = function price_to_str(price) {
-  return cljs.core.apply.call(null, cljs.core.str, cljs.core.reverse.call(null, clojure.string.join.call(null, " ", cljs.core.map.call(null, function(p1__118223_SHARP_) {
-    return cljs.core.apply.call(null, cljs.core.str, p1__118223_SHARP_);
+  return cljs.core.apply.call(null, cljs.core.str, cljs.core.reverse.call(null, clojure.string.join.call(null, " ", cljs.core.map.call(null, function(p1__123007_SHARP_) {
+    return cljs.core.apply.call(null, cljs.core.str, p1__123007_SHARP_);
   }, cljs.core.partition_all.call(null, 3, cljs.core.reverse.call(null, [cljs.core.str(price)].join("")))))));
 };
 goog.provide("goog.history.EventType");
@@ -46072,44 +46075,44 @@ floor16.ui.generic.active_QMARK_ = function active_QMARK_(owner) {
 floor16.ui.generic.active_BANG_ = function active_BANG_(owner, v) {
   return om.core.set_state_BANG_.call(null, owner, new cljs.core.Keyword("floor16.ui.generic", "active", "floor16.ui.generic/active", 4493575432), v);
 };
-floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__118035) {
-  var map__118056 = p__118035;
-  var map__118056__$1 = cljs.core.seq_QMARK_.call(null, map__118056) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118056) : map__118056;
-  var opts = map__118056__$1;
-  var do_close = cljs.core.get.call(null, map__118056__$1, new cljs.core.Keyword(null, "do-close", "do-close", 4607974824));
-  var view = cljs.core.get.call(null, map__118056__$1, new cljs.core.Keyword(null, "view", "view", 1017523735));
-  if (typeof floor16.ui.generic.t118057 !== "undefined") {
+floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__129114) {
+  var map__129135 = p__129114;
+  var map__129135__$1 = cljs.core.seq_QMARK_.call(null, map__129135) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129135) : map__129135;
+  var opts = map__129135__$1;
+  var do_close = cljs.core.get.call(null, map__129135__$1, new cljs.core.Keyword(null, "do-close", "do-close", 4607974824));
+  var view = cljs.core.get.call(null, map__129135__$1, new cljs.core.Keyword(null, "view", "view", 1017523735));
+  if (typeof floor16.ui.generic.t129136 !== "undefined") {
   } else {
-    floor16.ui.generic.t118057 = function(view, do_close, opts, map__118056, p__118035, owner, cursor, self_closeable, meta118058) {
+    floor16.ui.generic.t129136 = function(view, do_close, opts, map__129135, p__129114, owner, cursor, self_closeable, meta129137) {
       this.view = view;
       this.do_close = do_close;
       this.opts = opts;
-      this.map__118056 = map__118056;
-      this.p__118035 = p__118035;
+      this.map__129135 = map__129135;
+      this.p__129114 = p__129114;
       this.owner = owner;
       this.cursor = cursor;
       this.self_closeable = self_closeable;
-      this.meta118058 = meta118058;
+      this.meta129137 = meta129137;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118057.cljs$lang$type = true;
-    floor16.ui.generic.t118057.cljs$lang$ctorStr = "floor16.ui.generic/t118057";
-    floor16.ui.generic.t118057.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118057");
+    floor16.ui.generic.t129136.cljs$lang$type = true;
+    floor16.ui.generic.t129136.cljs$lang$ctorStr = "floor16.ui.generic/t129136";
+    floor16.ui.generic.t129136.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129136");
     };
-    floor16.ui.generic.t118057.prototype.om$core$IRenderState$ = true;
-    floor16.ui.generic.t118057.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__118060) {
+    floor16.ui.generic.t129136.prototype.om$core$IRenderState$ = true;
+    floor16.ui.generic.t129136.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__129139) {
       var self__ = this;
-      var map__118061 = p__118060;
-      var map__118061__$1 = cljs.core.seq_QMARK_.call(null, map__118061) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118061) : map__118061;
-      var close_chan = cljs.core.get.call(null, map__118061__$1, new cljs.core.Keyword(null, "close-chan", "close-chan", 3200632185));
+      var map__129140 = p__129139;
+      var map__129140__$1 = cljs.core.seq_QMARK_.call(null, map__129140) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129140) : map__129140;
+      var close_chan = cljs.core.get.call(null, map__129140__$1, new cljs.core.Keyword(null, "close-chan", "close-chan", 3200632185));
       var this$__$1 = this;
       return om.core.build.call(null, self__.view, self__.cursor, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "init-state", "init-state", 4479067398), om.core.get_state.call(null, self__.owner), new cljs.core.Keyword(null, "opts", "opts", 1017322386), cljs.core.assoc.call(null, cljs.core.dissoc.call(null, self__.opts, new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "view", "view", 1017523735), new cljs.core.Keyword(null, 
       "do-close", "do-close", 4607974824)], null)), new cljs.core.Keyword(null, "close-chan", "close-chan", 3200632185), close_chan)], null));
     };
-    floor16.ui.generic.t118057.prototype.om$core$IWillUnmount$ = true;
-    floor16.ui.generic.t118057.prototype.om$core$IWillUnmount$will_unmount$arity$1 = function(this$) {
+    floor16.ui.generic.t129136.prototype.om$core$IWillUnmount$ = true;
+    floor16.ui.generic.t129136.prototype.om$core$IWillUnmount$will_unmount$arity$1 = function(this$) {
       var self__ = this;
       var this$__$1 = this;
       var temp__4092__auto__ = om.core.get_state.call(null, self__.owner, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("floor16.ui.generic", "window-listener", "floor16.ui.generic/window-listener", 1117526547)], null));
@@ -46120,16 +46123,16 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
         return null;
       }
     };
-    floor16.ui.generic.t118057.prototype.om$core$IDidMount$ = true;
-    floor16.ui.generic.t118057.prototype.om$core$IDidMount$did_mount$arity$1 = function(this$) {
+    floor16.ui.generic.t129136.prototype.om$core$IDidMount$ = true;
+    floor16.ui.generic.t129136.prototype.om$core$IDidMount$did_mount$arity$1 = function(this$) {
       var self__ = this;
       var this$__$1 = this;
-      var mouse_handler = function(p1__118034_SHARP_) {
+      var mouse_handler = function(p1__129113_SHARP_) {
         if (cljs.core.truth_(self__.do_close)) {
-          if (floor16.global.in_QMARK_.call(null, p1__118034_SHARP_, om.core.get_node.call(null, self__.owner))) {
+          if (floor16.global.in_QMARK_.call(null, p1__129113_SHARP_, om.core.get_node.call(null, self__.owner))) {
             return null;
           } else {
-            p1__118034_SHARP_.stopPropagation();
+            p1__129113_SHARP_.stopPropagation();
             return self__.do_close.call(null);
           }
         } else {
@@ -46139,8 +46142,8 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
       goog.events.listen(window, goog.events.EventType.MOUSEDOWN, mouse_handler);
       return om.core.set_state_BANG_.call(null, self__.owner, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("floor16.ui.generic", "window-listener", "floor16.ui.generic/window-listener", 1117526547)], null), mouse_handler);
     };
-    floor16.ui.generic.t118057.prototype.om$core$IWillMount$ = true;
-    floor16.ui.generic.t118057.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
+    floor16.ui.generic.t129136.prototype.om$core$IWillMount$ = true;
+    floor16.ui.generic.t129136.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
       var self__ = this;
       var ___$1 = this;
       var close_chan = cljs.core.async.chan.call(null);
@@ -46148,21 +46151,21 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
       var c__6217__auto__ = cljs.core.async.chan.call(null, 1);
       cljs.core.async.impl.dispatch.run.call(null, function() {
         var f__6218__auto__ = function() {
-          var switch__6202__auto__ = function(state_118066) {
-            var state_val_118067 = state_118066[1];
-            if (state_val_118067 === 2) {
-              var inst_118063 = state_118066[2];
-              var inst_118064 = self__.do_close.call(null);
-              var state_118066__$1 = function() {
-                var statearr_118068 = state_118066;
-                statearr_118068[7] = inst_118063;
-                return statearr_118068;
+          var switch__6202__auto__ = function(state_129145) {
+            var state_val_129146 = state_129145[1];
+            if (state_val_129146 === 2) {
+              var inst_129142 = state_129145[2];
+              var inst_129143 = self__.do_close.call(null);
+              var state_129145__$1 = function() {
+                var statearr_129147 = state_129145;
+                statearr_129147[7] = inst_129142;
+                return statearr_129147;
               }();
-              return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_118066__$1, inst_118064);
+              return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_129145__$1, inst_129143);
             } else {
-              if (state_val_118067 === 1) {
-                var state_118066__$1 = state_118066;
-                return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_118066__$1, 2, close_chan);
+              if (state_val_129146 === 1) {
+                var state_129145__$1 = state_129145;
+                return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_129145__$1, 2, close_chan);
               } else {
                 return null;
               }
@@ -46172,17 +46175,17 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
             return function() {
               var state_machine__6203__auto__ = null;
               var state_machine__6203__auto____0 = function() {
-                var statearr_118072 = [null, null, null, null, null, null, null, null];
-                statearr_118072[0] = state_machine__6203__auto__;
-                statearr_118072[1] = 1;
-                return statearr_118072;
+                var statearr_129151 = [null, null, null, null, null, null, null, null];
+                statearr_129151[0] = state_machine__6203__auto__;
+                statearr_129151[1] = 1;
+                return statearr_129151;
               };
-              var state_machine__6203__auto____1 = function(state_118066) {
+              var state_machine__6203__auto____1 = function(state_129145) {
                 while (true) {
                   var ret_value__6204__auto__ = function() {
                     try {
                       while (true) {
-                        var result__6205__auto__ = switch__6202__auto__.call(null, state_118066);
+                        var result__6205__auto__ = switch__6202__auto__.call(null, state_129145);
                         if (cljs.core.keyword_identical_QMARK_.call(null, result__6205__auto__, new cljs.core.Keyword(null, "recur", "recur", 1122293407))) {
                           continue;
                         } else {
@@ -46190,16 +46193,16 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
                         }
                         break;
                       }
-                    } catch (e118073) {
-                      if (e118073 instanceof Object) {
-                        var ex__6206__auto__ = e118073;
-                        var statearr_118074_118076 = state_118066;
-                        statearr_118074_118076[5] = ex__6206__auto__;
-                        cljs.core.async.impl.ioc_helpers.process_exception.call(null, state_118066);
+                    } catch (e129152) {
+                      if (e129152 instanceof Object) {
+                        var ex__6206__auto__ = e129152;
+                        var statearr_129153_129155 = state_129145;
+                        statearr_129153_129155[5] = ex__6206__auto__;
+                        cljs.core.async.impl.ioc_helpers.process_exception.call(null, state_129145);
                         return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
                       } else {
                         if (new cljs.core.Keyword(null, "else", "else", 1017020587)) {
-                          throw e118073;
+                          throw e129152;
                         } else {
                           return null;
                         }
@@ -46207,8 +46210,8 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
                     }
                   }();
                   if (cljs.core.keyword_identical_QMARK_.call(null, ret_value__6204__auto__, new cljs.core.Keyword(null, "recur", "recur", 1122293407))) {
-                    var G__118077 = state_118066;
-                    state_118066 = G__118077;
+                    var G__129156 = state_129145;
+                    state_129145 = G__129156;
                     continue;
                   } else {
                     return ret_value__6204__auto__;
@@ -46216,12 +46219,12 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
                   break;
                 }
               };
-              state_machine__6203__auto__ = function(state_118066) {
+              state_machine__6203__auto__ = function(state_129145) {
                 switch(arguments.length) {
                   case 0:
                     return state_machine__6203__auto____0.call(this);
                   case 1:
-                    return state_machine__6203__auto____1.call(this, state_118066);
+                    return state_machine__6203__auto____1.call(this, state_129145);
                 }
                 throw new Error("Invalid arity: " + arguments.length);
               };
@@ -46232,71 +46235,71 @@ floor16.ui.generic.self_closeable = function self_closeable(cursor, owner, p__11
           }(switch__6202__auto__);
         }();
         var state__6219__auto__ = function() {
-          var statearr_118075 = f__6218__auto__.call(null);
-          statearr_118075[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__6217__auto__;
-          return statearr_118075;
+          var statearr_129154 = f__6218__auto__.call(null);
+          statearr_129154[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__6217__auto__;
+          return statearr_129154;
         }();
         return cljs.core.async.impl.ioc_helpers.run_state_machine_wrapped.call(null, state__6219__auto__);
       });
       return c__6217__auto__;
     };
-    floor16.ui.generic.t118057.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118059) {
+    floor16.ui.generic.t129136.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129138) {
       var self__ = this;
-      var _118059__$1 = this;
-      return self__.meta118058;
+      var _129138__$1 = this;
+      return self__.meta129137;
     };
-    floor16.ui.generic.t118057.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118059, meta118058__$1) {
+    floor16.ui.generic.t129136.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129138, meta129137__$1) {
       var self__ = this;
-      var _118059__$1 = this;
-      return new floor16.ui.generic.t118057(self__.view, self__.do_close, self__.opts, self__.map__118056, self__.p__118035, self__.owner, self__.cursor, self__.self_closeable, meta118058__$1);
+      var _129138__$1 = this;
+      return new floor16.ui.generic.t129136(self__.view, self__.do_close, self__.opts, self__.map__129135, self__.p__129114, self__.owner, self__.cursor, self__.self_closeable, meta129137__$1);
     };
-    floor16.ui.generic.__GT_t118057 = function __GT_t118057(view__$1, do_close__$1, opts__$1, map__118056__$2, p__118035__$1, owner__$1, cursor__$1, self_closeable__$1, meta118058) {
-      return new floor16.ui.generic.t118057(view__$1, do_close__$1, opts__$1, map__118056__$2, p__118035__$1, owner__$1, cursor__$1, self_closeable__$1, meta118058);
+    floor16.ui.generic.__GT_t129136 = function __GT_t129136(view__$1, do_close__$1, opts__$1, map__129135__$2, p__129114__$1, owner__$1, cursor__$1, self_closeable__$1, meta129137) {
+      return new floor16.ui.generic.t129136(view__$1, do_close__$1, opts__$1, map__129135__$2, p__129114__$1, owner__$1, cursor__$1, self_closeable__$1, meta129137);
     };
   }
-  return new floor16.ui.generic.t118057(view, do_close, opts, map__118056__$1, p__118035, owner, cursor, self_closeable, null);
+  return new floor16.ui.generic.t129136(view, do_close, opts, map__129135__$1, p__129114, owner, cursor, self_closeable, null);
 };
-floor16.ui.generic.drop_down_menu = function drop_down_menu(cursor, owner, p__118078) {
-  var map__118085 = p__118078;
-  var map__118085__$1 = cljs.core.seq_QMARK_.call(null, map__118085) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118085) : map__118085;
-  var opts = map__118085__$1;
-  var nil_caption = cljs.core.get.call(null, map__118085__$1, new cljs.core.Keyword(null, "nil-caption", "nil-caption", 1496742300));
-  var can_nil = cljs.core.get.call(null, map__118085__$1, new cljs.core.Keyword(null, "can-nil", "can-nil", 1562520070));
-  var after_update = cljs.core.get.call(null, map__118085__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
-  var close_chan = cljs.core.get.call(null, map__118085__$1, new cljs.core.Keyword(null, "close-chan", "close-chan", 3200632185));
-  var dict = cljs.core.get.call(null, map__118085__$1, new cljs.core.Keyword(null, "dict", "dict", 1016987432));
-  var data_key = cljs.core.get.call(null, map__118085__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
-  if (typeof floor16.ui.generic.t118086 !== "undefined") {
+floor16.ui.generic.drop_down_menu = function drop_down_menu(cursor, owner, p__129157) {
+  var map__129164 = p__129157;
+  var map__129164__$1 = cljs.core.seq_QMARK_.call(null, map__129164) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129164) : map__129164;
+  var opts = map__129164__$1;
+  var nil_caption = cljs.core.get.call(null, map__129164__$1, new cljs.core.Keyword(null, "nil-caption", "nil-caption", 1496742300));
+  var can_nil = cljs.core.get.call(null, map__129164__$1, new cljs.core.Keyword(null, "can-nil", "can-nil", 1562520070));
+  var after_update = cljs.core.get.call(null, map__129164__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
+  var close_chan = cljs.core.get.call(null, map__129164__$1, new cljs.core.Keyword(null, "close-chan", "close-chan", 3200632185));
+  var dict = cljs.core.get.call(null, map__129164__$1, new cljs.core.Keyword(null, "dict", "dict", 1016987432));
+  var data_key = cljs.core.get.call(null, map__129164__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
+  if (typeof floor16.ui.generic.t129165 !== "undefined") {
   } else {
-    floor16.ui.generic.t118086 = function(drop_down_menu, opts, p__118078, nil_caption, can_nil, dict, data_key, after_update, owner, cursor, map__118085, close_chan, meta118087) {
+    floor16.ui.generic.t129165 = function(drop_down_menu, opts, p__129157, nil_caption, can_nil, dict, data_key, after_update, map__129164, owner, cursor, close_chan, meta129166) {
       this.drop_down_menu = drop_down_menu;
       this.opts = opts;
-      this.p__118078 = p__118078;
+      this.p__129157 = p__129157;
       this.nil_caption = nil_caption;
       this.can_nil = can_nil;
       this.dict = dict;
       this.data_key = data_key;
       this.after_update = after_update;
+      this.map__129164 = map__129164;
       this.owner = owner;
       this.cursor = cursor;
-      this.map__118085 = map__118085;
       this.close_chan = close_chan;
-      this.meta118087 = meta118087;
+      this.meta129166 = meta129166;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118086.cljs$lang$type = true;
-    floor16.ui.generic.t118086.cljs$lang$ctorStr = "floor16.ui.generic/t118086";
-    floor16.ui.generic.t118086.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118086");
+    floor16.ui.generic.t129165.cljs$lang$type = true;
+    floor16.ui.generic.t129165.cljs$lang$ctorStr = "floor16.ui.generic/t129165";
+    floor16.ui.generic.t129165.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129165");
     };
-    floor16.ui.generic.t118086.prototype.om$core$IRenderState$ = true;
-    floor16.ui.generic.t118086.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__118089) {
+    floor16.ui.generic.t129165.prototype.om$core$IRenderState$ = true;
+    floor16.ui.generic.t129165.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__129168) {
       var self__ = this;
-      var map__118090 = p__118089;
-      var map__118090__$1 = cljs.core.seq_QMARK_.call(null, map__118090) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118090) : map__118090;
-      var ss = map__118090__$1;
-      var items = cljs.core.get.call(null, map__118090__$1, new cljs.core.Keyword(null, "items", "items", 1114430258));
+      var map__129169 = p__129168;
+      var map__129169__$1 = cljs.core.seq_QMARK_.call(null, map__129169) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129169) : map__129169;
+      var ss = map__129169__$1;
+      var items = cljs.core.get.call(null, map__129169__$1, new cljs.core.Keyword(null, "items", "items", 1114430258));
       var this$__$1 = this;
       var dk = floor16.datum.dkey.call(null, self__.dict);
       var dn = floor16.datum.dname.call(null, self__.dict);
@@ -46311,72 +46314,72 @@ floor16.ui.generic.drop_down_menu = function drop_down_menu(cursor, owner, p__11
         }}, dn.call(null, i));
       }, cljs.core.truth_(self__.can_nil) ? cljs.core.vec.call(null, cljs.core.cons.call(null, new cljs.core.PersistentArrayMap.fromArray([dk, null, dn, self__.nil_caption], true, false), items)) : items));
     };
-    floor16.ui.generic.t118086.prototype.om$core$IWillReceiveProps$ = true;
-    floor16.ui.generic.t118086.prototype.om$core$IWillReceiveProps$will_receive_props$arity$2 = function(this$, next_props) {
+    floor16.ui.generic.t129165.prototype.om$core$IWillReceiveProps$ = true;
+    floor16.ui.generic.t129165.prototype.om$core$IWillReceiveProps$will_receive_props$arity$2 = function(this$, next_props) {
       var self__ = this;
       var this$__$1 = this;
       return floor16.datum.load_all.call(null, self__.dict, self__.owner, new cljs.core.Keyword(null, "items", "items", 1114430258));
     };
-    floor16.ui.generic.t118086.prototype.om$core$IWillMount$ = true;
-    floor16.ui.generic.t118086.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
+    floor16.ui.generic.t129165.prototype.om$core$IWillMount$ = true;
+    floor16.ui.generic.t129165.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
       var self__ = this;
       var ___$1 = this;
       return floor16.datum.load_all.call(null, self__.dict, self__.owner, new cljs.core.Keyword(null, "items", "items", 1114430258));
     };
-    floor16.ui.generic.t118086.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118088) {
+    floor16.ui.generic.t129165.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129167) {
       var self__ = this;
-      var _118088__$1 = this;
-      return self__.meta118087;
+      var _129167__$1 = this;
+      return self__.meta129166;
     };
-    floor16.ui.generic.t118086.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118088, meta118087__$1) {
+    floor16.ui.generic.t129165.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129167, meta129166__$1) {
       var self__ = this;
-      var _118088__$1 = this;
-      return new floor16.ui.generic.t118086(self__.drop_down_menu, self__.opts, self__.p__118078, self__.nil_caption, self__.can_nil, self__.dict, self__.data_key, self__.after_update, self__.owner, self__.cursor, self__.map__118085, self__.close_chan, meta118087__$1);
+      var _129167__$1 = this;
+      return new floor16.ui.generic.t129165(self__.drop_down_menu, self__.opts, self__.p__129157, self__.nil_caption, self__.can_nil, self__.dict, self__.data_key, self__.after_update, self__.map__129164, self__.owner, self__.cursor, self__.close_chan, meta129166__$1);
     };
-    floor16.ui.generic.__GT_t118086 = function __GT_t118086(drop_down_menu__$1, opts__$1, p__118078__$1, nil_caption__$1, can_nil__$1, dict__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, map__118085__$2, close_chan__$1, meta118087) {
-      return new floor16.ui.generic.t118086(drop_down_menu__$1, opts__$1, p__118078__$1, nil_caption__$1, can_nil__$1, dict__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, map__118085__$2, close_chan__$1, meta118087);
+    floor16.ui.generic.__GT_t129165 = function __GT_t129165(drop_down_menu__$1, opts__$1, p__129157__$1, nil_caption__$1, can_nil__$1, dict__$1, data_key__$1, after_update__$1, map__129164__$2, owner__$1, cursor__$1, close_chan__$1, meta129166) {
+      return new floor16.ui.generic.t129165(drop_down_menu__$1, opts__$1, p__129157__$1, nil_caption__$1, can_nil__$1, dict__$1, data_key__$1, after_update__$1, map__129164__$2, owner__$1, cursor__$1, close_chan__$1, meta129166);
     };
   }
-  return new floor16.ui.generic.t118086(drop_down_menu, opts, p__118078, nil_caption, can_nil, dict, data_key, after_update, owner, cursor, map__118085__$1, close_chan, null);
+  return new floor16.ui.generic.t129165(drop_down_menu, opts, p__129157, nil_caption, can_nil, dict, data_key, after_update, map__129164__$1, owner, cursor, close_chan, null);
 };
-floor16.ui.generic.select = function select(cursor, owner, p__118091) {
-  var map__118096 = p__118091;
-  var map__118096__$1 = cljs.core.seq_QMARK_.call(null, map__118096) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118096) : map__118096;
-  var opts = map__118096__$1;
-  var can_nil = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "can-nil", "can-nil", 1562520070));
-  var after_update = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
-  var dict = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "dict", "dict", 1016987432));
-  var selector = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "selector", "selector", 2205476689));
-  var placeholder = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "placeholder", "placeholder", 1612151013));
-  var className = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
-  var data_key = cljs.core.get.call(null, map__118096__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
-  if (typeof floor16.ui.generic.t118097 !== "undefined") {
+floor16.ui.generic.select = function select(cursor, owner, p__129170) {
+  var map__129175 = p__129170;
+  var map__129175__$1 = cljs.core.seq_QMARK_.call(null, map__129175) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129175) : map__129175;
+  var opts = map__129175__$1;
+  var can_nil = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "can-nil", "can-nil", 1562520070));
+  var after_update = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
+  var dict = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "dict", "dict", 1016987432));
+  var selector = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "selector", "selector", 2205476689));
+  var placeholder = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "placeholder", "placeholder", 1612151013));
+  var className = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
+  var data_key = cljs.core.get.call(null, map__129175__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
+  if (typeof floor16.ui.generic.t129176 !== "undefined") {
   } else {
-    floor16.ui.generic.t118097 = function(opts, className, select, map__118096, placeholder, can_nil, selector, dict, data_key, after_update, owner, cursor, p__118091, meta118098) {
+    floor16.ui.generic.t129176 = function(opts, className, select, placeholder, can_nil, selector, dict, p__129170, data_key, after_update, owner, cursor, map__129175, meta129177) {
       this.opts = opts;
       this.className = className;
       this.select = select;
-      this.map__118096 = map__118096;
       this.placeholder = placeholder;
       this.can_nil = can_nil;
       this.selector = selector;
       this.dict = dict;
+      this.p__129170 = p__129170;
       this.data_key = data_key;
       this.after_update = after_update;
       this.owner = owner;
       this.cursor = cursor;
-      this.p__118091 = p__118091;
-      this.meta118098 = meta118098;
+      this.map__129175 = map__129175;
+      this.meta129177 = meta129177;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118097.cljs$lang$type = true;
-    floor16.ui.generic.t118097.cljs$lang$ctorStr = "floor16.ui.generic/t118097";
-    floor16.ui.generic.t118097.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118097");
+    floor16.ui.generic.t129176.cljs$lang$type = true;
+    floor16.ui.generic.t129176.cljs$lang$ctorStr = "floor16.ui.generic/t129176";
+    floor16.ui.generic.t129176.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129176");
     };
-    floor16.ui.generic.t118097.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118097.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129176.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129176.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       var v = self__.data_key.call(null, self__.cursor);
@@ -46415,86 +46418,86 @@ floor16.ui.generic.select = function select(cursor, owner, p__118091) {
         return floor16.ui.generic.active_BANG_.call(null, self__.owner, false);
       }, new cljs.core.Keyword(null, "dict", "dict", 1016987432), self__.dict, new cljs.core.Keyword(null, "can-nil", "can-nil", 1562520070), self__.can_nil, new cljs.core.Keyword(null, "nil-caption", "nil-caption", 1496742300), placeholder__$2, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364), self__.after_update], null)], null)) : null));
     };
-    floor16.ui.generic.t118097.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118099) {
+    floor16.ui.generic.t129176.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129178) {
       var self__ = this;
-      var _118099__$1 = this;
-      return self__.meta118098;
+      var _129178__$1 = this;
+      return self__.meta129177;
     };
-    floor16.ui.generic.t118097.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118099, meta118098__$1) {
+    floor16.ui.generic.t129176.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129178, meta129177__$1) {
       var self__ = this;
-      var _118099__$1 = this;
-      return new floor16.ui.generic.t118097(self__.opts, self__.className, self__.select, self__.map__118096, self__.placeholder, self__.can_nil, self__.selector, self__.dict, self__.data_key, self__.after_update, self__.owner, self__.cursor, self__.p__118091, meta118098__$1);
+      var _129178__$1 = this;
+      return new floor16.ui.generic.t129176(self__.opts, self__.className, self__.select, self__.placeholder, self__.can_nil, self__.selector, self__.dict, self__.p__129170, self__.data_key, self__.after_update, self__.owner, self__.cursor, self__.map__129175, meta129177__$1);
     };
-    floor16.ui.generic.__GT_t118097 = function __GT_t118097(opts__$1, className__$1, select__$1, map__118096__$2, placeholder__$1, can_nil__$1, selector__$1, dict__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, p__118091__$1, meta118098) {
-      return new floor16.ui.generic.t118097(opts__$1, className__$1, select__$1, map__118096__$2, placeholder__$1, can_nil__$1, selector__$1, dict__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, p__118091__$1, meta118098);
+    floor16.ui.generic.__GT_t129176 = function __GT_t129176(opts__$1, className__$1, select__$1, placeholder__$1, can_nil__$1, selector__$1, dict__$1, p__129170__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, map__129175__$2, meta129177) {
+      return new floor16.ui.generic.t129176(opts__$1, className__$1, select__$1, placeholder__$1, can_nil__$1, selector__$1, dict__$1, p__129170__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, map__129175__$2, meta129177);
     };
   }
-  return new floor16.ui.generic.t118097(opts, className, select, map__118096__$1, placeholder, can_nil, selector, dict, data_key, after_update, owner, cursor, p__118091, null);
+  return new floor16.ui.generic.t129176(opts, className, select, placeholder, can_nil, selector, dict, p__129170, data_key, after_update, owner, cursor, map__129175__$1, null);
 };
 floor16.ui.generic.bool_get = function bool_get(dk, cursor) {
   if (cljs.core.map_QMARK_.call(null, cursor)) {
     return cljs.core.get.call(null, cursor, dk);
   } else {
-    return cljs.core.some.call(null, function(p1__118100_SHARP_) {
-      return cljs.core._EQ_.call(null, dk, p1__118100_SHARP_);
+    return cljs.core.some.call(null, function(p1__129179_SHARP_) {
+      return cljs.core._EQ_.call(null, dk, p1__129179_SHARP_);
     }, cursor);
   }
 };
 floor16.ui.generic.bool_upd = function bool_upd(dk, v, cursor) {
   if (cljs.core.vector_QMARK_.call(null, cljs.core.deref.call(null, cursor))) {
     if (cljs.core.truth_(v)) {
-      return om.core.transact_BANG_.call(null, cursor, function(p1__118101_SHARP_) {
-        return cljs.core.vec.call(null, cljs.core.distinct.call(null, cljs.core.conj.call(null, p1__118101_SHARP_, dk)));
+      return om.core.transact_BANG_.call(null, cursor, function(p1__129180_SHARP_) {
+        return cljs.core.vec.call(null, cljs.core.distinct.call(null, cljs.core.conj.call(null, p1__129180_SHARP_, dk)));
       });
     } else {
-      return om.core.transact_BANG_.call(null, cursor, function(p1__118102_SHARP_) {
+      return om.core.transact_BANG_.call(null, cursor, function(p1__129181_SHARP_) {
         return cljs.core.vec.call(null, cljs.core.remove.call(null, function(x) {
           return cljs.core._EQ_.call(null, x, dk);
-        }, p1__118102_SHARP_));
+        }, p1__129181_SHARP_));
       });
     }
   } else {
     if (cljs.core.truth_(v)) {
       return om.core.update_BANG_.call(null, cursor, dk, v);
     } else {
-      return om.core.transact_BANG_.call(null, cursor, function(p1__118103_SHARP_) {
-        return cljs.core.dissoc.call(null, p1__118103_SHARP_, dk);
+      return om.core.transact_BANG_.call(null, cursor, function(p1__129182_SHARP_) {
+        return cljs.core.dissoc.call(null, p1__129182_SHARP_, dk);
       });
     }
   }
 };
-floor16.ui.generic.checkbtn = function checkbtn(cursor, owner, p__118104) {
-  var map__118109 = p__118104;
-  var map__118109__$1 = cljs.core.seq_QMARK_.call(null, map__118109) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118109) : map__118109;
-  var opts = map__118109__$1;
-  var after_update = cljs.core.get.call(null, map__118109__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
-  var className = cljs.core.get.call(null, map__118109__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
-  var caption = cljs.core.get.call(null, map__118109__$1, new cljs.core.Keyword(null, "caption", "caption", 1566477656));
-  var data_key = cljs.core.get.call(null, map__118109__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
-  if (typeof floor16.ui.generic.t118110 !== "undefined") {
+floor16.ui.generic.checkbtn = function checkbtn(cursor, owner, p__129183) {
+  var map__129188 = p__129183;
+  var map__129188__$1 = cljs.core.seq_QMARK_.call(null, map__129188) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129188) : map__129188;
+  var opts = map__129188__$1;
+  var after_update = cljs.core.get.call(null, map__129188__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
+  var className = cljs.core.get.call(null, map__129188__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
+  var caption = cljs.core.get.call(null, map__129188__$1, new cljs.core.Keyword(null, "caption", "caption", 1566477656));
+  var data_key = cljs.core.get.call(null, map__129188__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
+  if (typeof floor16.ui.generic.t129189 !== "undefined") {
   } else {
-    floor16.ui.generic.t118110 = function(opts, className, p__118104, caption, data_key, after_update, owner, cursor, checkbtn, map__118109, meta118111) {
+    floor16.ui.generic.t129189 = function(opts, className, map__129188, caption, data_key, after_update, owner, cursor, checkbtn, p__129183, meta129190) {
       this.opts = opts;
       this.className = className;
-      this.p__118104 = p__118104;
+      this.map__129188 = map__129188;
       this.caption = caption;
       this.data_key = data_key;
       this.after_update = after_update;
       this.owner = owner;
       this.cursor = cursor;
       this.checkbtn = checkbtn;
-      this.map__118109 = map__118109;
-      this.meta118111 = meta118111;
+      this.p__129183 = p__129183;
+      this.meta129190 = meta129190;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118110.cljs$lang$type = true;
-    floor16.ui.generic.t118110.cljs$lang$ctorStr = "floor16.ui.generic/t118110";
-    floor16.ui.generic.t118110.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118110");
+    floor16.ui.generic.t129189.cljs$lang$type = true;
+    floor16.ui.generic.t129189.cljs$lang$ctorStr = "floor16.ui.generic/t129189";
+    floor16.ui.generic.t129189.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129189");
     };
-    floor16.ui.generic.t118110.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118110.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129189.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129189.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       var v = floor16.ui.generic.bool_get.call(null, self__.data_key, self__.cursor);
@@ -46506,7 +46509,16 @@ floor16.ui.generic.checkbtn = function checkbtn(cursor, owner, p__118104) {
           return floor16.lang.l.call(null, self__.data_key);
         }
       }();
-      return React.DOM.div({"className":[cljs.core.str("gen-checkbtn "), cljs.core.str(self__.className)].join("")}, om.dom.input.call(null, {"onChange":function(e) {
+      return React.DOM.div({"onClick":function(e) {
+        floor16.ui.generic.bool_upd.call(null, self__.data_key, cljs.core.not.call(null, v), self__.cursor);
+        if (cljs.core.truth_(self__.after_update)) {
+          return self__.after_update.call(null);
+        } else {
+          return null;
+        }
+      }, "className":[cljs.core.str("gen-checkbtn "), cljs.core.str(self__.className)].join("")}, om.dom.input.call(null, {"onClick":function(e) {
+        return e.stopPropagation();
+      }, "onChange":function(e) {
         floor16.ui.generic.bool_upd.call(null, self__.data_key, e.target.checked, self__.cursor);
         if (cljs.core.truth_(self__.after_update)) {
           return self__.after_update.call(null);
@@ -46515,70 +46527,70 @@ floor16.ui.generic.checkbtn = function checkbtn(cursor, owner, p__118104) {
         }
       }, "checked":cljs.core.boolean$.call(null, v), "type":"checkbox"}), React.DOM.label(null, caption__$2));
     };
-    floor16.ui.generic.t118110.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118112) {
+    floor16.ui.generic.t129189.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129191) {
       var self__ = this;
-      var _118112__$1 = this;
-      return self__.meta118111;
+      var _129191__$1 = this;
+      return self__.meta129190;
     };
-    floor16.ui.generic.t118110.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118112, meta118111__$1) {
+    floor16.ui.generic.t129189.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129191, meta129190__$1) {
       var self__ = this;
-      var _118112__$1 = this;
-      return new floor16.ui.generic.t118110(self__.opts, self__.className, self__.p__118104, self__.caption, self__.data_key, self__.after_update, self__.owner, self__.cursor, self__.checkbtn, self__.map__118109, meta118111__$1);
+      var _129191__$1 = this;
+      return new floor16.ui.generic.t129189(self__.opts, self__.className, self__.map__129188, self__.caption, self__.data_key, self__.after_update, self__.owner, self__.cursor, self__.checkbtn, self__.p__129183, meta129190__$1);
     };
-    floor16.ui.generic.__GT_t118110 = function __GT_t118110(opts__$1, className__$1, p__118104__$1, caption__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, checkbtn__$1, map__118109__$2, meta118111) {
-      return new floor16.ui.generic.t118110(opts__$1, className__$1, p__118104__$1, caption__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, checkbtn__$1, map__118109__$2, meta118111);
+    floor16.ui.generic.__GT_t129189 = function __GT_t129189(opts__$1, className__$1, map__129188__$2, caption__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, checkbtn__$1, p__129183__$1, meta129190) {
+      return new floor16.ui.generic.t129189(opts__$1, className__$1, map__129188__$2, caption__$1, data_key__$1, after_update__$1, owner__$1, cursor__$1, checkbtn__$1, p__129183__$1, meta129190);
     };
   }
-  return new floor16.ui.generic.t118110(opts, className, p__118104, caption, data_key, after_update, owner, cursor, checkbtn, map__118109__$1, null);
+  return new floor16.ui.generic.t129189(opts, className, map__129188__$1, caption, data_key, after_update, owner, cursor, checkbtn, p__129183, null);
 };
-floor16.ui.generic.checkbtn_list = function checkbtn_list(cursor, owner, p__118114) {
-  var map__118121 = p__118114;
-  var map__118121__$1 = cljs.core.seq_QMARK_.call(null, map__118121) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118121) : map__118121;
-  var opts = map__118121__$1;
-  var after_update = cljs.core.get.call(null, map__118121__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
-  var item_class = cljs.core.get.call(null, map__118121__$1, new cljs.core.Keyword(null, "item-class", "item-class", 1910395312));
-  var items = cljs.core.get.call(null, map__118121__$1, new cljs.core.Keyword(null, "items", "items", 1114430258));
-  var dict = cljs.core.get.call(null, map__118121__$1, new cljs.core.Keyword(null, "dict", "dict", 1016987432));
-  var className = cljs.core.get.call(null, map__118121__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
-  var data_key = cljs.core.get.call(null, map__118121__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
-  if (typeof floor16.ui.generic.t118122 !== "undefined") {
+floor16.ui.generic.checkbtn_list = function checkbtn_list(cursor, owner, p__129193) {
+  var map__129200 = p__129193;
+  var map__129200__$1 = cljs.core.seq_QMARK_.call(null, map__129200) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129200) : map__129200;
+  var opts = map__129200__$1;
+  var after_update = cljs.core.get.call(null, map__129200__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
+  var item_class = cljs.core.get.call(null, map__129200__$1, new cljs.core.Keyword(null, "item-class", "item-class", 1910395312));
+  var items = cljs.core.get.call(null, map__129200__$1, new cljs.core.Keyword(null, "items", "items", 1114430258));
+  var dict = cljs.core.get.call(null, map__129200__$1, new cljs.core.Keyword(null, "dict", "dict", 1016987432));
+  var className = cljs.core.get.call(null, map__129200__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
+  var data_key = cljs.core.get.call(null, map__129200__$1, new cljs.core.Keyword(null, "data-key", "data-key", 2801799470));
+  if (typeof floor16.ui.generic.t129201 !== "undefined") {
   } else {
-    floor16.ui.generic.t118122 = function(p__118114, checkbtn_list, opts, className, items, dict, data_key, after_update, owner, item_class, cursor, map__118121, meta118123) {
-      this.p__118114 = p__118114;
+    floor16.ui.generic.t129201 = function(checkbtn_list, opts, className, p__129193, items, map__129200, dict, data_key, after_update, owner, item_class, cursor, meta129202) {
       this.checkbtn_list = checkbtn_list;
       this.opts = opts;
       this.className = className;
+      this.p__129193 = p__129193;
       this.items = items;
+      this.map__129200 = map__129200;
       this.dict = dict;
       this.data_key = data_key;
       this.after_update = after_update;
       this.owner = owner;
       this.item_class = item_class;
       this.cursor = cursor;
-      this.map__118121 = map__118121;
-      this.meta118123 = meta118123;
+      this.meta129202 = meta129202;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118122.cljs$lang$type = true;
-    floor16.ui.generic.t118122.cljs$lang$ctorStr = "floor16.ui.generic/t118122";
-    floor16.ui.generic.t118122.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118122");
+    floor16.ui.generic.t129201.cljs$lang$type = true;
+    floor16.ui.generic.t129201.cljs$lang$ctorStr = "floor16.ui.generic/t129201";
+    floor16.ui.generic.t129201.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129201");
     };
-    floor16.ui.generic.t118122.prototype.om$core$IRenderState$ = true;
-    floor16.ui.generic.t118122.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__118125) {
+    floor16.ui.generic.t129201.prototype.om$core$IRenderState$ = true;
+    floor16.ui.generic.t129201.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__129204) {
       var self__ = this;
-      var map__118126 = p__118125;
-      var map__118126__$1 = cljs.core.seq_QMARK_.call(null, map__118126) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118126) : map__118126;
-      var items__$2 = cljs.core.get.call(null, map__118126__$1, new cljs.core.Keyword(null, "items", "items", 1114430258));
+      var map__129205 = p__129204;
+      var map__129205__$1 = cljs.core.seq_QMARK_.call(null, map__129205) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129205) : map__129205;
+      var items__$2 = cljs.core.get.call(null, map__129205__$1, new cljs.core.Keyword(null, "items", "items", 1114430258));
       var this$__$1 = this;
-      return cljs.core.apply.call(null, om.dom.ul, {"className":[cljs.core.str("gen-checkbtn-list "), cljs.core.str(self__.className)].join("")}, cljs.core.map.call(null, function(p1__118113_SHARP_) {
-        return React.DOM.li({"key":(new cljs.core.Keyword(null, "id", "id", 1013907597)).cljs$core$IFn$_invoke$arity$1(p1__118113_SHARP_)}, om.core.build.call(null, floor16.ui.generic.checkbtn, cljs.core.truth_(self__.data_key) ? self__.data_key.call(null, self__.cursor) : self__.cursor, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "data-key", "data-key", 2801799470), (new cljs.core.Keyword(null, 
-        "id", "id", 1013907597)).cljs$core$IFn$_invoke$arity$1(p1__118113_SHARP_), new cljs.core.Keyword(null, "caption", "caption", 1566477656), (new cljs.core.Keyword(null, "name", "name", 1017277949)).cljs$core$IFn$_invoke$arity$1(p1__118113_SHARP_), new cljs.core.Keyword(null, "className", "className", 1004015509), self__.item_class, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364), self__.after_update], null)], null)));
+      return cljs.core.apply.call(null, om.dom.ul, {"className":[cljs.core.str("gen-checkbtn-list "), cljs.core.str(self__.className)].join("")}, cljs.core.map.call(null, function(p1__129192_SHARP_) {
+        return React.DOM.li({"key":(new cljs.core.Keyword(null, "id", "id", 1013907597)).cljs$core$IFn$_invoke$arity$1(p1__129192_SHARP_)}, om.core.build.call(null, floor16.ui.generic.checkbtn, cljs.core.truth_(self__.data_key) ? self__.data_key.call(null, self__.cursor) : self__.cursor, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "data-key", "data-key", 2801799470), (new cljs.core.Keyword(null, 
+        "id", "id", 1013907597)).cljs$core$IFn$_invoke$arity$1(p1__129192_SHARP_), new cljs.core.Keyword(null, "caption", "caption", 1566477656), (new cljs.core.Keyword(null, "name", "name", 1017277949)).cljs$core$IFn$_invoke$arity$1(p1__129192_SHARP_), new cljs.core.Keyword(null, "className", "className", 1004015509), self__.item_class, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364), self__.after_update], null)], null)));
       }, items__$2));
     };
-    floor16.ui.generic.t118122.prototype.om$core$IWillMount$ = true;
-    floor16.ui.generic.t118122.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
+    floor16.ui.generic.t129201.prototype.om$core$IWillMount$ = true;
+    floor16.ui.generic.t129201.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
       var self__ = this;
       var ___$1 = this;
       if (cljs.core.truth_(self__.items)) {
@@ -46587,187 +46599,187 @@ floor16.ui.generic.checkbtn_list = function checkbtn_list(cursor, owner, p__1181
         return floor16.datum.load_all.call(null, self__.dict, self__.owner, new cljs.core.Keyword(null, "items", "items", 1114430258));
       }
     };
-    floor16.ui.generic.t118122.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118124) {
+    floor16.ui.generic.t129201.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129203) {
       var self__ = this;
-      var _118124__$1 = this;
-      return self__.meta118123;
+      var _129203__$1 = this;
+      return self__.meta129202;
     };
-    floor16.ui.generic.t118122.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118124, meta118123__$1) {
+    floor16.ui.generic.t129201.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129203, meta129202__$1) {
       var self__ = this;
-      var _118124__$1 = this;
-      return new floor16.ui.generic.t118122(self__.p__118114, self__.checkbtn_list, self__.opts, self__.className, self__.items, self__.dict, self__.data_key, self__.after_update, self__.owner, self__.item_class, self__.cursor, self__.map__118121, meta118123__$1);
+      var _129203__$1 = this;
+      return new floor16.ui.generic.t129201(self__.checkbtn_list, self__.opts, self__.className, self__.p__129193, self__.items, self__.map__129200, self__.dict, self__.data_key, self__.after_update, self__.owner, self__.item_class, self__.cursor, meta129202__$1);
     };
-    floor16.ui.generic.__GT_t118122 = function __GT_t118122(p__118114__$1, checkbtn_list__$1, opts__$1, className__$1, items__$1, dict__$1, data_key__$1, after_update__$1, owner__$1, item_class__$1, cursor__$1, map__118121__$2, meta118123) {
-      return new floor16.ui.generic.t118122(p__118114__$1, checkbtn_list__$1, opts__$1, className__$1, items__$1, dict__$1, data_key__$1, after_update__$1, owner__$1, item_class__$1, cursor__$1, map__118121__$2, meta118123);
+    floor16.ui.generic.__GT_t129201 = function __GT_t129201(checkbtn_list__$1, opts__$1, className__$1, p__129193__$1, items__$1, map__129200__$2, dict__$1, data_key__$1, after_update__$1, owner__$1, item_class__$1, cursor__$1, meta129202) {
+      return new floor16.ui.generic.t129201(checkbtn_list__$1, opts__$1, className__$1, p__129193__$1, items__$1, map__129200__$2, dict__$1, data_key__$1, after_update__$1, owner__$1, item_class__$1, cursor__$1, meta129202);
     };
   }
-  return new floor16.ui.generic.t118122(p__118114, checkbtn_list, opts, className, items, dict, data_key, after_update, owner, item_class, cursor, map__118121__$1, null);
+  return new floor16.ui.generic.t129201(checkbtn_list, opts, className, p__129193, items, map__129200__$1, dict, data_key, after_update, owner, item_class, cursor, null);
 };
 floor16.ui.generic.sort_select = function sort_select(data, owner, opts) {
-  if (typeof floor16.ui.generic.t118130 !== "undefined") {
+  if (typeof floor16.ui.generic.t129209 !== "undefined") {
   } else {
-    floor16.ui.generic.t118130 = function(opts, owner, data, sort_select, meta118131) {
+    floor16.ui.generic.t129209 = function(opts, owner, data, sort_select, meta129210) {
       this.opts = opts;
       this.owner = owner;
       this.data = data;
       this.sort_select = sort_select;
-      this.meta118131 = meta118131;
+      this.meta129210 = meta129210;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118130.cljs$lang$type = true;
-    floor16.ui.generic.t118130.cljs$lang$ctorStr = "floor16.ui.generic/t118130";
-    floor16.ui.generic.t118130.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118130");
+    floor16.ui.generic.t129209.cljs$lang$type = true;
+    floor16.ui.generic.t129209.cljs$lang$ctorStr = "floor16.ui.generic/t129209";
+    floor16.ui.generic.t129209.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129209");
     };
-    floor16.ui.generic.t118130.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118130.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129209.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129209.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":""}, "gen-sort-select");
     };
-    floor16.ui.generic.t118130.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118132) {
+    floor16.ui.generic.t129209.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129211) {
       var self__ = this;
-      var _118132__$1 = this;
-      return self__.meta118131;
+      var _129211__$1 = this;
+      return self__.meta129210;
     };
-    floor16.ui.generic.t118130.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118132, meta118131__$1) {
+    floor16.ui.generic.t129209.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129211, meta129210__$1) {
       var self__ = this;
-      var _118132__$1 = this;
-      return new floor16.ui.generic.t118130(self__.opts, self__.owner, self__.data, self__.sort_select, meta118131__$1);
+      var _129211__$1 = this;
+      return new floor16.ui.generic.t129209(self__.opts, self__.owner, self__.data, self__.sort_select, meta129210__$1);
     };
-    floor16.ui.generic.__GT_t118130 = function __GT_t118130(opts__$1, owner__$1, data__$1, sort_select__$1, meta118131) {
-      return new floor16.ui.generic.t118130(opts__$1, owner__$1, data__$1, sort_select__$1, meta118131);
+    floor16.ui.generic.__GT_t129209 = function __GT_t129209(opts__$1, owner__$1, data__$1, sort_select__$1, meta129210) {
+      return new floor16.ui.generic.t129209(opts__$1, owner__$1, data__$1, sort_select__$1, meta129210);
     };
   }
-  return new floor16.ui.generic.t118130(opts, owner, data, sort_select, null);
+  return new floor16.ui.generic.t129209(opts, owner, data, sort_select, null);
 };
 floor16.ui.generic.view_select = function view_select(data, owner, opts) {
-  if (typeof floor16.ui.generic.t118136 !== "undefined") {
+  if (typeof floor16.ui.generic.t129215 !== "undefined") {
   } else {
-    floor16.ui.generic.t118136 = function(opts, owner, data, view_select, meta118137) {
+    floor16.ui.generic.t129215 = function(opts, owner, data, view_select, meta129216) {
       this.opts = opts;
       this.owner = owner;
       this.data = data;
       this.view_select = view_select;
-      this.meta118137 = meta118137;
+      this.meta129216 = meta129216;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118136.cljs$lang$type = true;
-    floor16.ui.generic.t118136.cljs$lang$ctorStr = "floor16.ui.generic/t118136";
-    floor16.ui.generic.t118136.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118136");
+    floor16.ui.generic.t129215.cljs$lang$type = true;
+    floor16.ui.generic.t129215.cljs$lang$ctorStr = "floor16.ui.generic/t129215";
+    floor16.ui.generic.t129215.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129215");
     };
-    floor16.ui.generic.t118136.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118136.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129215.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129215.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":""}, "gen-view-select");
     };
-    floor16.ui.generic.t118136.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118138) {
+    floor16.ui.generic.t129215.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129217) {
       var self__ = this;
-      var _118138__$1 = this;
-      return self__.meta118137;
+      var _129217__$1 = this;
+      return self__.meta129216;
     };
-    floor16.ui.generic.t118136.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118138, meta118137__$1) {
+    floor16.ui.generic.t129215.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129217, meta129216__$1) {
       var self__ = this;
-      var _118138__$1 = this;
-      return new floor16.ui.generic.t118136(self__.opts, self__.owner, self__.data, self__.view_select, meta118137__$1);
+      var _129217__$1 = this;
+      return new floor16.ui.generic.t129215(self__.opts, self__.owner, self__.data, self__.view_select, meta129216__$1);
     };
-    floor16.ui.generic.__GT_t118136 = function __GT_t118136(opts__$1, owner__$1, data__$1, view_select__$1, meta118137) {
-      return new floor16.ui.generic.t118136(opts__$1, owner__$1, data__$1, view_select__$1, meta118137);
+    floor16.ui.generic.__GT_t129215 = function __GT_t129215(opts__$1, owner__$1, data__$1, view_select__$1, meta129216) {
+      return new floor16.ui.generic.t129215(opts__$1, owner__$1, data__$1, view_select__$1, meta129216);
     };
   }
-  return new floor16.ui.generic.t118136(opts, owner, data, view_select, null);
+  return new floor16.ui.generic.t129215(opts, owner, data, view_select, null);
 };
-floor16.ui.generic.empty_view = function empty_view(cursor, owner, p__118139) {
-  var map__118144 = p__118139;
-  var map__118144__$1 = cljs.core.seq_QMARK_.call(null, map__118144) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118144) : map__118144;
-  var opts = map__118144__$1;
-  var empty_text = cljs.core.get.call(null, map__118144__$1, new cljs.core.Keyword(null, "empty-text", "empty-text", 4203552031));
-  if (typeof floor16.ui.generic.t118145 !== "undefined") {
+floor16.ui.generic.empty_view = function empty_view(cursor, owner, p__129218) {
+  var map__129223 = p__129218;
+  var map__129223__$1 = cljs.core.seq_QMARK_.call(null, map__129223) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129223) : map__129223;
+  var opts = map__129223__$1;
+  var empty_text = cljs.core.get.call(null, map__129223__$1, new cljs.core.Keyword(null, "empty-text", "empty-text", 4203552031));
+  if (typeof floor16.ui.generic.t129224 !== "undefined") {
   } else {
-    floor16.ui.generic.t118145 = function(empty_text, opts, map__118144, p__118139, owner, cursor, empty_view, meta118146) {
+    floor16.ui.generic.t129224 = function(empty_text, opts, map__129223, p__129218, owner, cursor, empty_view, meta129225) {
       this.empty_text = empty_text;
       this.opts = opts;
-      this.map__118144 = map__118144;
-      this.p__118139 = p__118139;
+      this.map__129223 = map__129223;
+      this.p__129218 = p__129218;
       this.owner = owner;
       this.cursor = cursor;
       this.empty_view = empty_view;
-      this.meta118146 = meta118146;
+      this.meta129225 = meta129225;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118145.cljs$lang$type = true;
-    floor16.ui.generic.t118145.cljs$lang$ctorStr = "floor16.ui.generic/t118145";
-    floor16.ui.generic.t118145.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118145");
+    floor16.ui.generic.t129224.cljs$lang$type = true;
+    floor16.ui.generic.t129224.cljs$lang$ctorStr = "floor16.ui.generic/t129224";
+    floor16.ui.generic.t129224.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129224");
     };
-    floor16.ui.generic.t118145.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118145.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129224.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129224.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":"empty"}, self__.empty_text);
     };
-    floor16.ui.generic.t118145.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118147) {
+    floor16.ui.generic.t129224.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129226) {
       var self__ = this;
-      var _118147__$1 = this;
-      return self__.meta118146;
+      var _129226__$1 = this;
+      return self__.meta129225;
     };
-    floor16.ui.generic.t118145.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118147, meta118146__$1) {
+    floor16.ui.generic.t129224.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129226, meta129225__$1) {
       var self__ = this;
-      var _118147__$1 = this;
-      return new floor16.ui.generic.t118145(self__.empty_text, self__.opts, self__.map__118144, self__.p__118139, self__.owner, self__.cursor, self__.empty_view, meta118146__$1);
+      var _129226__$1 = this;
+      return new floor16.ui.generic.t129224(self__.empty_text, self__.opts, self__.map__129223, self__.p__129218, self__.owner, self__.cursor, self__.empty_view, meta129225__$1);
     };
-    floor16.ui.generic.__GT_t118145 = function __GT_t118145(empty_text__$1, opts__$1, map__118144__$2, p__118139__$1, owner__$1, cursor__$1, empty_view__$1, meta118146) {
-      return new floor16.ui.generic.t118145(empty_text__$1, opts__$1, map__118144__$2, p__118139__$1, owner__$1, cursor__$1, empty_view__$1, meta118146);
+    floor16.ui.generic.__GT_t129224 = function __GT_t129224(empty_text__$1, opts__$1, map__129223__$2, p__129218__$1, owner__$1, cursor__$1, empty_view__$1, meta129225) {
+      return new floor16.ui.generic.t129224(empty_text__$1, opts__$1, map__129223__$2, p__129218__$1, owner__$1, cursor__$1, empty_view__$1, meta129225);
     };
   }
-  return new floor16.ui.generic.t118145(empty_text, opts, map__118144__$1, p__118139, owner, cursor, empty_view, null);
+  return new floor16.ui.generic.t129224(empty_text, opts, map__129223__$1, p__129218, owner, cursor, empty_view, null);
 };
-floor16.ui.generic.data_header = function data_header(p__118149, owner, p__118150) {
-  var map__118156 = p__118149;
-  var map__118156__$1 = cljs.core.seq_QMARK_.call(null, map__118156) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118156) : map__118156;
-  var cursor = map__118156__$1;
-  var data = cljs.core.get.call(null, map__118156__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
-  var query = cljs.core.get.call(null, map__118156__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
-  var map__118157 = p__118150;
-  var map__118157__$1 = cljs.core.seq_QMARK_.call(null, map__118157) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118157) : map__118157;
-  var data_header_opts_class = cljs.core.get.call(null, map__118157__$1, new cljs.core.Keyword(null, "data-header-opts-class", "data-header-opts-class", 2922150106));
-  var data_header_total_class = cljs.core.get.call(null, map__118157__$1, new cljs.core.Keyword(null, "data-header-total-class", "data-header-total-class", 1355009252));
-  var data_header_total_kword = cljs.core.get.call(null, map__118157__$1, new cljs.core.Keyword(null, "data-header-total-kword", "data-header-total-kword", 1362738529));
-  var data_header_class = cljs.core.get.call(null, map__118157__$1, new cljs.core.Keyword(null, "data-header-class", "data-header-class", 2790141677));
-  var header_opts = cljs.core.get.call(null, map__118157__$1, new cljs.core.Keyword(null, "header-opts", "header-opts", 2151738066));
-  if (typeof floor16.ui.generic.t118158 !== "undefined") {
+floor16.ui.generic.data_header = function data_header(p__129228, owner, p__129229) {
+  var map__129235 = p__129228;
+  var map__129235__$1 = cljs.core.seq_QMARK_.call(null, map__129235) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129235) : map__129235;
+  var cursor = map__129235__$1;
+  var data = cljs.core.get.call(null, map__129235__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
+  var query = cljs.core.get.call(null, map__129235__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+  var map__129236 = p__129229;
+  var map__129236__$1 = cljs.core.seq_QMARK_.call(null, map__129236) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129236) : map__129236;
+  var data_header_opts_class = cljs.core.get.call(null, map__129236__$1, new cljs.core.Keyword(null, "data-header-opts-class", "data-header-opts-class", 2922150106));
+  var data_header_total_class = cljs.core.get.call(null, map__129236__$1, new cljs.core.Keyword(null, "data-header-total-class", "data-header-total-class", 1355009252));
+  var data_header_total_kword = cljs.core.get.call(null, map__129236__$1, new cljs.core.Keyword(null, "data-header-total-kword", "data-header-total-kword", 1362738529));
+  var data_header_class = cljs.core.get.call(null, map__129236__$1, new cljs.core.Keyword(null, "data-header-class", "data-header-class", 2790141677));
+  var header_opts = cljs.core.get.call(null, map__129236__$1, new cljs.core.Keyword(null, "header-opts", "header-opts", 2151738066));
+  if (typeof floor16.ui.generic.t129237 !== "undefined") {
   } else {
-    floor16.ui.generic.t118158 = function(query, data_header_total_class, data, p__118149, data_header_class, data_header, p__118150, map__118156, header_opts, map__118157, owner, cursor, data_header_opts_class, data_header_total_kword, meta118159) {
+    floor16.ui.generic.t129237 = function(query, map__129236, data_header_total_class, map__129235, data, p__129229, data_header_class, p__129228, data_header, header_opts, owner, cursor, data_header_opts_class, data_header_total_kword, meta129238) {
       this.query = query;
+      this.map__129236 = map__129236;
       this.data_header_total_class = data_header_total_class;
+      this.map__129235 = map__129235;
       this.data = data;
-      this.p__118149 = p__118149;
+      this.p__129229 = p__129229;
       this.data_header_class = data_header_class;
+      this.p__129228 = p__129228;
       this.data_header = data_header;
-      this.p__118150 = p__118150;
-      this.map__118156 = map__118156;
       this.header_opts = header_opts;
-      this.map__118157 = map__118157;
       this.owner = owner;
       this.cursor = cursor;
       this.data_header_opts_class = data_header_opts_class;
       this.data_header_total_kword = data_header_total_kword;
-      this.meta118159 = meta118159;
+      this.meta129238 = meta129238;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118158.cljs$lang$type = true;
-    floor16.ui.generic.t118158.cljs$lang$ctorStr = "floor16.ui.generic/t118158";
-    floor16.ui.generic.t118158.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118158");
+    floor16.ui.generic.t129237.cljs$lang$type = true;
+    floor16.ui.generic.t129237.cljs$lang$ctorStr = "floor16.ui.generic/t129237";
+    floor16.ui.generic.t129237.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129237");
     };
-    floor16.ui.generic.t118158.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118158.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129237.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129237.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":[cljs.core.str("data-header "), cljs.core.str(self__.data_header_class)].join("")}, function() {
@@ -46785,34 +46797,34 @@ floor16.ui.generic.data_header = function data_header(p__118149, owner, p__11815
         } else {
           return null;
         }
-      }(), cljs.core.apply.call(null, om.dom.div, {"className":[cljs.core.str("opts "), cljs.core.str(self__.data_header_opts_class)].join("")}, cljs.core.map.call(null, function(p1__118148_SHARP_) {
-        return(new cljs.core.Keyword(null, "view", "view", 1017523735)).cljs$core$IFn$_invoke$arity$1(cljs.core.val.call(null, p1__118148_SHARP_));
+      }(), cljs.core.apply.call(null, om.dom.div, {"className":[cljs.core.str("opts "), cljs.core.str(self__.data_header_opts_class)].join("")}, cljs.core.map.call(null, function(p1__129227_SHARP_) {
+        return(new cljs.core.Keyword(null, "view", "view", 1017523735)).cljs$core$IFn$_invoke$arity$1(cljs.core.val.call(null, p1__129227_SHARP_));
       }, self__.header_opts)));
     };
-    floor16.ui.generic.t118158.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118160) {
+    floor16.ui.generic.t129237.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129239) {
       var self__ = this;
-      var _118160__$1 = this;
-      return self__.meta118159;
+      var _129239__$1 = this;
+      return self__.meta129238;
     };
-    floor16.ui.generic.t118158.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118160, meta118159__$1) {
+    floor16.ui.generic.t129237.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129239, meta129238__$1) {
       var self__ = this;
-      var _118160__$1 = this;
-      return new floor16.ui.generic.t118158(self__.query, self__.data_header_total_class, self__.data, self__.p__118149, self__.data_header_class, self__.data_header, self__.p__118150, self__.map__118156, self__.header_opts, self__.map__118157, self__.owner, self__.cursor, self__.data_header_opts_class, self__.data_header_total_kword, meta118159__$1);
+      var _129239__$1 = this;
+      return new floor16.ui.generic.t129237(self__.query, self__.map__129236, self__.data_header_total_class, self__.map__129235, self__.data, self__.p__129229, self__.data_header_class, self__.p__129228, self__.data_header, self__.header_opts, self__.owner, self__.cursor, self__.data_header_opts_class, self__.data_header_total_kword, meta129238__$1);
     };
-    floor16.ui.generic.__GT_t118158 = function __GT_t118158(query__$1, data_header_total_class__$1, data__$1, p__118149__$1, data_header_class__$1, data_header__$1, p__118150__$1, map__118156__$2, header_opts__$1, map__118157__$2, owner__$1, cursor__$1, data_header_opts_class__$1, data_header_total_kword__$1, meta118159) {
-      return new floor16.ui.generic.t118158(query__$1, data_header_total_class__$1, data__$1, p__118149__$1, data_header_class__$1, data_header__$1, p__118150__$1, map__118156__$2, header_opts__$1, map__118157__$2, owner__$1, cursor__$1, data_header_opts_class__$1, data_header_total_kword__$1, meta118159);
+    floor16.ui.generic.__GT_t129237 = function __GT_t129237(query__$1, map__129236__$2, data_header_total_class__$1, map__129235__$2, data__$1, p__129229__$1, data_header_class__$1, p__129228__$1, data_header__$1, header_opts__$1, owner__$1, cursor__$1, data_header_opts_class__$1, data_header_total_kword__$1, meta129238) {
+      return new floor16.ui.generic.t129237(query__$1, map__129236__$2, data_header_total_class__$1, map__129235__$2, data__$1, p__129229__$1, data_header_class__$1, p__129228__$1, data_header__$1, header_opts__$1, owner__$1, cursor__$1, data_header_opts_class__$1, data_header_total_kword__$1, meta129238);
     };
   }
-  return new floor16.ui.generic.t118158(query, data_header_total_class, data, p__118149, data_header_class, data_header, p__118150, map__118156__$1, header_opts, map__118157__$1, owner, cursor, data_header_opts_class, data_header_total_kword, null);
+  return new floor16.ui.generic.t129237(query, map__129236__$1, data_header_total_class, map__129235__$1, data, p__129229, data_header_class, p__129228, data_header, header_opts, owner, cursor, data_header_opts_class, data_header_total_kword, null);
 };
-floor16.ui.generic.page_item = function page_item(query, owner, p__118161) {
-  var map__118163 = p__118161;
-  var map__118163__$1 = cljs.core.seq_QMARK_.call(null, map__118163) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118163) : map__118163;
-  var list_mode = cljs.core.get.call(null, map__118163__$1, new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564));
-  var className = cljs.core.get.call(null, map__118163__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
-  var text = cljs.core.get.call(null, map__118163__$1, new cljs.core.Keyword(null, "text", "text", 1017460895));
-  var current_QMARK_ = cljs.core.get.call(null, map__118163__$1, new cljs.core.Keyword(null, "current?", "current?", 1589306712));
-  var index = cljs.core.get.call(null, map__118163__$1, new cljs.core.Keyword(null, "index", "index", 1114250308));
+floor16.ui.generic.page_item = function page_item(query, owner, p__129240) {
+  var map__129242 = p__129240;
+  var map__129242__$1 = cljs.core.seq_QMARK_.call(null, map__129242) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129242) : map__129242;
+  var list_mode = cljs.core.get.call(null, map__129242__$1, new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564));
+  var className = cljs.core.get.call(null, map__129242__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
+  var text = cljs.core.get.call(null, map__129242__$1, new cljs.core.Keyword(null, "text", "text", 1017460895));
+  var current_QMARK_ = cljs.core.get.call(null, map__129242__$1, new cljs.core.Keyword(null, "current?", "current?", 1589306712));
+  var index = cljs.core.get.call(null, map__129242__$1, new cljs.core.Keyword(null, "index", "index", 1114250308));
   var url = cljs.core.truth_(index) ? floor16.navigation.url_to.call(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "mode", "mode", 1017261333), list_mode, new cljs.core.Keyword(null, "url-params", "url-params", 3432736534), cljs.core.assoc.call(null, query, new cljs.core.Keyword(null, "o-page", "o-page", 4236731551), index)], null)) : null;
   return React.DOM.li({"className":[cljs.core.str("pager-item "), cljs.core.str(cljs.core.truth_(current_QMARK_) ? "current " : null), cljs.core.str(cljs.core.truth_(className) ? className : null)].join(""), "key":index}, React.DOM.a({"onClick":function(e) {
     e.preventDefault();
@@ -46837,41 +46849,41 @@ floor16.ui.generic.page_item = function page_item(query, owner, p__118161) {
     }
   }()));
 };
-floor16.ui.generic.data_pager = function data_pager(p__118166, owner, p__118167) {
-  var map__118173 = p__118166;
-  var map__118173__$1 = cljs.core.seq_QMARK_.call(null, map__118173) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118173) : map__118173;
-  var cursor = map__118173__$1;
-  var data = cljs.core.get.call(null, map__118173__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
-  var query = cljs.core.get.call(null, map__118173__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
-  var map__118174 = p__118167;
-  var map__118174__$1 = cljs.core.seq_QMARK_.call(null, map__118174) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118174) : map__118174;
-  var opts = map__118174__$1;
-  var list_mode = cljs.core.get.call(null, map__118174__$1, new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564));
-  if (typeof floor16.ui.generic.t118175 !== "undefined") {
+floor16.ui.generic.data_pager = function data_pager(p__129245, owner, p__129246) {
+  var map__129252 = p__129245;
+  var map__129252__$1 = cljs.core.seq_QMARK_.call(null, map__129252) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129252) : map__129252;
+  var cursor = map__129252__$1;
+  var data = cljs.core.get.call(null, map__129252__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
+  var query = cljs.core.get.call(null, map__129252__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+  var map__129253 = p__129246;
+  var map__129253__$1 = cljs.core.seq_QMARK_.call(null, map__129253) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129253) : map__129253;
+  var opts = map__129253__$1;
+  var list_mode = cljs.core.get.call(null, map__129253__$1, new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564));
+  if (typeof floor16.ui.generic.t129254 !== "undefined") {
   } else {
-    floor16.ui.generic.t118175 = function(opts, query, map__118173, list_mode, map__118174, data, data_pager, owner, cursor, p__118167, p__118166, meta118176) {
+    floor16.ui.generic.t129254 = function(p__129246, p__129245, opts, query, list_mode, data, data_pager, owner, cursor, map__129253, map__129252, meta129255) {
+      this.p__129246 = p__129246;
+      this.p__129245 = p__129245;
       this.opts = opts;
       this.query = query;
-      this.map__118173 = map__118173;
       this.list_mode = list_mode;
-      this.map__118174 = map__118174;
       this.data = data;
       this.data_pager = data_pager;
       this.owner = owner;
       this.cursor = cursor;
-      this.p__118167 = p__118167;
-      this.p__118166 = p__118166;
-      this.meta118176 = meta118176;
+      this.map__129253 = map__129253;
+      this.map__129252 = map__129252;
+      this.meta129255 = meta129255;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118175.cljs$lang$type = true;
-    floor16.ui.generic.t118175.cljs$lang$ctorStr = "floor16.ui.generic/t118175";
-    floor16.ui.generic.t118175.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118175");
+    floor16.ui.generic.t129254.cljs$lang$type = true;
+    floor16.ui.generic.t129254.cljs$lang$ctorStr = "floor16.ui.generic/t129254";
+    floor16.ui.generic.t129254.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129254");
     };
-    floor16.ui.generic.t118175.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118175.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129254.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129254.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       var max_pages = 9;
@@ -46915,15 +46927,15 @@ floor16.ui.generic.data_pager = function data_pager(p__118166, owner, p__118167)
       }();
       if (pg_count > 2) {
         return cljs.core.apply.call(null, om.dom.ul, {"className":"data-pager"}, cljs.core.concat.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [om.core.build.call(null, floor16.ui.generic.page_item, self__.query, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "index", "index", 1114250308), cur_pg > 1 ? cur_pg - 1 : null, new cljs.core.Keyword(null, 
-        "text", "text", 1017460895), floor16.lang.l.call(null, new cljs.core.Keyword(null, "data-pager-prev", "data-pager-prev", 2462390130)), new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564), self__.list_mode, new cljs.core.Keyword(null, "className", "className", 1004015509), [cljs.core.str("prev"), cljs.core.str(cur_pg <= 1 ? " disabled" : null)].join("")], null)], null))], null), cljs.core.map.call(null, function(p1__118164_SHARP_) {
-          return om.core.build.call(null, floor16.ui.generic.page_item, self__.query, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "react-key", "react-key", 4184082563), p1__118164_SHARP_, new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "index", "index", 1114250308), p1__118164_SHARP_, new cljs.core.Keyword(null, "current?", "current?", 1589306712), cljs.core._EQ_.call(null, p1__118164_SHARP_, 
+        "text", "text", 1017460895), floor16.lang.l.call(null, new cljs.core.Keyword(null, "data-pager-prev", "data-pager-prev", 2462390130)), new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564), self__.list_mode, new cljs.core.Keyword(null, "className", "className", 1004015509), [cljs.core.str("prev"), cljs.core.str(cur_pg <= 1 ? " disabled" : null)].join("")], null)], null))], null), cljs.core.map.call(null, function(p1__129243_SHARP_) {
+          return om.core.build.call(null, floor16.ui.generic.page_item, self__.query, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "react-key", "react-key", 4184082563), p1__129243_SHARP_, new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "index", "index", 1114250308), p1__129243_SHARP_, new cljs.core.Keyword(null, "current?", "current?", 1589306712), cljs.core._EQ_.call(null, p1__129243_SHARP_, 
           cur_pg), new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564), self__.list_mode], null)], null));
         }, cljs.core.range.call(null, left + 1, right + 1)), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [om.core.build.call(null, floor16.ui.generic.page_item, self__.query, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "index", "index", 1114250308), cur_pg < pg_count ? cur_pg + 1 : null, new cljs.core.Keyword(null, "text", "text", 1017460895), 
         floor16.lang.l.call(null, new cljs.core.Keyword(null, "data-pager-next", "data-pager-next", 2462318642)), new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564), self__.list_mode, new cljs.core.Keyword(null, "className", "className", 1004015509), [cljs.core.str("next"), cljs.core.str(cur_pg >= pg_count ? " disabled" : null)].join("")], null)], null))], null)));
       } else {
         if (cljs.core._EQ_.call(null, pg_count, 2)) {
-          return cljs.core.apply.call(null, om.dom.ul, {"className":"data-pager"}, cljs.core.map.call(null, function(p1__118165_SHARP_) {
-            return om.core.build.call(null, floor16.ui.generic.page_item, self__.query, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "react-key", "react-key", 4184082563), p1__118165_SHARP_, new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "index", "index", 1114250308), p1__118165_SHARP_, new cljs.core.Keyword(null, "current?", "current?", 1589306712), cljs.core._EQ_.call(null, p1__118165_SHARP_, 
+          return cljs.core.apply.call(null, om.dom.ul, {"className":"data-pager"}, cljs.core.map.call(null, function(p1__129244_SHARP_) {
+            return om.core.build.call(null, floor16.ui.generic.page_item, self__.query, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "react-key", "react-key", 4184082563), p1__129244_SHARP_, new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "index", "index", 1114250308), p1__129244_SHARP_, new cljs.core.Keyword(null, "current?", "current?", 1589306712), cljs.core._EQ_.call(null, p1__129244_SHARP_, 
             cur_pg), new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564), self__.list_mode], null)], null));
           }, cljs.core.range.call(null, left + 1, right + 1)));
         } else {
@@ -46935,109 +46947,109 @@ floor16.ui.generic.data_pager = function data_pager(p__118166, owner, p__118167)
         }
       }
     };
-    floor16.ui.generic.t118175.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118177) {
+    floor16.ui.generic.t129254.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129256) {
       var self__ = this;
-      var _118177__$1 = this;
-      return self__.meta118176;
+      var _129256__$1 = this;
+      return self__.meta129255;
     };
-    floor16.ui.generic.t118175.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118177, meta118176__$1) {
+    floor16.ui.generic.t129254.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129256, meta129255__$1) {
       var self__ = this;
-      var _118177__$1 = this;
-      return new floor16.ui.generic.t118175(self__.opts, self__.query, self__.map__118173, self__.list_mode, self__.map__118174, self__.data, self__.data_pager, self__.owner, self__.cursor, self__.p__118167, self__.p__118166, meta118176__$1);
+      var _129256__$1 = this;
+      return new floor16.ui.generic.t129254(self__.p__129246, self__.p__129245, self__.opts, self__.query, self__.list_mode, self__.data, self__.data_pager, self__.owner, self__.cursor, self__.map__129253, self__.map__129252, meta129255__$1);
     };
-    floor16.ui.generic.__GT_t118175 = function __GT_t118175(opts__$1, query__$1, map__118173__$2, list_mode__$1, map__118174__$2, data__$1, data_pager__$1, owner__$1, cursor__$1, p__118167__$1, p__118166__$1, meta118176) {
-      return new floor16.ui.generic.t118175(opts__$1, query__$1, map__118173__$2, list_mode__$1, map__118174__$2, data__$1, data_pager__$1, owner__$1, cursor__$1, p__118167__$1, p__118166__$1, meta118176);
+    floor16.ui.generic.__GT_t129254 = function __GT_t129254(p__129246__$1, p__129245__$1, opts__$1, query__$1, list_mode__$1, data__$1, data_pager__$1, owner__$1, cursor__$1, map__129253__$2, map__129252__$2, meta129255) {
+      return new floor16.ui.generic.t129254(p__129246__$1, p__129245__$1, opts__$1, query__$1, list_mode__$1, data__$1, data_pager__$1, owner__$1, cursor__$1, map__129253__$2, map__129252__$2, meta129255);
     };
   }
-  return new floor16.ui.generic.t118175(opts, query, map__118173__$1, list_mode, map__118174__$1, data, data_pager, owner, cursor, p__118167, p__118166, null);
+  return new floor16.ui.generic.t129254(p__129246, p__129245, opts, query, list_mode, data, data_pager, owner, cursor, map__129253__$1, map__129252__$1, null);
 };
 floor16.ui.generic.load_progress = function load_progress(data, owner, opts) {
-  if (typeof floor16.ui.generic.t118181 !== "undefined") {
+  if (typeof floor16.ui.generic.t129260 !== "undefined") {
   } else {
-    floor16.ui.generic.t118181 = function(opts, owner, data, load_progress, meta118182) {
+    floor16.ui.generic.t129260 = function(opts, owner, data, load_progress, meta129261) {
       this.opts = opts;
       this.owner = owner;
       this.data = data;
       this.load_progress = load_progress;
-      this.meta118182 = meta118182;
+      this.meta129261 = meta129261;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118181.cljs$lang$type = true;
-    floor16.ui.generic.t118181.cljs$lang$ctorStr = "floor16.ui.generic/t118181";
-    floor16.ui.generic.t118181.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118181");
+    floor16.ui.generic.t129260.cljs$lang$type = true;
+    floor16.ui.generic.t129260.cljs$lang$ctorStr = "floor16.ui.generic/t129260";
+    floor16.ui.generic.t129260.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129260");
     };
-    floor16.ui.generic.t118181.prototype.om$core$IRender$ = true;
-    floor16.ui.generic.t118181.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.generic.t129260.prototype.om$core$IRender$ = true;
+    floor16.ui.generic.t129260.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":"load-progress"});
     };
-    floor16.ui.generic.t118181.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118183) {
+    floor16.ui.generic.t129260.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129262) {
       var self__ = this;
-      var _118183__$1 = this;
-      return self__.meta118182;
+      var _129262__$1 = this;
+      return self__.meta129261;
     };
-    floor16.ui.generic.t118181.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118183, meta118182__$1) {
+    floor16.ui.generic.t129260.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129262, meta129261__$1) {
       var self__ = this;
-      var _118183__$1 = this;
-      return new floor16.ui.generic.t118181(self__.opts, self__.owner, self__.data, self__.load_progress, meta118182__$1);
+      var _129262__$1 = this;
+      return new floor16.ui.generic.t129260(self__.opts, self__.owner, self__.data, self__.load_progress, meta129261__$1);
     };
-    floor16.ui.generic.__GT_t118181 = function __GT_t118181(opts__$1, owner__$1, data__$1, load_progress__$1, meta118182) {
-      return new floor16.ui.generic.t118181(opts__$1, owner__$1, data__$1, load_progress__$1, meta118182);
+    floor16.ui.generic.__GT_t129260 = function __GT_t129260(opts__$1, owner__$1, data__$1, load_progress__$1, meta129261) {
+      return new floor16.ui.generic.t129260(opts__$1, owner__$1, data__$1, load_progress__$1, meta129261);
     };
   }
-  return new floor16.ui.generic.t118181(opts, owner, data, load_progress, null);
+  return new floor16.ui.generic.t129260(opts, owner, data, load_progress, null);
 };
-floor16.ui.generic.list_view = function list_view(p__118185, owner, p__118186) {
-  var map__118192 = p__118185;
-  var map__118192__$1 = cljs.core.seq_QMARK_.call(null, map__118192) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118192) : map__118192;
-  var cursor = map__118192__$1;
-  var data = cljs.core.get.call(null, map__118192__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
-  var query = cljs.core.get.call(null, map__118192__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
-  var map__118193 = p__118186;
-  var map__118193__$1 = cljs.core.seq_QMARK_.call(null, map__118193) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118193) : map__118193;
-  var res = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "res", "res", 1014017042));
-  var data_head = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-head", "data-head", 603991445));
-  var top_filter = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "top-filter", "top-filter", 2858888802));
-  var main_container_class = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "main-container-class", "main-container-class", 2418625674));
-  var list_mode = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564));
-  var data_header_total_class = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-header-total-class", "data-header-total-class", 1355009252));
-  var empty_text = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "empty-text", "empty-text", 4203552031));
-  var side_filter = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "side-filter", "side-filter", 945679392));
-  var data_header_class = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-header-class", "data-header-class", 2790141677));
-  var item_view_mode = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "item-view-mode", "item-view-mode", 4070495491));
-  var header_opts = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "header-opts", "header-opts", 2151738066));
-  var data_container_class = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-container-class", "data-container-class", 3307025531));
-  var data_empty = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-empty", "data-empty", 1188992220));
-  var data_header_opts_class = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-header-opts-class", "data-header-opts-class", 2922150106));
-  var data_header_total_kword = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "data-header-total-kword", "data-header-total-kword", 1362738529));
-  var kw_id = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "kw-id", "kw-id", 1116312718));
-  var loading_text = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "loading-text", "loading-text", 2379603600));
-  var item_view = cljs.core.get.call(null, map__118193__$1, new cljs.core.Keyword(null, "item-view", "item-view", 3121596561));
-  if (typeof floor16.ui.generic.t118194 !== "undefined") {
+floor16.ui.generic.list_view = function list_view(p__129264, owner, p__129265) {
+  var map__129271 = p__129264;
+  var map__129271__$1 = cljs.core.seq_QMARK_.call(null, map__129271) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129271) : map__129271;
+  var cursor = map__129271__$1;
+  var data = cljs.core.get.call(null, map__129271__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
+  var query = cljs.core.get.call(null, map__129271__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+  var map__129272 = p__129265;
+  var map__129272__$1 = cljs.core.seq_QMARK_.call(null, map__129272) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129272) : map__129272;
+  var res = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "res", "res", 1014017042));
+  var data_head = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-head", "data-head", 603991445));
+  var top_filter = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "top-filter", "top-filter", 2858888802));
+  var main_container_class = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "main-container-class", "main-container-class", 2418625674));
+  var list_mode = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564));
+  var data_header_total_class = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-header-total-class", "data-header-total-class", 1355009252));
+  var empty_text = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "empty-text", "empty-text", 4203552031));
+  var side_filter = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "side-filter", "side-filter", 945679392));
+  var data_header_class = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-header-class", "data-header-class", 2790141677));
+  var item_view_mode = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "item-view-mode", "item-view-mode", 4070495491));
+  var header_opts = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "header-opts", "header-opts", 2151738066));
+  var data_container_class = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-container-class", "data-container-class", 3307025531));
+  var data_empty = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-empty", "data-empty", 1188992220));
+  var data_header_opts_class = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-header-opts-class", "data-header-opts-class", 2922150106));
+  var data_header_total_kword = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "data-header-total-kword", "data-header-total-kword", 1362738529));
+  var kw_id = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "kw-id", "kw-id", 1116312718));
+  var loading_text = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "loading-text", "loading-text", 2379603600));
+  var item_view = cljs.core.get.call(null, map__129272__$1, new cljs.core.Keyword(null, "item-view", "item-view", 3121596561));
+  if (typeof floor16.ui.generic.t129273 !== "undefined") {
   } else {
-    floor16.ui.generic.t118194 = function(res, list_view, data_head, query, p__118185, p__118186, top_filter, main_container_class, list_mode, data_header_total_class, empty_text, data, map__118192, side_filter, map__118193, data_header_class, item_view_mode, header_opts, data_container_class, owner, cursor, data_empty, data_header_opts_class, data_header_total_kword, kw_id, loading_text, item_view, meta118195) {
+    floor16.ui.generic.t129273 = function(res, list_view, data_head, query, top_filter, main_container_class, list_mode, data_header_total_class, empty_text, data, side_filter, data_header_class, map__129272, item_view_mode, map__129271, header_opts, data_container_class, p__129265, p__129264, owner, cursor, data_empty, data_header_opts_class, data_header_total_kword, kw_id, loading_text, item_view, meta129274) {
       this.res = res;
       this.list_view = list_view;
       this.data_head = data_head;
       this.query = query;
-      this.p__118185 = p__118185;
-      this.p__118186 = p__118186;
       this.top_filter = top_filter;
       this.main_container_class = main_container_class;
       this.list_mode = list_mode;
       this.data_header_total_class = data_header_total_class;
       this.empty_text = empty_text;
       this.data = data;
-      this.map__118192 = map__118192;
       this.side_filter = side_filter;
-      this.map__118193 = map__118193;
       this.data_header_class = data_header_class;
+      this.map__129272 = map__129272;
       this.item_view_mode = item_view_mode;
+      this.map__129271 = map__129271;
       this.header_opts = header_opts;
       this.data_container_class = data_container_class;
+      this.p__129265 = p__129265;
+      this.p__129264 = p__129264;
       this.owner = owner;
       this.cursor = cursor;
       this.data_empty = data_empty;
@@ -47046,17 +47058,17 @@ floor16.ui.generic.list_view = function list_view(p__118185, owner, p__118186) {
       this.kw_id = kw_id;
       this.loading_text = loading_text;
       this.item_view = item_view;
-      this.meta118195 = meta118195;
+      this.meta129274 = meta129274;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118194.cljs$lang$type = true;
-    floor16.ui.generic.t118194.cljs$lang$ctorStr = "floor16.ui.generic/t118194";
-    floor16.ui.generic.t118194.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118194");
+    floor16.ui.generic.t129273.cljs$lang$type = true;
+    floor16.ui.generic.t129273.cljs$lang$ctorStr = "floor16.ui.generic/t129273";
+    floor16.ui.generic.t129273.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129273");
     };
-    floor16.ui.generic.t118194.prototype.om$core$IRenderState$ = true;
-    floor16.ui.generic.t118194.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, state) {
+    floor16.ui.generic.t129273.prototype.om$core$IRenderState$ = true;
+    floor16.ui.generic.t129273.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, state) {
       var self__ = this;
       var this$__$1 = this;
       var kw_id__$2 = function() {
@@ -47074,90 +47086,94 @@ floor16.ui.generic.list_view = function list_view(p__118185, owner, p__118186) {
       om.core.build.call(null, self__.data_head, self__.cursor) : om.core.build.call(null, floor16.ui.generic.data_header, self__.cursor, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null, "header-opts", "header-opts", 2151738066), self__.header_opts, new cljs.core.Keyword(null, "data-header-class", "data-header-class", 2790141677), self__.data_header_class, new cljs.core.Keyword(null, 
       "data-header-total-kword", "data-header-total-kword", 1362738529), self__.data_header_total_kword, new cljs.core.Keyword(null, "data-header-total-class", "data-header-total-class", 1355009252), self__.data_header_total_class, new cljs.core.Keyword(null, "data-header-opts-class", "data-header-opts-class", 2922150106), self__.data_header_opts_class], null)], null)), no_items_QMARK_ ? cljs.core.truth_(self__.data_empty) ? om.core.build.call(null, self__.data_empty, self__.data, new cljs.core.PersistentArrayMap(null, 
       1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "empty-text", "empty-text", 4203552031), cljs.core.truth_(loading_QMARK_) ? self__.loading_text : self__.empty_text], null)], null)) : om.core.build.call(null, floor16.ui.generic.empty_view, self__.data, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, 
-      "empty-text", "empty-text", 4203552031), cljs.core.truth_(loading_QMARK_) ? self__.loading_text : self__.empty_text], null)], null)) : cljs.core.apply.call(null, om.dom.ul, null, cljs.core.map.call(null, function(p1__118184_SHARP_) {
-        return React.DOM.li({"className":"data-item clearfix", "key":kw_id__$2.call(null, p1__118184_SHARP_)}, om.core.build.call(null, self__.item_view, p1__118184_SHARP_));
+      "empty-text", "empty-text", 4203552031), cljs.core.truth_(loading_QMARK_) ? self__.loading_text : self__.empty_text], null)], null)) : cljs.core.apply.call(null, om.dom.ul, null, cljs.core.map.call(null, function(p1__129263_SHARP_) {
+        return React.DOM.li({"className":"data-item clearfix", "key":kw_id__$2.call(null, p1__129263_SHARP_)}, om.core.build.call(null, self__.item_view, p1__129263_SHARP_));
       }, items)), no_items_QMARK_ ? null : om.core.build.call(null, floor16.ui.generic.data_pager, self__.cursor, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "list-mode", "list-mode", 4038414564), self__.list_mode], null)], null))), cljs.core.truth_(self__.side_filter) ? om.core.build.call(null, self__.side_filter, self__.query) : null));
     };
-    floor16.ui.generic.t118194.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118196) {
+    floor16.ui.generic.t129273.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129275) {
       var self__ = this;
-      var _118196__$1 = this;
-      return self__.meta118195;
+      var _129275__$1 = this;
+      return self__.meta129274;
     };
-    floor16.ui.generic.t118194.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118196, meta118195__$1) {
+    floor16.ui.generic.t129273.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129275, meta129274__$1) {
       var self__ = this;
-      var _118196__$1 = this;
-      return new floor16.ui.generic.t118194(self__.res, self__.list_view, self__.data_head, self__.query, self__.p__118185, self__.p__118186, self__.top_filter, self__.main_container_class, self__.list_mode, self__.data_header_total_class, self__.empty_text, self__.data, self__.map__118192, self__.side_filter, self__.map__118193, self__.data_header_class, self__.item_view_mode, self__.header_opts, self__.data_container_class, self__.owner, self__.cursor, self__.data_empty, self__.data_header_opts_class, 
-      self__.data_header_total_kword, self__.kw_id, self__.loading_text, self__.item_view, meta118195__$1);
+      var _129275__$1 = this;
+      return new floor16.ui.generic.t129273(self__.res, self__.list_view, self__.data_head, self__.query, self__.top_filter, self__.main_container_class, self__.list_mode, self__.data_header_total_class, self__.empty_text, self__.data, self__.side_filter, self__.data_header_class, self__.map__129272, self__.item_view_mode, self__.map__129271, self__.header_opts, self__.data_container_class, self__.p__129265, self__.p__129264, self__.owner, self__.cursor, self__.data_empty, self__.data_header_opts_class, 
+      self__.data_header_total_kword, self__.kw_id, self__.loading_text, self__.item_view, meta129274__$1);
     };
-    floor16.ui.generic.__GT_t118194 = function __GT_t118194(res__$1, list_view__$1, data_head__$1, query__$1, p__118185__$1, p__118186__$1, top_filter__$1, main_container_class__$1, list_mode__$1, data_header_total_class__$1, empty_text__$1, data__$1, map__118192__$2, side_filter__$1, map__118193__$2, data_header_class__$1, item_view_mode__$1, header_opts__$1, data_container_class__$1, owner__$1, cursor__$1, data_empty__$1, data_header_opts_class__$1, data_header_total_kword__$1, kw_id__$1, loading_text__$1, 
-    item_view__$1, meta118195) {
-      return new floor16.ui.generic.t118194(res__$1, list_view__$1, data_head__$1, query__$1, p__118185__$1, p__118186__$1, top_filter__$1, main_container_class__$1, list_mode__$1, data_header_total_class__$1, empty_text__$1, data__$1, map__118192__$2, side_filter__$1, map__118193__$2, data_header_class__$1, item_view_mode__$1, header_opts__$1, data_container_class__$1, owner__$1, cursor__$1, data_empty__$1, data_header_opts_class__$1, data_header_total_kword__$1, kw_id__$1, loading_text__$1, item_view__$1, 
-      meta118195);
+    floor16.ui.generic.__GT_t129273 = function __GT_t129273(res__$1, list_view__$1, data_head__$1, query__$1, top_filter__$1, main_container_class__$1, list_mode__$1, data_header_total_class__$1, empty_text__$1, data__$1, side_filter__$1, data_header_class__$1, map__129272__$2, item_view_mode__$1, map__129271__$2, header_opts__$1, data_container_class__$1, p__129265__$1, p__129264__$1, owner__$1, cursor__$1, data_empty__$1, data_header_opts_class__$1, data_header_total_kword__$1, kw_id__$1, loading_text__$1, 
+    item_view__$1, meta129274) {
+      return new floor16.ui.generic.t129273(res__$1, list_view__$1, data_head__$1, query__$1, top_filter__$1, main_container_class__$1, list_mode__$1, data_header_total_class__$1, empty_text__$1, data__$1, side_filter__$1, data_header_class__$1, map__129272__$2, item_view_mode__$1, map__129271__$2, header_opts__$1, data_container_class__$1, p__129265__$1, p__129264__$1, owner__$1, cursor__$1, data_empty__$1, data_header_opts_class__$1, data_header_total_kword__$1, kw_id__$1, loading_text__$1, item_view__$1, 
+      meta129274);
     };
   }
-  return new floor16.ui.generic.t118194(res, list_view, data_head, query, p__118185, p__118186, top_filter, main_container_class, list_mode, data_header_total_class, empty_text, data, map__118192__$1, side_filter, map__118193__$1, data_header_class, item_view_mode, header_opts, data_container_class, owner, cursor, data_empty, data_header_opts_class, data_header_total_kword, kw_id, loading_text, item_view, null);
+  return new floor16.ui.generic.t129273(res, list_view, data_head, query, top_filter, main_container_class, list_mode, data_header_total_class, empty_text, data, side_filter, data_header_class, map__129272__$1, item_view_mode, map__129271__$1, header_opts, data_container_class, p__129265, p__129264, owner, cursor, data_empty, data_header_opts_class, data_header_total_kword, kw_id, loading_text, item_view, null);
 };
-floor16.ui.generic.box_group = function box_group(cursor, owner, p__118197) {
-  var map__118204 = p__118197;
-  var map__118204__$1 = cljs.core.seq_QMARK_.call(null, map__118204) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118204) : map__118204;
-  var opts = map__118204__$1;
-  var caption = cljs.core.get.call(null, map__118204__$1, new cljs.core.Keyword(null, "caption", "caption", 1566477656));
-  var view = cljs.core.get.call(null, map__118204__$1, new cljs.core.Keyword(null, "view", "view", 1017523735));
-  var init_opened = cljs.core.get.call(null, map__118204__$1, new cljs.core.Keyword(null, "init-opened", "init-opened", 941682488));
-  if (typeof floor16.ui.generic.t118205 !== "undefined") {
+floor16.ui.generic.box_group = function box_group(cursor, owner, p__129276) {
+  var map__129283 = p__129276;
+  var map__129283__$1 = cljs.core.seq_QMARK_.call(null, map__129283) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129283) : map__129283;
+  var opts = map__129283__$1;
+  var caption_class = cljs.core.get.call(null, map__129283__$1, new cljs.core.Keyword(null, "caption-class", "caption-class", 550553155));
+  var group_class = cljs.core.get.call(null, map__129283__$1, new cljs.core.Keyword(null, "group-class", "group-class", 669420572));
+  var caption = cljs.core.get.call(null, map__129283__$1, new cljs.core.Keyword(null, "caption", "caption", 1566477656));
+  var view = cljs.core.get.call(null, map__129283__$1, new cljs.core.Keyword(null, "view", "view", 1017523735));
+  var init_opened = cljs.core.get.call(null, map__129283__$1, new cljs.core.Keyword(null, "init-opened", "init-opened", 941682488));
+  if (typeof floor16.ui.generic.t129284 !== "undefined") {
   } else {
-    floor16.ui.generic.t118205 = function(init_opened, view, caption, opts, map__118204, p__118197, owner, cursor, box_group, meta118206) {
-      this.init_opened = init_opened;
-      this.view = view;
-      this.caption = caption;
+    floor16.ui.generic.t129284 = function(opts, box_group, view, group_class, p__129276, init_opened, caption, map__129283, owner, cursor, caption_class, meta129285) {
       this.opts = opts;
-      this.map__118204 = map__118204;
-      this.p__118197 = p__118197;
+      this.box_group = box_group;
+      this.view = view;
+      this.group_class = group_class;
+      this.p__129276 = p__129276;
+      this.init_opened = init_opened;
+      this.caption = caption;
+      this.map__129283 = map__129283;
       this.owner = owner;
       this.cursor = cursor;
-      this.box_group = box_group;
-      this.meta118206 = meta118206;
+      this.caption_class = caption_class;
+      this.meta129285 = meta129285;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.generic.t118205.cljs$lang$type = true;
-    floor16.ui.generic.t118205.cljs$lang$ctorStr = "floor16.ui.generic/t118205";
-    floor16.ui.generic.t118205.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t118205");
+    floor16.ui.generic.t129284.cljs$lang$type = true;
+    floor16.ui.generic.t129284.cljs$lang$ctorStr = "floor16.ui.generic/t129284";
+    floor16.ui.generic.t129284.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.generic/t129284");
     };
-    floor16.ui.generic.t118205.prototype.om$core$IRenderState$ = true;
-    floor16.ui.generic.t118205.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__118208) {
+    floor16.ui.generic.t129284.prototype.om$core$IRenderState$ = true;
+    floor16.ui.generic.t129284.prototype.om$core$IRenderState$render_state$arity$2 = function(this$, p__129287) {
       var self__ = this;
-      var map__118209 = p__118208;
-      var map__118209__$1 = cljs.core.seq_QMARK_.call(null, map__118209) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118209) : map__118209;
-      var opened = cljs.core.get.call(null, map__118209__$1, new cljs.core.Keyword(null, "opened", "opened", 4298292187));
+      var map__129288 = p__129287;
+      var map__129288__$1 = cljs.core.seq_QMARK_.call(null, map__129288) ? cljs.core.apply.call(null, cljs.core.hash_map, map__129288) : map__129288;
+      var opened = cljs.core.get.call(null, map__129288__$1, new cljs.core.Keyword(null, "opened", "opened", 4298292187));
       var this$__$1 = this;
-      return React.DOM.div({"className":"box-group"}, React.DOM.span({"onMouseDown":function(e) {
+      return React.DOM.div({"className":[cljs.core.str("box-group "), cljs.core.str(self__.group_class)].join("")}, React.DOM.span({"onMouseDown":function(e) {
         om.core.set_state_BANG_.call(null, self__.owner, new cljs.core.Keyword(null, "opened", "opened", 4298292187), cljs.core.not.call(null, opened));
         return e.preventDefault();
-      }, "className":"box-group-header clearfix"}, React.DOM.div({"className":[cljs.core.str("box-arrow "), cljs.core.str(cljs.core.truth_(opened) ? "arrow-down" : "arrow-right")].join("")}), React.DOM.span({"className":"box-caption"}, self__.caption)), cljs.core.truth_(opened) ? React.DOM.div({"className":"box-group-content"}, self__.view) : null);
+      }, "className":"box-group-header"}, React.DOM.div({"className":[cljs.core.str("box-arrow "), cljs.core.str(cljs.core.truth_(opened) ? "arrow-down" : "arrow-right")].join("")}), React.DOM.span({"className":[cljs.core.str("box-caption "), cljs.core.str(self__.caption_class)].join("")}, self__.caption)), cljs.core.truth_(opened) ? React.DOM.div({"className":"box-group-content"}, self__.view) : null);
     };
-    floor16.ui.generic.t118205.prototype.om$core$IInitState$ = true;
-    floor16.ui.generic.t118205.prototype.om$core$IInitState$init_state$arity$1 = function(_) {
+    floor16.ui.generic.t129284.prototype.om$core$IInitState$ = true;
+    floor16.ui.generic.t129284.prototype.om$core$IInitState$init_state$arity$1 = function(_) {
       var self__ = this;
       var ___$1 = this;
       return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opened", "opened", 4298292187), self__.init_opened], null);
     };
-    floor16.ui.generic.t118205.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118207) {
+    floor16.ui.generic.t129284.prototype.cljs$core$IMeta$_meta$arity$1 = function(_129286) {
       var self__ = this;
-      var _118207__$1 = this;
-      return self__.meta118206;
+      var _129286__$1 = this;
+      return self__.meta129285;
     };
-    floor16.ui.generic.t118205.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118207, meta118206__$1) {
+    floor16.ui.generic.t129284.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_129286, meta129285__$1) {
       var self__ = this;
-      var _118207__$1 = this;
-      return new floor16.ui.generic.t118205(self__.init_opened, self__.view, self__.caption, self__.opts, self__.map__118204, self__.p__118197, self__.owner, self__.cursor, self__.box_group, meta118206__$1);
+      var _129286__$1 = this;
+      return new floor16.ui.generic.t129284(self__.opts, self__.box_group, self__.view, self__.group_class, self__.p__129276, self__.init_opened, self__.caption, self__.map__129283, self__.owner, self__.cursor, self__.caption_class, meta129285__$1);
     };
-    floor16.ui.generic.__GT_t118205 = function __GT_t118205(init_opened__$1, view__$1, caption__$1, opts__$1, map__118204__$2, p__118197__$1, owner__$1, cursor__$1, box_group__$1, meta118206) {
-      return new floor16.ui.generic.t118205(init_opened__$1, view__$1, caption__$1, opts__$1, map__118204__$2, p__118197__$1, owner__$1, cursor__$1, box_group__$1, meta118206);
+    floor16.ui.generic.__GT_t129284 = function __GT_t129284(opts__$1, box_group__$1, view__$1, group_class__$1, p__129276__$1, init_opened__$1, caption__$1, map__129283__$2, owner__$1, cursor__$1, caption_class__$1, meta129285) {
+      return new floor16.ui.generic.t129284(opts__$1, box_group__$1, view__$1, group_class__$1, p__129276__$1, init_opened__$1, caption__$1, map__129283__$2, owner__$1, cursor__$1, caption_class__$1, meta129285);
     };
   }
-  return new floor16.ui.generic.t118205(init_opened, view, caption, opts, map__118204__$1, p__118197, owner, cursor, box_group, null);
+  return new floor16.ui.generic.t129284(opts, box_group, view, group_class, p__129276, init_opened, caption, map__129283__$1, owner, cursor, caption_class, null);
 };
 goog.provide("floor16.pages.search");
 goog.require("cljs.core");
@@ -47998,50 +48014,50 @@ floor16.ui.range_edit.pos_to_val = function pos_to_val(pos, min_btm, max_top, st
     return stepped;
   }
 };
-floor16.ui.range_edit.slider_handle = function slider_handle(range_value, owner, p__115413) {
-  var map__115418 = p__115413;
-  var map__115418__$1 = cljs.core.seq_QMARK_.call(null, map__115418) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115418) : map__115418;
-  var opts = map__115418__$1;
-  var comm = cljs.core.get.call(null, map__115418__$1, new cljs.core.Keyword(null, "comm", "comm", 1016963710));
-  var step = cljs.core.get.call(null, map__115418__$1, new cljs.core.Keyword(null, "step", "step", 1017444926), 1);
-  var max_top = cljs.core.get.call(null, map__115418__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
-  var min_bottom = cljs.core.get.call(null, map__115418__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
-  var bound = cljs.core.get.call(null, map__115418__$1, new cljs.core.Keyword(null, "bound", "bound", 1107832048));
-  if (typeof floor16.ui.range_edit.t115419 !== "undefined") {
+floor16.ui.range_edit.slider_handle = function slider_handle(range_value, owner, p__122533) {
+  var map__122538 = p__122533;
+  var map__122538__$1 = cljs.core.seq_QMARK_.call(null, map__122538) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122538) : map__122538;
+  var opts = map__122538__$1;
+  var comm = cljs.core.get.call(null, map__122538__$1, new cljs.core.Keyword(null, "comm", "comm", 1016963710));
+  var step = cljs.core.get.call(null, map__122538__$1, new cljs.core.Keyword(null, "step", "step", 1017444926), 1);
+  var max_top = cljs.core.get.call(null, map__122538__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
+  var min_bottom = cljs.core.get.call(null, map__122538__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
+  var bound = cljs.core.get.call(null, map__122538__$1, new cljs.core.Keyword(null, "bound", "bound", 1107832048));
+  if (typeof floor16.ui.range_edit.t122539 !== "undefined") {
   } else {
-    floor16.ui.range_edit.t115419 = function(step, opts, p__115413, bound, slider_handle, range_value, comm, map__115418, owner, max_top, min_bottom, meta115420) {
+    floor16.ui.range_edit.t122539 = function(step, opts, bound, slider_handle, map__122538, range_value, comm, owner, max_top, p__122533, min_bottom, meta122540) {
       this.step = step;
       this.opts = opts;
-      this.p__115413 = p__115413;
       this.bound = bound;
       this.slider_handle = slider_handle;
+      this.map__122538 = map__122538;
       this.range_value = range_value;
       this.comm = comm;
-      this.map__115418 = map__115418;
       this.owner = owner;
       this.max_top = max_top;
+      this.p__122533 = p__122533;
       this.min_bottom = min_bottom;
-      this.meta115420 = meta115420;
+      this.meta122540 = meta122540;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.range_edit.t115419.cljs$lang$type = true;
-    floor16.ui.range_edit.t115419.cljs$lang$ctorStr = "floor16.ui.range-edit/t115419";
-    floor16.ui.range_edit.t115419.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t115419");
+    floor16.ui.range_edit.t122539.cljs$lang$type = true;
+    floor16.ui.range_edit.t122539.cljs$lang$ctorStr = "floor16.ui.range-edit/t122539";
+    floor16.ui.range_edit.t122539.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t122539");
     };
-    floor16.ui.range_edit.t115419.prototype.om$core$IRender$ = true;
-    floor16.ui.range_edit.t115419.prototype.om$core$IRender$render$arity$1 = function(this$) {
+    floor16.ui.range_edit.t122539.prototype.om$core$IRender$ = true;
+    floor16.ui.range_edit.t122539.prototype.om$core$IRender$render$arity$1 = function(this$) {
       var self__ = this;
       var this$__$1 = this;
-      return React.DOM.span({"onClick":function(p1__115412_SHARP_) {
-        return p1__115412_SHARP_.stopPropagation();
+      return React.DOM.span({"onClick":function(p1__122532_SHARP_) {
+        return p1__122532_SHARP_.stopPropagation();
       }, "onMouseDown":function(e) {
         return e.target.focus();
       }, "tabIndex":9999, "style":{"left":[cljs.core.str(floor16.ui.range_edit.val_to_pos.call(null, self__.bound.call(null, self__.range_value), self__.min_bottom, self__.max_top)), cljs.core.str("%")].join("")}, "className":"slider-handle"});
     };
-    floor16.ui.range_edit.t115419.prototype.om$core$IWillUnmount$ = true;
-    floor16.ui.range_edit.t115419.prototype.om$core$IWillUnmount$will_unmount$arity$1 = function(this$) {
+    floor16.ui.range_edit.t122539.prototype.om$core$IWillUnmount$ = true;
+    floor16.ui.range_edit.t122539.prototype.om$core$IWillUnmount$will_unmount$arity$1 = function(this$) {
       var self__ = this;
       var this$__$1 = this;
       var temp__4092__auto__ = om.core.get_state.call(null, self__.owner, new cljs.core.Keyword(null, "dragger", "dragger", 2926434578));
@@ -48052,8 +48068,8 @@ floor16.ui.range_edit.slider_handle = function slider_handle(range_value, owner,
         return null;
       }
     };
-    floor16.ui.range_edit.t115419.prototype.om$core$IDidMount$ = true;
-    floor16.ui.range_edit.t115419.prototype.om$core$IDidMount$did_mount$arity$1 = function(this$) {
+    floor16.ui.range_edit.t122539.prototype.om$core$IDidMount$ = true;
+    floor16.ui.range_edit.t122539.prototype.om$core$IDidMount$did_mount$arity$1 = function(this$) {
       var self__ = this;
       var this$__$1 = this;
       var node = om.core.get_node.call(null, self__.owner);
@@ -48074,68 +48090,68 @@ floor16.ui.range_edit.slider_handle = function slider_handle(range_value, owner,
       goog.events.listen(dragger, goog.fx.Dragger.EventType.DRAG, drag_handler.call(null, false));
       return goog.events.listen(dragger, goog.fx.Dragger.EventType.END, drag_handler.call(null, true));
     };
-    floor16.ui.range_edit.t115419.prototype.cljs$core$IMeta$_meta$arity$1 = function(_115421) {
+    floor16.ui.range_edit.t122539.prototype.cljs$core$IMeta$_meta$arity$1 = function(_122541) {
       var self__ = this;
-      var _115421__$1 = this;
-      return self__.meta115420;
+      var _122541__$1 = this;
+      return self__.meta122540;
     };
-    floor16.ui.range_edit.t115419.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_115421, meta115420__$1) {
+    floor16.ui.range_edit.t122539.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_122541, meta122540__$1) {
       var self__ = this;
-      var _115421__$1 = this;
-      return new floor16.ui.range_edit.t115419(self__.step, self__.opts, self__.p__115413, self__.bound, self__.slider_handle, self__.range_value, self__.comm, self__.map__115418, self__.owner, self__.max_top, self__.min_bottom, meta115420__$1);
+      var _122541__$1 = this;
+      return new floor16.ui.range_edit.t122539(self__.step, self__.opts, self__.bound, self__.slider_handle, self__.map__122538, self__.range_value, self__.comm, self__.owner, self__.max_top, self__.p__122533, self__.min_bottom, meta122540__$1);
     };
-    floor16.ui.range_edit.__GT_t115419 = function __GT_t115419(step__$1, opts__$1, p__115413__$1, bound__$1, slider_handle__$1, range_value__$1, comm__$1, map__115418__$2, owner__$1, max_top__$1, min_bottom__$1, meta115420) {
-      return new floor16.ui.range_edit.t115419(step__$1, opts__$1, p__115413__$1, bound__$1, slider_handle__$1, range_value__$1, comm__$1, map__115418__$2, owner__$1, max_top__$1, min_bottom__$1, meta115420);
+    floor16.ui.range_edit.__GT_t122539 = function __GT_t122539(step__$1, opts__$1, bound__$1, slider_handle__$1, map__122538__$2, range_value__$1, comm__$1, owner__$1, max_top__$1, p__122533__$1, min_bottom__$1, meta122540) {
+      return new floor16.ui.range_edit.t122539(step__$1, opts__$1, bound__$1, slider_handle__$1, map__122538__$2, range_value__$1, comm__$1, owner__$1, max_top__$1, p__122533__$1, min_bottom__$1, meta122540);
     };
   }
-  return new floor16.ui.range_edit.t115419(step, opts, p__115413, bound, slider_handle, range_value, comm, map__115418__$1, owner, max_top, min_bottom, null);
+  return new floor16.ui.range_edit.t122539(step, opts, bound, slider_handle, map__122538__$1, range_value, comm, owner, max_top, p__122533, min_bottom, null);
 };
-floor16.ui.range_edit.slider_range = function slider_range(range_value, owner, p__115422) {
-  var map__115427 = p__115422;
-  var map__115427__$1 = cljs.core.seq_QMARK_.call(null, map__115427) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115427) : map__115427;
-  var max_top = cljs.core.get.call(null, map__115427__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
-  var min_bottom = cljs.core.get.call(null, map__115427__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
-  if (typeof floor16.ui.range_edit.t115428 !== "undefined") {
+floor16.ui.range_edit.slider_range = function slider_range(range_value, owner, p__122542) {
+  var map__122547 = p__122542;
+  var map__122547__$1 = cljs.core.seq_QMARK_.call(null, map__122547) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122547) : map__122547;
+  var max_top = cljs.core.get.call(null, map__122547__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
+  var min_bottom = cljs.core.get.call(null, map__122547__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
+  if (typeof floor16.ui.range_edit.t122548 !== "undefined") {
   } else {
-    floor16.ui.range_edit.t115428 = function(min_bottom, max_top, map__115427, p__115422, owner, range_value, slider_range, meta115429) {
+    floor16.ui.range_edit.t122548 = function(min_bottom, max_top, map__122547, p__122542, owner, range_value, slider_range, meta122549) {
       this.min_bottom = min_bottom;
       this.max_top = max_top;
-      this.map__115427 = map__115427;
-      this.p__115422 = p__115422;
+      this.map__122547 = map__122547;
+      this.p__122542 = p__122542;
       this.owner = owner;
       this.range_value = range_value;
       this.slider_range = slider_range;
-      this.meta115429 = meta115429;
+      this.meta122549 = meta122549;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.range_edit.t115428.cljs$lang$type = true;
-    floor16.ui.range_edit.t115428.cljs$lang$ctorStr = "floor16.ui.range-edit/t115428";
-    floor16.ui.range_edit.t115428.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t115428");
+    floor16.ui.range_edit.t122548.cljs$lang$type = true;
+    floor16.ui.range_edit.t122548.cljs$lang$ctorStr = "floor16.ui.range-edit/t122548";
+    floor16.ui.range_edit.t122548.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t122548");
     };
-    floor16.ui.range_edit.t115428.prototype.om$core$IRender$ = true;
-    floor16.ui.range_edit.t115428.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.range_edit.t122548.prototype.om$core$IRender$ = true;
+    floor16.ui.range_edit.t122548.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"style":{"width":[cljs.core.str(floor16.ui.range_edit.val_to_pos.call(null, (new cljs.core.Keyword(null, "top", "top", 1014019271)).cljs$core$IFn$_invoke$arity$1(self__.range_value) - (new cljs.core.Keyword(null, "btm", "btm", 1014002125)).cljs$core$IFn$_invoke$arity$1(self__.range_value), self__.min_bottom, self__.max_top)), cljs.core.str("%")].join(""), "left":[cljs.core.str(floor16.ui.range_edit.val_to_pos.call(null, (new cljs.core.Keyword(null, "btm", "btm", 1014002125)).cljs$core$IFn$_invoke$arity$1(self__.range_value), 
       self__.min_bottom, self__.max_top)), cljs.core.str("%")].join("")}, "className":"slider-range"});
     };
-    floor16.ui.range_edit.t115428.prototype.cljs$core$IMeta$_meta$arity$1 = function(_115430) {
+    floor16.ui.range_edit.t122548.prototype.cljs$core$IMeta$_meta$arity$1 = function(_122550) {
       var self__ = this;
-      var _115430__$1 = this;
-      return self__.meta115429;
+      var _122550__$1 = this;
+      return self__.meta122549;
     };
-    floor16.ui.range_edit.t115428.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_115430, meta115429__$1) {
+    floor16.ui.range_edit.t122548.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_122550, meta122549__$1) {
       var self__ = this;
-      var _115430__$1 = this;
-      return new floor16.ui.range_edit.t115428(self__.min_bottom, self__.max_top, self__.map__115427, self__.p__115422, self__.owner, self__.range_value, self__.slider_range, meta115429__$1);
+      var _122550__$1 = this;
+      return new floor16.ui.range_edit.t122548(self__.min_bottom, self__.max_top, self__.map__122547, self__.p__122542, self__.owner, self__.range_value, self__.slider_range, meta122549__$1);
     };
-    floor16.ui.range_edit.__GT_t115428 = function __GT_t115428(min_bottom__$1, max_top__$1, map__115427__$2, p__115422__$1, owner__$1, range_value__$1, slider_range__$1, meta115429) {
-      return new floor16.ui.range_edit.t115428(min_bottom__$1, max_top__$1, map__115427__$2, p__115422__$1, owner__$1, range_value__$1, slider_range__$1, meta115429);
+    floor16.ui.range_edit.__GT_t122548 = function __GT_t122548(min_bottom__$1, max_top__$1, map__122547__$2, p__122542__$1, owner__$1, range_value__$1, slider_range__$1, meta122549) {
+      return new floor16.ui.range_edit.t122548(min_bottom__$1, max_top__$1, map__122547__$2, p__122542__$1, owner__$1, range_value__$1, slider_range__$1, meta122549);
     };
   }
-  return new floor16.ui.range_edit.t115428(min_bottom, max_top, map__115427__$1, p__115422, owner, range_value, slider_range, null);
+  return new floor16.ui.range_edit.t122548(min_bottom, max_top, map__122547__$1, p__122542, owner, range_value, slider_range, null);
 };
 floor16.ui.range_edit.parse_int = function parse_int(v) {
   var v__$1 = clojure.string.replace.call(null, v, /\s/, "");
@@ -48162,32 +48178,32 @@ floor16.ui.range_edit.actualize = function actualize(cursor) {
     return cljs.core.get_in.call(null, cljs.core.deref.call(null, state), path);
   }
 };
-floor16.ui.range_edit.range_textbox = function range_textbox(range_value, owner, p__115431) {
-  var map__115436 = p__115431;
-  var map__115436__$1 = cljs.core.seq_QMARK_.call(null, map__115436) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115436) : map__115436;
-  var comm = cljs.core.get.call(null, map__115436__$1, new cljs.core.Keyword(null, "comm", "comm", 1016963710));
-  var bound = cljs.core.get.call(null, map__115436__$1, new cljs.core.Keyword(null, "bound", "bound", 1107832048));
-  if (typeof floor16.ui.range_edit.t115437 !== "undefined") {
+floor16.ui.range_edit.range_textbox = function range_textbox(range_value, owner, p__122551) {
+  var map__122556 = p__122551;
+  var map__122556__$1 = cljs.core.seq_QMARK_.call(null, map__122556) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122556) : map__122556;
+  var comm = cljs.core.get.call(null, map__122556__$1, new cljs.core.Keyword(null, "comm", "comm", 1016963710));
+  var bound = cljs.core.get.call(null, map__122556__$1, new cljs.core.Keyword(null, "bound", "bound", 1107832048));
+  if (typeof floor16.ui.range_edit.t122557 !== "undefined") {
   } else {
-    floor16.ui.range_edit.t115437 = function(bound, comm, map__115436, p__115431, owner, range_value, range_textbox, meta115438) {
+    floor16.ui.range_edit.t122557 = function(bound, comm, map__122556, p__122551, owner, range_value, range_textbox, meta122558) {
       this.bound = bound;
       this.comm = comm;
-      this.map__115436 = map__115436;
-      this.p__115431 = p__115431;
+      this.map__122556 = map__122556;
+      this.p__122551 = p__122551;
       this.owner = owner;
       this.range_value = range_value;
       this.range_textbox = range_textbox;
-      this.meta115438 = meta115438;
+      this.meta122558 = meta122558;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.range_edit.t115437.cljs$lang$type = true;
-    floor16.ui.range_edit.t115437.cljs$lang$ctorStr = "floor16.ui.range-edit/t115437";
-    floor16.ui.range_edit.t115437.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t115437");
+    floor16.ui.range_edit.t122557.cljs$lang$type = true;
+    floor16.ui.range_edit.t122557.cljs$lang$ctorStr = "floor16.ui.range-edit/t122557";
+    floor16.ui.range_edit.t122557.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t122557");
     };
-    floor16.ui.range_edit.t115437.prototype.om$core$IRender$ = true;
-    floor16.ui.range_edit.t115437.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.ui.range_edit.t122557.prototype.om$core$IRender$ = true;
+    floor16.ui.range_edit.t122557.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       var handle_change = function(e) {
@@ -48214,55 +48230,55 @@ floor16.ui.range_edit.range_textbox = function range_textbox(range_value, owner,
         }
       }, "value":floor16.global.price_to_str.call(null, cljs.core.truth_(om.core.get_state.call(null, self__.owner, new cljs.core.Keyword(null, "editing", "editing", 3420907786))) ? om.core.get_state.call(null, self__.owner, new cljs.core.Keyword(null, "value", "value", 1125876963)) : self__.bound.call(null, self__.range_value)), "maxLength":7, "className":cljs.core.name.call(null, self__.bound), "type":"text"});
     };
-    floor16.ui.range_edit.t115437.prototype.cljs$core$IMeta$_meta$arity$1 = function(_115439) {
+    floor16.ui.range_edit.t122557.prototype.cljs$core$IMeta$_meta$arity$1 = function(_122559) {
       var self__ = this;
-      var _115439__$1 = this;
-      return self__.meta115438;
+      var _122559__$1 = this;
+      return self__.meta122558;
     };
-    floor16.ui.range_edit.t115437.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_115439, meta115438__$1) {
+    floor16.ui.range_edit.t122557.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_122559, meta122558__$1) {
       var self__ = this;
-      var _115439__$1 = this;
-      return new floor16.ui.range_edit.t115437(self__.bound, self__.comm, self__.map__115436, self__.p__115431, self__.owner, self__.range_value, self__.range_textbox, meta115438__$1);
+      var _122559__$1 = this;
+      return new floor16.ui.range_edit.t122557(self__.bound, self__.comm, self__.map__122556, self__.p__122551, self__.owner, self__.range_value, self__.range_textbox, meta122558__$1);
     };
-    floor16.ui.range_edit.__GT_t115437 = function __GT_t115437(bound__$1, comm__$1, map__115436__$2, p__115431__$1, owner__$1, range_value__$1, range_textbox__$1, meta115438) {
-      return new floor16.ui.range_edit.t115437(bound__$1, comm__$1, map__115436__$2, p__115431__$1, owner__$1, range_value__$1, range_textbox__$1, meta115438);
+    floor16.ui.range_edit.__GT_t122557 = function __GT_t122557(bound__$1, comm__$1, map__122556__$2, p__122551__$1, owner__$1, range_value__$1, range_textbox__$1, meta122558) {
+      return new floor16.ui.range_edit.t122557(bound__$1, comm__$1, map__122556__$2, p__122551__$1, owner__$1, range_value__$1, range_textbox__$1, meta122558);
     };
   }
-  return new floor16.ui.range_edit.t115437(bound, comm, map__115436__$1, p__115431, owner, range_value, range_textbox, null);
+  return new floor16.ui.range_edit.t122557(bound, comm, map__122556__$1, p__122551, owner, range_value, range_textbox, null);
 };
-floor16.ui.range_edit.handle_slider_click = function handle_slider_click(p__115440) {
-  var map__115443 = p__115440;
-  var map__115443__$1 = cljs.core.seq_QMARK_.call(null, map__115443) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115443) : map__115443;
-  var opts = map__115443__$1;
-  var owner = cljs.core.get.call(null, map__115443__$1, new cljs.core.Keyword(null, "owner", "owner", 1120069157));
-  var step = cljs.core.get.call(null, map__115443__$1, new cljs.core.Keyword(null, "step", "step", 1017444926));
-  var max_top = cljs.core.get.call(null, map__115443__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
-  var min_bottom = cljs.core.get.call(null, map__115443__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
-  var range_value = cljs.core.get.call(null, map__115443__$1, new cljs.core.Keyword(null, "range-value", "range-value", 3446091859));
+floor16.ui.range_edit.handle_slider_click = function handle_slider_click(p__122560) {
+  var map__122563 = p__122560;
+  var map__122563__$1 = cljs.core.seq_QMARK_.call(null, map__122563) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122563) : map__122563;
+  var opts = map__122563__$1;
+  var owner = cljs.core.get.call(null, map__122563__$1, new cljs.core.Keyword(null, "owner", "owner", 1120069157));
+  var step = cljs.core.get.call(null, map__122563__$1, new cljs.core.Keyword(null, "step", "step", 1017444926));
+  var max_top = cljs.core.get.call(null, map__122563__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
+  var min_bottom = cljs.core.get.call(null, map__122563__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
+  var range_value = cljs.core.get.call(null, map__122563__$1, new cljs.core.Keyword(null, "range-value", "range-value", 3446091859));
   return function(e) {
     var node = om.core.get_node.call(null, owner, "slider");
     var pos = e.pageX - node.getBoundingClientRect().left;
     var raw = (max_top - min_bottom) * pos / node.offsetWidth;
     var stepped = cljs.core.quot.call(null, raw, step) * step;
     var v = Math.abs.call(null, stepped - raw) < Math.abs.call(null, step + stepped - raw) ? stepped : step + stepped;
-    var map__115444 = floor16.ui.range_edit.actualize.call(null, range_value);
-    var map__115444__$1 = cljs.core.seq_QMARK_.call(null, map__115444) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115444) : map__115444;
-    var top = cljs.core.get.call(null, map__115444__$1, new cljs.core.Keyword(null, "top", "top", 1014019271));
-    var btm = cljs.core.get.call(null, map__115444__$1, new cljs.core.Keyword(null, "btm", "btm", 1014002125));
+    var map__122564 = floor16.ui.range_edit.actualize.call(null, range_value);
+    var map__122564__$1 = cljs.core.seq_QMARK_.call(null, map__122564) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122564) : map__122564;
+    var top = cljs.core.get.call(null, map__122564__$1, new cljs.core.Keyword(null, "top", "top", 1014019271));
+    var btm = cljs.core.get.call(null, map__122564__$1, new cljs.core.Keyword(null, "btm", "btm", 1014002125));
     var bound = Math.abs.call(null, btm - raw) < Math.abs.call(null, top - raw) ? new cljs.core.Keyword(null, "btm", "btm", 1014002125) : new cljs.core.Keyword(null, "top", "top", 1014019271);
     return cljs.core.async.put_BANG_.call(null, om.core.get_state.call(null, owner, new cljs.core.Keyword(null, "comm", "comm", 1016963710)), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "value", "value", 1125876963), v, new cljs.core.Keyword(null, "bound", "bound", 1107832048), bound, new cljs.core.Keyword(null, "publish", "publish", 778539137), true], null));
   };
 };
-floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p__115445) {
-  var map__115480 = p__115445;
-  var map__115480__$1 = cljs.core.seq_QMARK_.call(null, map__115480) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115480) : map__115480;
-  var opts = map__115480__$1;
-  var after_update = cljs.core.get.call(null, map__115480__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
-  var caption = cljs.core.get.call(null, map__115480__$1, new cljs.core.Keyword(null, "caption", "caption", 1566477656));
-  var no_text_boxes = cljs.core.get.call(null, map__115480__$1, new cljs.core.Keyword(null, "no-text-boxes", "no-text-boxes", 1736451607));
-  var step = cljs.core.get.call(null, map__115480__$1, new cljs.core.Keyword(null, "step", "step", 1017444926));
-  var max_top = cljs.core.get.call(null, map__115480__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
-  var min_bottom = cljs.core.get.call(null, map__115480__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
+floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p__122565) {
+  var map__122600 = p__122565;
+  var map__122600__$1 = cljs.core.seq_QMARK_.call(null, map__122600) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122600) : map__122600;
+  var opts = map__122600__$1;
+  var after_update = cljs.core.get.call(null, map__122600__$1, new cljs.core.Keyword(null, "after-update", "after-update", 4410540364));
+  var caption = cljs.core.get.call(null, map__122600__$1, new cljs.core.Keyword(null, "caption", "caption", 1566477656));
+  var no_text_boxes = cljs.core.get.call(null, map__122600__$1, new cljs.core.Keyword(null, "no-text-boxes", "no-text-boxes", 1736451607));
+  var step = cljs.core.get.call(null, map__122600__$1, new cljs.core.Keyword(null, "step", "step", 1017444926));
+  var max_top = cljs.core.get.call(null, map__122600__$1, new cljs.core.Keyword(null, "max-top", "max-top", 1856863454));
+  var min_bottom = cljs.core.get.call(null, map__122600__$1, new cljs.core.Keyword(null, "min-bottom", "min-bottom", 2894918008));
   var config = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "btm", "btm", 1014002125), function(v) {
     var x__3757__auto__ = function() {
       var x__3750__auto__ = min_bottom;
@@ -48281,13 +48297,13 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
     return x__3750__auto__ > y__3751__auto__ ? x__3750__auto__ : y__3751__auto__;
   }], null);
   var handle_change = function(config) {
-    return function(p__115481) {
-      var map__115482 = p__115481;
-      var map__115482__$1 = cljs.core.seq_QMARK_.call(null, map__115482) ? cljs.core.apply.call(null, cljs.core.hash_map, map__115482) : map__115482;
-      var e = map__115482__$1;
-      var publish = cljs.core.get.call(null, map__115482__$1, new cljs.core.Keyword(null, "publish", "publish", 778539137));
-      var value = cljs.core.get.call(null, map__115482__$1, new cljs.core.Keyword(null, "value", "value", 1125876963));
-      var bound = cljs.core.get.call(null, map__115482__$1, new cljs.core.Keyword(null, "bound", "bound", 1107832048));
+    return function(p__122601) {
+      var map__122602 = p__122601;
+      var map__122602__$1 = cljs.core.seq_QMARK_.call(null, map__122602) ? cljs.core.apply.call(null, cljs.core.hash_map, map__122602) : map__122602;
+      var e = map__122602__$1;
+      var publish = cljs.core.get.call(null, map__122602__$1, new cljs.core.Keyword(null, "publish", "publish", 778539137));
+      var value = cljs.core.get.call(null, map__122602__$1, new cljs.core.Keyword(null, "value", "value", 1125876963));
+      var bound = cljs.core.get.call(null, map__122602__$1, new cljs.core.Keyword(null, "bound", "bound", 1107832048));
       var v = function() {
         var or__3443__auto__ = value;
         if (cljs.core.truth_(or__3443__auto__)) {
@@ -48296,11 +48312,11 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
           return bound.call(null, floor16.ui.range_edit.actualize.call(null, range_value));
         }
       }();
-      om.core.transact_BANG_.call(null, range_value, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bound], null), function(v, map__115482, map__115482__$1, e, publish, value, bound, config) {
+      om.core.transact_BANG_.call(null, range_value, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [bound], null), function(v, map__122602, map__122602__$1, e, publish, value, bound, config) {
         return function(_) {
           return bound.call(null, config).call(null, v);
         };
-      }(v, map__115482, map__115482__$1, e, publish, value, bound, config));
+      }(v, map__122602, map__122602__$1, e, publish, value, bound, config));
       if (cljs.core.truth_(function() {
         var and__3431__auto__ = publish;
         if (cljs.core.truth_(and__3431__auto__)) {
@@ -48315,10 +48331,11 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
       }
     };
   }(config);
-  if (typeof floor16.ui.range_edit.t115483 !== "undefined") {
+  if (typeof floor16.ui.range_edit.t122603 !== "undefined") {
   } else {
-    floor16.ui.range_edit.t115483 = function(step, opts, handle_change, range_editor, no_text_boxes, config, range_value, caption, after_update, owner, map__115480, max_top, min_bottom, p__115445, meta115484) {
+    floor16.ui.range_edit.t122603 = function(step, map__122600, opts, handle_change, range_editor, no_text_boxes, config, range_value, caption, after_update, owner, p__122565, max_top, min_bottom, meta122604) {
       this.step = step;
+      this.map__122600 = map__122600;
       this.opts = opts;
       this.handle_change = handle_change;
       this.range_editor = range_editor;
@@ -48328,21 +48345,20 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
       this.caption = caption;
       this.after_update = after_update;
       this.owner = owner;
-      this.map__115480 = map__115480;
+      this.p__122565 = p__122565;
       this.max_top = max_top;
       this.min_bottom = min_bottom;
-      this.p__115445 = p__115445;
-      this.meta115484 = meta115484;
+      this.meta122604 = meta122604;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.ui.range_edit.t115483.cljs$lang$type = true;
-    floor16.ui.range_edit.t115483.cljs$lang$ctorStr = "floor16.ui.range-edit/t115483";
-    floor16.ui.range_edit.t115483.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t115483");
+    floor16.ui.range_edit.t122603.cljs$lang$type = true;
+    floor16.ui.range_edit.t122603.cljs$lang$ctorStr = "floor16.ui.range-edit/t122603";
+    floor16.ui.range_edit.t122603.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.ui.range-edit/t122603");
     };
-    floor16.ui.range_edit.t115483.prototype.om$core$IRender$ = true;
-    floor16.ui.range_edit.t115483.prototype.om$core$IRender$render$arity$1 = function(_) {
+    floor16.ui.range_edit.t122603.prototype.om$core$IRender$ = true;
+    floor16.ui.range_edit.t122603.prototype.om$core$IRender$render$arity$1 = function(_) {
       var self__ = this;
       var ___$1 = this;
       var new_opts = cljs.core.assoc.call(null, self__.opts, new cljs.core.Keyword(null, "comm", "comm", 1016963710), om.core.get_state.call(null, self__.owner, new cljs.core.Keyword(null, "comm", "comm", 1016963710)));
@@ -48354,8 +48370,8 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
       self__.range_value, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), self__.opts], null)), om.core.build.call(null, floor16.ui.range_edit.slider_handle, self__.range_value, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), bottom_opts], null)), om.core.build.call(null, floor16.ui.range_edit.slider_handle, self__.range_value, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, 
       "opts", "opts", 1017322386), top_opts], null))), cljs.core.truth_(self__.no_text_boxes) ? null : om.core.build.call(null, floor16.ui.range_edit.range_textbox, self__.range_value, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), top_opts], null))));
     };
-    floor16.ui.range_edit.t115483.prototype.om$core$IWillMount$ = true;
-    floor16.ui.range_edit.t115483.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
+    floor16.ui.range_edit.t122603.prototype.om$core$IWillMount$ = true;
+    floor16.ui.range_edit.t122603.prototype.om$core$IWillMount$will_mount$arity$1 = function(_) {
       var self__ = this;
       var ___$1 = this;
       if (cljs.core.truth_(floor16.global.server_side_QMARK_)) {
@@ -48366,61 +48382,61 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
         var c__6217__auto__ = cljs.core.async.chan.call(null, 1);
         cljs.core.async.impl.dispatch.run.call(null, function() {
           var f__6218__auto__ = function() {
-            var switch__6202__auto__ = function(state_115498) {
-              var state_val_115499 = state_115498[1];
-              if (state_val_115499 === 7) {
-                var inst_115489 = state_115498[2];
-                var inst_115490 = self__.handle_change.call(null, inst_115489);
-                var state_115498__$1 = function() {
-                  var statearr_115500 = state_115498;
-                  statearr_115500[7] = inst_115490;
-                  return statearr_115500;
+            var switch__6202__auto__ = function(state_122618) {
+              var state_val_122619 = state_122618[1];
+              if (state_val_122619 === 7) {
+                var inst_122609 = state_122618[2];
+                var inst_122610 = self__.handle_change.call(null, inst_122609);
+                var state_122618__$1 = function() {
+                  var statearr_122620 = state_122618;
+                  statearr_122620[7] = inst_122610;
+                  return statearr_122620;
                 }();
-                var statearr_115501_115514 = state_115498__$1;
-                statearr_115501_115514[2] = null;
-                statearr_115501_115514[1] = 2;
+                var statearr_122621_122634 = state_122618__$1;
+                statearr_122621_122634[2] = null;
+                statearr_122621_122634[1] = 2;
                 return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
               } else {
-                if (state_val_115499 === 6) {
-                  var inst_115494 = state_115498[2];
-                  var state_115498__$1 = state_115498;
-                  var statearr_115502_115515 = state_115498__$1;
-                  statearr_115502_115515[2] = inst_115494;
-                  statearr_115502_115515[1] = 3;
+                if (state_val_122619 === 6) {
+                  var inst_122614 = state_122618[2];
+                  var state_122618__$1 = state_122618;
+                  var statearr_122622_122635 = state_122618__$1;
+                  statearr_122622_122635[2] = inst_122614;
+                  statearr_122622_122635[1] = 3;
                   return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
                 } else {
-                  if (state_val_115499 === 5) {
-                    var state_115498__$1 = state_115498;
-                    var statearr_115503_115516 = state_115498__$1;
-                    statearr_115503_115516[2] = null;
-                    statearr_115503_115516[1] = 6;
+                  if (state_val_122619 === 5) {
+                    var state_122618__$1 = state_122618;
+                    var statearr_122623_122636 = state_122618__$1;
+                    statearr_122623_122636[2] = null;
+                    statearr_122623_122636[1] = 6;
                     return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
                   } else {
-                    if (state_val_115499 === 4) {
-                      var state_115498__$1 = state_115498;
-                      return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_115498__$1, 7, comm);
+                    if (state_val_122619 === 4) {
+                      var state_122618__$1 = state_122618;
+                      return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_122618__$1, 7, comm);
                     } else {
-                      if (state_val_115499 === 3) {
-                        var inst_115496 = state_115498[2];
-                        var state_115498__$1 = state_115498;
-                        return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_115498__$1, inst_115496);
+                      if (state_val_122619 === 3) {
+                        var inst_122616 = state_122618[2];
+                        var state_122618__$1 = state_122618;
+                        return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_122618__$1, inst_122616);
                       } else {
-                        if (state_val_115499 === 2) {
-                          var state_115498__$1 = state_115498;
+                        if (state_val_122619 === 2) {
+                          var state_122618__$1 = state_122618;
                           if (true) {
-                            var statearr_115504_115517 = state_115498__$1;
-                            statearr_115504_115517[1] = 4;
+                            var statearr_122624_122637 = state_122618__$1;
+                            statearr_122624_122637[1] = 4;
                           } else {
-                            var statearr_115505_115518 = state_115498__$1;
-                            statearr_115505_115518[1] = 5;
+                            var statearr_122625_122638 = state_122618__$1;
+                            statearr_122625_122638[1] = 5;
                           }
                           return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
                         } else {
-                          if (state_val_115499 === 1) {
-                            var state_115498__$1 = state_115498;
-                            var statearr_115506_115519 = state_115498__$1;
-                            statearr_115506_115519[2] = null;
-                            statearr_115506_115519[1] = 2;
+                          if (state_val_122619 === 1) {
+                            var state_122618__$1 = state_122618;
+                            var statearr_122626_122639 = state_122618__$1;
+                            statearr_122626_122639[2] = null;
+                            statearr_122626_122639[1] = 2;
                             return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
                           } else {
                             return null;
@@ -48436,17 +48452,17 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
               return function() {
                 var state_machine__6203__auto__ = null;
                 var state_machine__6203__auto____0 = function() {
-                  var statearr_115510 = [null, null, null, null, null, null, null, null];
-                  statearr_115510[0] = state_machine__6203__auto__;
-                  statearr_115510[1] = 1;
-                  return statearr_115510;
+                  var statearr_122630 = [null, null, null, null, null, null, null, null];
+                  statearr_122630[0] = state_machine__6203__auto__;
+                  statearr_122630[1] = 1;
+                  return statearr_122630;
                 };
-                var state_machine__6203__auto____1 = function(state_115498) {
+                var state_machine__6203__auto____1 = function(state_122618) {
                   while (true) {
                     var ret_value__6204__auto__ = function() {
                       try {
                         while (true) {
-                          var result__6205__auto__ = switch__6202__auto__.call(null, state_115498);
+                          var result__6205__auto__ = switch__6202__auto__.call(null, state_122618);
                           if (cljs.core.keyword_identical_QMARK_.call(null, result__6205__auto__, new cljs.core.Keyword(null, "recur", "recur", 1122293407))) {
                             continue;
                           } else {
@@ -48454,16 +48470,16 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
                           }
                           break;
                         }
-                      } catch (e115511) {
-                        if (e115511 instanceof Object) {
-                          var ex__6206__auto__ = e115511;
-                          var statearr_115512_115520 = state_115498;
-                          statearr_115512_115520[5] = ex__6206__auto__;
-                          cljs.core.async.impl.ioc_helpers.process_exception.call(null, state_115498);
+                      } catch (e122631) {
+                        if (e122631 instanceof Object) {
+                          var ex__6206__auto__ = e122631;
+                          var statearr_122632_122640 = state_122618;
+                          statearr_122632_122640[5] = ex__6206__auto__;
+                          cljs.core.async.impl.ioc_helpers.process_exception.call(null, state_122618);
                           return new cljs.core.Keyword(null, "recur", "recur", 1122293407);
                         } else {
                           if (new cljs.core.Keyword(null, "else", "else", 1017020587)) {
-                            throw e115511;
+                            throw e122631;
                           } else {
                             return null;
                           }
@@ -48471,8 +48487,8 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
                       }
                     }();
                     if (cljs.core.keyword_identical_QMARK_.call(null, ret_value__6204__auto__, new cljs.core.Keyword(null, "recur", "recur", 1122293407))) {
-                      var G__115521 = state_115498;
-                      state_115498 = G__115521;
+                      var G__122641 = state_122618;
+                      state_122618 = G__122641;
                       continue;
                     } else {
                       return ret_value__6204__auto__;
@@ -48480,12 +48496,12 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
                     break;
                   }
                 };
-                state_machine__6203__auto__ = function(state_115498) {
+                state_machine__6203__auto__ = function(state_122618) {
                   switch(arguments.length) {
                     case 0:
                       return state_machine__6203__auto____0.call(this);
                     case 1:
-                      return state_machine__6203__auto____1.call(this, state_115498);
+                      return state_machine__6203__auto____1.call(this, state_122618);
                   }
                   throw new Error("Invalid arity: " + arguments.length);
                 };
@@ -48496,30 +48512,30 @@ floor16.ui.range_edit.range_editor = function range_editor(range_value, owner, p
             }(switch__6202__auto__);
           }();
           var state__6219__auto__ = function() {
-            var statearr_115513 = f__6218__auto__.call(null);
-            statearr_115513[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__6217__auto__;
-            return statearr_115513;
+            var statearr_122633 = f__6218__auto__.call(null);
+            statearr_122633[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__6217__auto__;
+            return statearr_122633;
           }();
           return cljs.core.async.impl.ioc_helpers.run_state_machine_wrapped.call(null, state__6219__auto__);
         });
         return c__6217__auto__;
       }
     };
-    floor16.ui.range_edit.t115483.prototype.cljs$core$IMeta$_meta$arity$1 = function(_115485) {
+    floor16.ui.range_edit.t122603.prototype.cljs$core$IMeta$_meta$arity$1 = function(_122605) {
       var self__ = this;
-      var _115485__$1 = this;
-      return self__.meta115484;
+      var _122605__$1 = this;
+      return self__.meta122604;
     };
-    floor16.ui.range_edit.t115483.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_115485, meta115484__$1) {
+    floor16.ui.range_edit.t122603.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_122605, meta122604__$1) {
       var self__ = this;
-      var _115485__$1 = this;
-      return new floor16.ui.range_edit.t115483(self__.step, self__.opts, self__.handle_change, self__.range_editor, self__.no_text_boxes, self__.config, self__.range_value, self__.caption, self__.after_update, self__.owner, self__.map__115480, self__.max_top, self__.min_bottom, self__.p__115445, meta115484__$1);
+      var _122605__$1 = this;
+      return new floor16.ui.range_edit.t122603(self__.step, self__.map__122600, self__.opts, self__.handle_change, self__.range_editor, self__.no_text_boxes, self__.config, self__.range_value, self__.caption, self__.after_update, self__.owner, self__.p__122565, self__.max_top, self__.min_bottom, meta122604__$1);
     };
-    floor16.ui.range_edit.__GT_t115483 = function __GT_t115483(step__$1, opts__$1, handle_change__$1, range_editor__$1, no_text_boxes__$1, config__$1, range_value__$1, caption__$1, after_update__$1, owner__$1, map__115480__$2, max_top__$1, min_bottom__$1, p__115445__$1, meta115484) {
-      return new floor16.ui.range_edit.t115483(step__$1, opts__$1, handle_change__$1, range_editor__$1, no_text_boxes__$1, config__$1, range_value__$1, caption__$1, after_update__$1, owner__$1, map__115480__$2, max_top__$1, min_bottom__$1, p__115445__$1, meta115484);
+    floor16.ui.range_edit.__GT_t122603 = function __GT_t122603(step__$1, map__122600__$2, opts__$1, handle_change__$1, range_editor__$1, no_text_boxes__$1, config__$1, range_value__$1, caption__$1, after_update__$1, owner__$1, p__122565__$1, max_top__$1, min_bottom__$1, meta122604) {
+      return new floor16.ui.range_edit.t122603(step__$1, map__122600__$2, opts__$1, handle_change__$1, range_editor__$1, no_text_boxes__$1, config__$1, range_value__$1, caption__$1, after_update__$1, owner__$1, p__122565__$1, max_top__$1, min_bottom__$1, meta122604);
     };
   }
-  return new floor16.ui.range_edit.t115483(step, opts, handle_change, range_editor, no_text_boxes, config, range_value, caption, after_update, owner, map__115480__$1, max_top, min_bottom, p__115445, null);
+  return new floor16.ui.range_edit.t122603(step, map__122600__$1, opts, handle_change, range_editor, no_text_boxes, config, range_value, caption, after_update, owner, p__122565, max_top, min_bottom, null);
 };
 goog.provide("floor16.maps");
 goog.require("cljs.core");
@@ -48800,31 +48816,31 @@ floor16.appsearch.after_update = function after_update(query) {
   };
 };
 floor16.appsearch.simple_filter = function simple_filter(query, owner) {
-  if (typeof floor16.appsearch.t118783 !== "undefined") {
+  if (typeof floor16.appsearch.t128051 !== "undefined") {
   } else {
-    floor16.appsearch.t118783 = function(owner, query, simple_filter, meta118784) {
+    floor16.appsearch.t128051 = function(owner, query, simple_filter, meta128052) {
       this.owner = owner;
       this.query = query;
       this.simple_filter = simple_filter;
-      this.meta118784 = meta118784;
+      this.meta128052 = meta128052;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.appsearch.t118783.cljs$lang$type = true;
-    floor16.appsearch.t118783.cljs$lang$ctorStr = "floor16.appsearch/t118783";
-    floor16.appsearch.t118783.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t118783");
+    floor16.appsearch.t128051.cljs$lang$type = true;
+    floor16.appsearch.t128051.cljs$lang$ctorStr = "floor16.appsearch/t128051";
+    floor16.appsearch.t128051.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t128051");
     };
-    floor16.appsearch.t118783.prototype.om$core$IRender$ = true;
-    floor16.appsearch.t118783.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.appsearch.t128051.prototype.om$core$IRender$ = true;
+    floor16.appsearch.t128051.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":"simple-filter"}, function() {
         var after_update = floor16.appsearch.after_update.call(null, self__.query);
         return React.DOM.div({"className":"container"}, React.DOM.div({"className":"location four columns"}, om.core.build.call(null, floor16.ui.generic.select, self__.query, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "data-key", "data-key", 2801799470), new cljs.core.Keyword(null, "city", "city", 1016958173), new cljs.core.Keyword(null, "placeholder", "placeholder", 1612151013), 
         floor16.lang.l.call(null, new cljs.core.Keyword(null, "city", "city", 1016958173)), new cljs.core.Keyword(null, "dict", "dict", 1016987432), floor16.datum.dict.call(null, new cljs.core.Keyword(null, "cities", "cities", 3948719803)), new cljs.core.Keyword(null, "after-update", "after-update", 4410540364), function(_) {
-          om.core.transact_BANG_.call(null, self__.query, function(p1__118779_SHARP_) {
-            return cljs.core.assoc.call(null, cljs.core.assoc.call(null, p1__118779_SHARP_, new cljs.core.Keyword(null, "metros", "metros", 4231326188), cljs.core.PersistentVector.EMPTY), new cljs.core.Keyword(null, "districts", "districts", 1381773847), cljs.core.PersistentVector.EMPTY);
+          om.core.transact_BANG_.call(null, self__.query, function(p1__128047_SHARP_) {
+            return cljs.core.assoc.call(null, cljs.core.assoc.call(null, p1__128047_SHARP_, new cljs.core.Keyword(null, "metros", "metros", 4231326188), cljs.core.PersistentVector.EMPTY), new cljs.core.Keyword(null, "districts", "districts", 1381773847), cljs.core.PersistentVector.EMPTY);
           });
           return after_update.call(null);
         }], null)], null)), om.core.build.call(null, floor16.ui.generic.select, self__.query, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null, "data-key", "data-key", 2801799470), new cljs.core.Keyword(null, "metro", "metro", 1117692043), new cljs.core.Keyword(null, "placeholder", "placeholder", 1612151013), floor16.lang.l.call(null, new cljs.core.Keyword(null, "metro", "metro", 
@@ -48855,41 +48871,41 @@ floor16.appsearch.simple_filter = function simple_filter(query, owner) {
         }());
       }());
     };
-    floor16.appsearch.t118783.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118785) {
+    floor16.appsearch.t128051.prototype.cljs$core$IMeta$_meta$arity$1 = function(_128053) {
       var self__ = this;
-      var _118785__$1 = this;
-      return self__.meta118784;
+      var _128053__$1 = this;
+      return self__.meta128052;
     };
-    floor16.appsearch.t118783.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118785, meta118784__$1) {
+    floor16.appsearch.t128051.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_128053, meta128052__$1) {
       var self__ = this;
-      var _118785__$1 = this;
-      return new floor16.appsearch.t118783(self__.owner, self__.query, self__.simple_filter, meta118784__$1);
+      var _128053__$1 = this;
+      return new floor16.appsearch.t128051(self__.owner, self__.query, self__.simple_filter, meta128052__$1);
     };
-    floor16.appsearch.__GT_t118783 = function __GT_t118783(owner__$1, query__$1, simple_filter__$1, meta118784) {
-      return new floor16.appsearch.t118783(owner__$1, query__$1, simple_filter__$1, meta118784);
+    floor16.appsearch.__GT_t128051 = function __GT_t128051(owner__$1, query__$1, simple_filter__$1, meta128052) {
+      return new floor16.appsearch.t128051(owner__$1, query__$1, simple_filter__$1, meta128052);
     };
   }
-  return new floor16.appsearch.t118783(owner, query, simple_filter, null);
+  return new floor16.appsearch.t128051(owner, query, simple_filter, null);
 };
 floor16.appsearch.extended_filter = function extended_filter(query, owner, opts) {
-  if (typeof floor16.appsearch.t118789 !== "undefined") {
+  if (typeof floor16.appsearch.t128057 !== "undefined") {
   } else {
-    floor16.appsearch.t118789 = function(opts, owner, query, extended_filter, meta118790) {
+    floor16.appsearch.t128057 = function(opts, owner, query, extended_filter, meta128058) {
       this.opts = opts;
       this.owner = owner;
       this.query = query;
       this.extended_filter = extended_filter;
-      this.meta118790 = meta118790;
+      this.meta128058 = meta128058;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.appsearch.t118789.cljs$lang$type = true;
-    floor16.appsearch.t118789.cljs$lang$ctorStr = "floor16.appsearch/t118789";
-    floor16.appsearch.t118789.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t118789");
+    floor16.appsearch.t128057.cljs$lang$type = true;
+    floor16.appsearch.t128057.cljs$lang$ctorStr = "floor16.appsearch/t128057";
+    floor16.appsearch.t128057.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t128057");
     };
-    floor16.appsearch.t118789.prototype.om$core$IRender$ = true;
-    floor16.appsearch.t118789.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.appsearch.t128057.prototype.om$core$IRender$ = true;
+    floor16.appsearch.t128057.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       var after_update = floor16.appsearch.after_update.call(null, self__.query);
@@ -48935,29 +48951,29 @@ floor16.appsearch.extended_filter = function extended_filter(query, owner, opts)
       new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "className", "className", 1004015509), "clearfix", new cljs.core.Keyword(null, "item-class", "item-class", 1910395312), "small", new cljs.core.Keyword(null, "after-update", "after-update", 4410540364), after_update, new cljs.core.Keyword(null, "items", "items", 1114430258), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, 
       "id", "id", 1013907597), new cljs.core.Keyword(null, "not-only-russo", "not-only-russo", 630581815)], null), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "id", "id", 1013907597), new cljs.core.Keyword(null, "only-russo", "only-russo", 4375124733)], null)], null)], null)], null)), new cljs.core.Keyword(null, "caption", "caption", 1566477656), floor16.lang.l.call(null, new cljs.core.Keyword(null, "restrictions", "restrictions", 4160575897))], null)], null))));
     };
-    floor16.appsearch.t118789.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118791) {
+    floor16.appsearch.t128057.prototype.cljs$core$IMeta$_meta$arity$1 = function(_128059) {
       var self__ = this;
-      var _118791__$1 = this;
-      return self__.meta118790;
+      var _128059__$1 = this;
+      return self__.meta128058;
     };
-    floor16.appsearch.t118789.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118791, meta118790__$1) {
+    floor16.appsearch.t128057.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_128059, meta128058__$1) {
       var self__ = this;
-      var _118791__$1 = this;
-      return new floor16.appsearch.t118789(self__.opts, self__.owner, self__.query, self__.extended_filter, meta118790__$1);
+      var _128059__$1 = this;
+      return new floor16.appsearch.t128057(self__.opts, self__.owner, self__.query, self__.extended_filter, meta128058__$1);
     };
-    floor16.appsearch.__GT_t118789 = function __GT_t118789(opts__$1, owner__$1, query__$1, extended_filter__$1, meta118790) {
-      return new floor16.appsearch.t118789(opts__$1, owner__$1, query__$1, extended_filter__$1, meta118790);
+    floor16.appsearch.__GT_t128057 = function __GT_t128057(opts__$1, owner__$1, query__$1, extended_filter__$1, meta128058) {
+      return new floor16.appsearch.t128057(opts__$1, owner__$1, query__$1, extended_filter__$1, meta128058);
     };
   }
-  return new floor16.appsearch.t118789(opts, owner, query, extended_filter, null);
+  return new floor16.appsearch.t128057(opts, owner, query, extended_filter, null);
 };
-floor16.appsearch.compose_title = function compose_title(p__118792, area_or_photo_kw) {
-  var map__118794 = p__118792;
-  var map__118794__$1 = cljs.core.seq_QMARK_.call(null, map__118794) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118794) : map__118794;
-  var item = map__118794__$1;
-  var imgs_cnt = cljs.core.get.call(null, map__118794__$1, new cljs.core.Keyword(null, "imgs-cnt", "imgs-cnt", 4630463134));
-  var total_area = cljs.core.get.call(null, map__118794__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
-  var appartment_type = cljs.core.get.call(null, map__118794__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
+floor16.appsearch.compose_title = function compose_title(p__128060, area_or_photo_kw) {
+  var map__128062 = p__128060;
+  var map__128062__$1 = cljs.core.seq_QMARK_.call(null, map__128062) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128062) : map__128062;
+  var item = map__128062__$1;
+  var imgs_cnt = cljs.core.get.call(null, map__128062__$1, new cljs.core.Keyword(null, "imgs-cnt", "imgs-cnt", 4630463134));
+  var total_area = cljs.core.get.call(null, map__128062__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
+  var appartment_type = cljs.core.get.call(null, map__128062__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
   return[cljs.core.str("\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043a \u043e\u0431\u044a\u044f\u0432\u043b\u0435\u043d\u0438\u044e: \u0441\u0434\u0430\u0435\u0442\u0441\u044f "), cljs.core.str(appartment_type), cljs.core.str(cljs.core.truth_(function() {
     var and__3431__auto__ = cljs.core._EQ_.call(null, new cljs.core.Keyword(null, "area", "area", 1016906751), area_or_photo_kw);
     if (and__3431__auto__) {
@@ -48979,39 +48995,39 @@ floor16.appsearch.compose_title = function compose_title(p__118792, area_or_phot
     }
   }()) ? [cljs.core.str(" "), cljs.core.str(imgs_cnt), cljs.core.str(" \u0444\u043e\u0442\u043e")].join("") : null), cljs.core.str("...")].join("");
 };
-floor16.appsearch.compose_str = function compose_str(p__118795) {
-  var map__118797 = p__118795;
-  var map__118797__$1 = cljs.core.seq_QMARK_.call(null, map__118797) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118797) : map__118797;
-  var item = map__118797__$1;
-  var floors = cljs.core.get.call(null, map__118797__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
-  var floor = cljs.core.get.call(null, map__118797__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
-  var total_area = cljs.core.get.call(null, map__118797__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
-  var appartment_type = cljs.core.get.call(null, map__118797__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
+floor16.appsearch.compose_str = function compose_str(p__128063) {
+  var map__128065 = p__128063;
+  var map__128065__$1 = cljs.core.seq_QMARK_.call(null, map__128065) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128065) : map__128065;
+  var item = map__128065__$1;
+  var floors = cljs.core.get.call(null, map__128065__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
+  var floor = cljs.core.get.call(null, map__128065__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
+  var total_area = cljs.core.get.call(null, map__128065__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
+  var appartment_type = cljs.core.get.call(null, map__128065__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
   return[cljs.core.str("\u0421\u0434\u0430\u0435\u0442\u0441\u044f "), cljs.core.str(appartment_type), cljs.core.str(cljs.core.truth_(total_area) ? [cljs.core.str(" "), cljs.core.str(total_area), cljs.core.str("\u043a\u0432.\u043c. ")].join("") : null), cljs.core.str(cljs.core.truth_(floor) ? [cljs.core.str("\u043d\u0430 "), cljs.core.str(floor), cljs.core.str("-\u043c \u044d\u0442\u0430\u0436\u0435 ")].join("") : null), cljs.core.str(cljs.core.truth_(floors) ? [cljs.core.str(" "), cljs.core.str(floors), 
   cljs.core.str(floor16.lang.ru_floor_ending.call(null, floors)), cljs.core.str(" "), cljs.core.str(cljs.core.truth_(floor) ? "\u044d\u0442\u0430\u0436\u043d\u043e\u0433\u043e \u0434\u043e\u043c\u0430" : "\u044d\u0442\u0430\u0436\u043d\u043e\u043c \u0434\u043e\u043c\u0435")].join("") : null)].join("");
 };
-floor16.appsearch.render_metdis = function render_metdis(p__118798, className) {
-  var map__118800 = p__118798;
-  var map__118800__$1 = cljs.core.seq_QMARK_.call(null, map__118800) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118800) : map__118800;
-  var item = map__118800__$1;
-  var district = cljs.core.get.call(null, map__118800__$1, new cljs.core.Keyword(null, "district", "district", 1302865664));
-  var distance = cljs.core.get.call(null, map__118800__$1, new cljs.core.Keyword(null, "distance", "distance", 1302364007));
-  var metro = cljs.core.get.call(null, map__118800__$1, new cljs.core.Keyword(null, "metro", "metro", 1117692043));
+floor16.appsearch.render_metdis = function render_metdis(p__128066, className) {
+  var map__128068 = p__128066;
+  var map__128068__$1 = cljs.core.seq_QMARK_.call(null, map__128068) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128068) : map__128068;
+  var item = map__128068__$1;
+  var district = cljs.core.get.call(null, map__128068__$1, new cljs.core.Keyword(null, "district", "district", 1302865664));
+  var distance = cljs.core.get.call(null, map__128068__$1, new cljs.core.Keyword(null, "distance", "distance", 1302364007));
+  var metro = cljs.core.get.call(null, map__128068__$1, new cljs.core.Keyword(null, "metro", "metro", 1117692043));
   return React.DOM.span({"className":className}, cljs.core.truth_(metro) ? React.DOM.strong({"className":"metro"}, React.DOM.i(null), metro) : null, cljs.core.truth_(metro) ? React.DOM.span({"title":floor16.lang.l.call(null, new cljs.core.Keyword(null, "walking", "walking", 2132719851)), "className":"distance"}, [cljs.core.str("(\u223c"), cljs.core.str(distance), cljs.core.str(" \u043c\u0438\u043d.) ")].join("")) : null, cljs.core.truth_(district) ? React.DOM.strong({"className":"district"}, React.DOM.i(null), 
   district) : null);
 };
-floor16.appsearch.compose_digest = function compose_digest(p__118801) {
-  var map__118803 = p__118801;
-  var map__118803__$1 = cljs.core.seq_QMARK_.call(null, map__118803) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118803) : map__118803;
-  var item = map__118803__$1;
-  var district = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "district", "district", 1302865664));
-  var distance = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "distance", "distance", 1302364007));
-  var metro = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "metro", "metro", 1117692043));
-  var building_type = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "building-type", "building-type", 587801125));
-  var floors = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
-  var floor = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
-  var total_area = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
-  var appartment_type = cljs.core.get.call(null, map__118803__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
+floor16.appsearch.compose_digest = function compose_digest(p__128069) {
+  var map__128071 = p__128069;
+  var map__128071__$1 = cljs.core.seq_QMARK_.call(null, map__128071) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128071) : map__128071;
+  var item = map__128071__$1;
+  var district = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "district", "district", 1302865664));
+  var distance = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "distance", "distance", 1302364007));
+  var metro = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "metro", "metro", 1117692043));
+  var building_type = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "building-type", "building-type", 587801125));
+  var floors = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
+  var floor = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
+  var total_area = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
+  var appartment_type = cljs.core.get.call(null, map__128071__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
   return React.DOM.span({"className":"digest"}, React.DOM.span({"className":"first-line six columns"}, React.DOM.span(null, "\u0421\u0434\u0430\u0435\u0442\u0441\u044f "), React.DOM.strong(null, appartment_type), cljs.core.truth_(total_area) ? React.DOM.strong(null, " ", total_area, "\u043c", React.DOM.sup(null, 2), " ") : null), React.DOM.span({"className":"second-line six columns"}, cljs.core.truth_(floor) ? React.DOM.span(null, "\u043d\u0430 ", React.DOM.strong(null, floor), "-\u043c \u044d\u0442\u0430\u0436\u0435 ") : 
   null, cljs.core.truth_(function() {
     var and__3431__auto__ = cljs.core.not.call(null, floor);
@@ -49035,97 +49051,97 @@ floor16.appsearch.compose_digest = function compose_digest(p__118801) {
     }
   }()) ? cljs.core.truth_(floor) ? "\u0434\u043e\u043c\u0430 " : "\u0434\u043e\u043c\u0435 " : null), floor16.appsearch.render_metdis.call(null, item, "third-line six columns"));
 };
-floor16.appsearch.get_add_fields = function get_add_fields(p__118805, has) {
-  var map__118807 = p__118805;
-  var map__118807__$1 = cljs.core.seq_QMARK_.call(null, map__118807) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118807) : map__118807;
-  var item = map__118807__$1;
-  var bow_window = cljs.core.get.call(null, map__118807__$1, new cljs.core.Keyword(null, "bow-window", "bow-window", 1902675141));
-  var loggia = cljs.core.get.call(null, map__118807__$1, new cljs.core.Keyword(null, "loggia", "loggia", 4211534189));
-  var balcony = cljs.core.get.call(null, map__118807__$1, new cljs.core.Keyword(null, "balcony", "balcony", 674779190));
+floor16.appsearch.get_add_fields = function get_add_fields(p__128073, has) {
+  var map__128075 = p__128073;
+  var map__128075__$1 = cljs.core.seq_QMARK_.call(null, map__128075) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128075) : map__128075;
+  var item = map__128075__$1;
+  var bow_window = cljs.core.get.call(null, map__128075__$1, new cljs.core.Keyword(null, "bow-window", "bow-window", 1902675141));
+  var loggia = cljs.core.get.call(null, map__128075__$1, new cljs.core.Keyword(null, "loggia", "loggia", 4211534189));
+  var balcony = cljs.core.get.call(null, map__128075__$1, new cljs.core.Keyword(null, "balcony", "balcony", 674779190));
   var src = new cljs.core.PersistentVector(null, 16, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "balcony", "balcony", 674779190), new cljs.core.Keyword(null, "loggia", "loggia", 4211534189), new cljs.core.Keyword(null, "bow-window", "bow-window", 1902675141), new cljs.core.Keyword(null, "furniture", "furniture", 4728441700), new cljs.core.Keyword(null, "internet", "internet", 1584315059), new cljs.core.Keyword(null, "tv", "tv", 1013907956), new cljs.core.Keyword(null, 
   "frige", "frige", 1111603757), new cljs.core.Keyword(null, "washer", "washer", 4513883902), new cljs.core.Keyword(null, "conditioner", "conditioner", 2222035578), new cljs.core.Keyword(null, "parking", "parking", 4515669802), new cljs.core.Keyword(null, "intercom", "intercom", 1584304791), new cljs.core.Keyword(null, "security", "security", 1963027122), new cljs.core.Keyword(null, "concierge", "concierge", 4418492197), new cljs.core.Keyword(null, "kids", "kids", 1017195999), new cljs.core.Keyword(null, 
   "pets", "pets", 1017341606), new cljs.core.Keyword(null, "addiction", "addiction", 1628959361)], null);
-  return cljs.core.vec.call(null, cljs.core.filter.call(null, function(p1__118804_SHARP_) {
-    return cljs.core._EQ_.call(null, has, p1__118804_SHARP_.call(null, item));
+  return cljs.core.vec.call(null, cljs.core.filter.call(null, function(p1__128072_SHARP_) {
+    return cljs.core._EQ_.call(null, has, p1__128072_SHARP_.call(null, item));
   }, src));
 };
 floor16.appsearch.render_has = function() {
-  var render_has__delegate = function(item, has, p__118809) {
-    var vec__118811 = p__118809;
-    var no_label = cljs.core.nth.call(null, vec__118811, 0, null);
+  var render_has__delegate = function(item, has, p__128077) {
+    var vec__128079 = p__128077;
+    var no_label = cljs.core.nth.call(null, vec__128079, 0, null);
     var fields = floor16.appsearch.get_add_fields.call(null, item, has);
     if (cljs.core.seq.call(null, fields)) {
       return cljs.core.apply.call(null, om.dom.span, {"className":cljs.core.truth_(has) ? "has" : "hasnt"}, cljs.core.concat.call(null, cljs.core.truth_(no_label) ? null : new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [React.DOM.span({"key":"lbl", "className":"lbl"}, floor16.lang.l.call(null, cljs.core.truth_(has) ? new cljs.core.Keyword(null, "has", "has", 1014007308) : new cljs.core.Keyword(null, "hasnt", "hasnt", 1112954194)))], null), cljs.core.map.call(null, 
-      function(p1__118808_SHARP_) {
-        return React.DOM.i({"key":cljs.core.name.call(null, p1__118808_SHARP_), "title":cljs.core.not.call(null, has) && (cljs.core._EQ_.call(null, p1__118808_SHARP_, new cljs.core.Keyword(null, "kids", "kids", 1017195999)) || cljs.core._EQ_.call(null, p1__118808_SHARP_, new cljs.core.Keyword(null, "pets", "pets", 1017341606))) ? floor16.lang.l.call(null, cljs.core.keyword.call(null, [cljs.core.str("no-"), cljs.core.str(cljs.core.name.call(null, p1__118808_SHARP_))].join(""))) : floor16.lang.l.call(null, 
-        p1__118808_SHARP_), "className":[cljs.core.str("icon "), cljs.core.str(cljs.core.name.call(null, p1__118808_SHARP_))].join("")});
+      function(p1__128076_SHARP_) {
+        return React.DOM.i({"key":cljs.core.name.call(null, p1__128076_SHARP_), "title":cljs.core.not.call(null, has) && (cljs.core._EQ_.call(null, p1__128076_SHARP_, new cljs.core.Keyword(null, "kids", "kids", 1017195999)) || cljs.core._EQ_.call(null, p1__128076_SHARP_, new cljs.core.Keyword(null, "pets", "pets", 1017341606))) ? floor16.lang.l.call(null, cljs.core.keyword.call(null, [cljs.core.str("no-"), cljs.core.str(cljs.core.name.call(null, p1__128076_SHARP_))].join(""))) : floor16.lang.l.call(null, 
+        p1__128076_SHARP_), "className":[cljs.core.str("icon "), cljs.core.str(cljs.core.name.call(null, p1__128076_SHARP_))].join("")});
       }, fields)));
     } else {
       return "";
     }
   };
   var render_has = function(item, has, var_args) {
-    var p__118809 = null;
+    var p__128077 = null;
     if (arguments.length > 2) {
-      p__118809 = cljs.core.array_seq(Array.prototype.slice.call(arguments, 2), 0);
+      p__128077 = cljs.core.array_seq(Array.prototype.slice.call(arguments, 2), 0);
     }
-    return render_has__delegate.call(this, item, has, p__118809);
+    return render_has__delegate.call(this, item, has, p__128077);
   };
   render_has.cljs$lang$maxFixedArity = 2;
-  render_has.cljs$lang$applyTo = function(arglist__118812) {
-    var item = cljs.core.first(arglist__118812);
-    arglist__118812 = cljs.core.next(arglist__118812);
-    var has = cljs.core.first(arglist__118812);
-    var p__118809 = cljs.core.rest(arglist__118812);
-    return render_has__delegate(item, has, p__118809);
+  render_has.cljs$lang$applyTo = function(arglist__128080) {
+    var item = cljs.core.first(arglist__128080);
+    arglist__128080 = cljs.core.next(arglist__128080);
+    var has = cljs.core.first(arglist__128080);
+    var p__128077 = cljs.core.rest(arglist__128080);
+    return render_has__delegate(item, has, p__128077);
   };
   render_has.cljs$core$IFn$_invoke$arity$variadic = render_has__delegate;
   return render_has;
 }();
-floor16.appsearch.get_time_text = function get_time_text(p__118813) {
-  var map__118815 = p__118813;
-  var map__118815__$1 = cljs.core.seq_QMARK_.call(null, map__118815) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118815) : map__118815;
-  var item = map__118815__$1;
-  var created = cljs.core.get.call(null, map__118815__$1, new cljs.core.Keyword(null, "created", "created", 2042458714));
+floor16.appsearch.get_time_text = function get_time_text(p__128081) {
+  var map__128083 = p__128081;
+  var map__128083__$1 = cljs.core.seq_QMARK_.call(null, map__128083) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128083) : map__128083;
+  var item = map__128083__$1;
+  var created = cljs.core.get.call(null, map__128083__$1, new cljs.core.Keyword(null, "created", "created", 2042458714));
   return created;
 };
-floor16.appsearch.phone_button = function phone_button(p__118816, owner, p__118817) {
-  var map__118823 = p__118816;
-  var map__118823__$1 = cljs.core.seq_QMARK_.call(null, map__118823) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118823) : map__118823;
-  var cursor = map__118823__$1;
-  var phone = cljs.core.get.call(null, map__118823__$1, new cljs.core.Keyword(null, "phone", "phone", 1120547040));
-  var seoid = cljs.core.get.call(null, map__118823__$1, new cljs.core.Keyword(null, "seoid", "seoid", 1123228074));
-  var map__118824 = p__118817;
-  var map__118824__$1 = cljs.core.seq_QMARK_.call(null, map__118824) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118824) : map__118824;
-  var opts = map__118824__$1;
-  var title = cljs.core.get.call(null, map__118824__$1, new cljs.core.Keyword(null, "title", "title", 1124275658), floor16.lang.l.call(null, new cljs.core.Keyword(null, "phone-button", "phone-button", 2927685603)));
-  var className = cljs.core.get.call(null, map__118824__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
-  if (typeof floor16.appsearch.t118825 !== "undefined") {
+floor16.appsearch.phone_button = function phone_button(p__128084, owner, p__128085) {
+  var map__128091 = p__128084;
+  var map__128091__$1 = cljs.core.seq_QMARK_.call(null, map__128091) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128091) : map__128091;
+  var cursor = map__128091__$1;
+  var phone = cljs.core.get.call(null, map__128091__$1, new cljs.core.Keyword(null, "phone", "phone", 1120547040));
+  var seoid = cljs.core.get.call(null, map__128091__$1, new cljs.core.Keyword(null, "seoid", "seoid", 1123228074));
+  var map__128092 = p__128085;
+  var map__128092__$1 = cljs.core.seq_QMARK_.call(null, map__128092) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128092) : map__128092;
+  var opts = map__128092__$1;
+  var title = cljs.core.get.call(null, map__128092__$1, new cljs.core.Keyword(null, "title", "title", 1124275658), floor16.lang.l.call(null, new cljs.core.Keyword(null, "phone-button", "phone-button", 2927685603)));
+  var className = cljs.core.get.call(null, map__128092__$1, new cljs.core.Keyword(null, "className", "className", 1004015509));
+  if (typeof floor16.appsearch.t128093 !== "undefined") {
   } else {
-    floor16.appsearch.t118825 = function(opts, className, phone_button, p__118817, p__118816, owner, title, cursor, phone, map__118823, map__118824, seoid, meta118826) {
+    floor16.appsearch.t128093 = function(opts, className, phone_button, p__128085, owner, title, p__128084, cursor, map__128091, map__128092, phone, seoid, meta128094) {
       this.opts = opts;
       this.className = className;
       this.phone_button = phone_button;
-      this.p__118817 = p__118817;
-      this.p__118816 = p__118816;
+      this.p__128085 = p__128085;
       this.owner = owner;
       this.title = title;
+      this.p__128084 = p__128084;
       this.cursor = cursor;
+      this.map__128091 = map__128091;
+      this.map__128092 = map__128092;
       this.phone = phone;
-      this.map__118823 = map__118823;
-      this.map__118824 = map__118824;
       this.seoid = seoid;
-      this.meta118826 = meta118826;
+      this.meta128094 = meta128094;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.appsearch.t118825.cljs$lang$type = true;
-    floor16.appsearch.t118825.cljs$lang$ctorStr = "floor16.appsearch/t118825";
-    floor16.appsearch.t118825.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t118825");
+    floor16.appsearch.t128093.cljs$lang$type = true;
+    floor16.appsearch.t128093.cljs$lang$ctorStr = "floor16.appsearch/t128093";
+    floor16.appsearch.t128093.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t128093");
     };
-    floor16.appsearch.t118825.prototype.om$core$IRender$ = true;
-    floor16.appsearch.t118825.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.appsearch.t128093.prototype.om$core$IRender$ = true;
+    floor16.appsearch.t128093.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       var response_handler = function(x) {
@@ -49143,75 +49159,75 @@ floor16.appsearch.phone_button = function phone_button(p__118816, owner, p__1188
         }, "className":[cljs.core.str("show-phone "), cljs.core.str(self__.className)].join("")}, self__.title);
       }
     };
-    floor16.appsearch.t118825.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118827) {
+    floor16.appsearch.t128093.prototype.cljs$core$IMeta$_meta$arity$1 = function(_128095) {
       var self__ = this;
-      var _118827__$1 = this;
-      return self__.meta118826;
+      var _128095__$1 = this;
+      return self__.meta128094;
     };
-    floor16.appsearch.t118825.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118827, meta118826__$1) {
+    floor16.appsearch.t128093.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_128095, meta128094__$1) {
       var self__ = this;
-      var _118827__$1 = this;
-      return new floor16.appsearch.t118825(self__.opts, self__.className, self__.phone_button, self__.p__118817, self__.p__118816, self__.owner, self__.title, self__.cursor, self__.phone, self__.map__118823, self__.map__118824, self__.seoid, meta118826__$1);
+      var _128095__$1 = this;
+      return new floor16.appsearch.t128093(self__.opts, self__.className, self__.phone_button, self__.p__128085, self__.owner, self__.title, self__.p__128084, self__.cursor, self__.map__128091, self__.map__128092, self__.phone, self__.seoid, meta128094__$1);
     };
-    floor16.appsearch.__GT_t118825 = function __GT_t118825(opts__$1, className__$1, phone_button__$1, p__118817__$1, p__118816__$1, owner__$1, title__$1, cursor__$1, phone__$1, map__118823__$2, map__118824__$2, seoid__$1, meta118826) {
-      return new floor16.appsearch.t118825(opts__$1, className__$1, phone_button__$1, p__118817__$1, p__118816__$1, owner__$1, title__$1, cursor__$1, phone__$1, map__118823__$2, map__118824__$2, seoid__$1, meta118826);
+    floor16.appsearch.__GT_t128093 = function __GT_t128093(opts__$1, className__$1, phone_button__$1, p__128085__$1, owner__$1, title__$1, p__128084__$1, cursor__$1, map__128091__$2, map__128092__$2, phone__$1, seoid__$1, meta128094) {
+      return new floor16.appsearch.t128093(opts__$1, className__$1, phone_button__$1, p__128085__$1, owner__$1, title__$1, p__128084__$1, cursor__$1, map__128091__$2, map__128092__$2, phone__$1, seoid__$1, meta128094);
     };
   }
-  return new floor16.appsearch.t118825(opts, className, phone_button, p__118817, p__118816, owner, title, cursor, phone, map__118823__$1, map__118824__$1, seoid, null);
+  return new floor16.appsearch.t128093(opts, className, phone_button, p__128085, owner, title, p__128084, cursor, map__128091__$1, map__128092__$1, phone, seoid, null);
 };
 floor16.appsearch.render_price = function() {
-  var render_price__delegate = function(p__118828, p__118829) {
-    var map__118832 = p__118828;
-    var map__118832__$1 = cljs.core.seq_QMARK_.call(null, map__118832) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118832) : map__118832;
-    var item = map__118832__$1;
-    var plus_utilities = cljs.core.get.call(null, map__118832__$1, new cljs.core.Keyword(null, "plus-utilities", "plus-utilities", 1251631625));
-    var deposit = cljs.core.get.call(null, map__118832__$1, new cljs.core.Keyword(null, "deposit", "deposit", 2568358416));
-    var price = cljs.core.get.call(null, map__118832__$1, new cljs.core.Keyword(null, "price", "price", 1120838843));
-    var vec__118833 = p__118829;
-    var className = cljs.core.nth.call(null, vec__118833, 0, null);
+  var render_price__delegate = function(p__128096, p__128097) {
+    var map__128100 = p__128096;
+    var map__128100__$1 = cljs.core.seq_QMARK_.call(null, map__128100) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128100) : map__128100;
+    var item = map__128100__$1;
+    var plus_utilities = cljs.core.get.call(null, map__128100__$1, new cljs.core.Keyword(null, "plus-utilities", "plus-utilities", 1251631625));
+    var deposit = cljs.core.get.call(null, map__128100__$1, new cljs.core.Keyword(null, "deposit", "deposit", 2568358416));
+    var price = cljs.core.get.call(null, map__128100__$1, new cljs.core.Keyword(null, "price", "price", 1120838843));
+    var vec__128101 = p__128097;
+    var className = cljs.core.nth.call(null, vec__128101, 0, null);
     return React.DOM.span({"className":[cljs.core.str(cljs.core.truth_(price) ? null : "no "), cljs.core.str("price "), cljs.core.str(className)].join("")}, cljs.core.truth_(price) ? React.DOM.span({"className":"val"}, floor16.global.price_to_str.call(null, price)) : null, cljs.core.truth_(price) ? React.DOM.span({"className":"cur"}, floor16.lang.l.call(null, new cljs.core.Keyword(null, "rub", "rub", 1014017521))) : null, cljs.core.truth_(price) ? null : floor16.lang.l.call(null, new cljs.core.Keyword(null, 
     "no-price", "no-price", 573419951)));
   };
-  var render_price = function(p__118828, var_args) {
-    var p__118829 = null;
+  var render_price = function(p__128096, var_args) {
+    var p__128097 = null;
     if (arguments.length > 1) {
-      p__118829 = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0);
+      p__128097 = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0);
     }
-    return render_price__delegate.call(this, p__118828, p__118829);
+    return render_price__delegate.call(this, p__128096, p__128097);
   };
   render_price.cljs$lang$maxFixedArity = 1;
-  render_price.cljs$lang$applyTo = function(arglist__118834) {
-    var p__118828 = cljs.core.first(arglist__118834);
-    var p__118829 = cljs.core.rest(arglist__118834);
-    return render_price__delegate(p__118828, p__118829);
+  render_price.cljs$lang$applyTo = function(arglist__128102) {
+    var p__128096 = cljs.core.first(arglist__128102);
+    var p__128097 = cljs.core.rest(arglist__128102);
+    return render_price__delegate(p__128096, p__128097);
   };
   render_price.cljs$core$IFn$_invoke$arity$variadic = render_price__delegate;
   return render_price;
 }();
-floor16.appsearch.ad_item_view = function ad_item_view(p__118835, owner, opts) {
-  var map__118837 = p__118835;
-  var map__118837__$1 = cljs.core.seq_QMARK_.call(null, map__118837) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118837) : map__118837;
-  var item = map__118837__$1;
-  var price = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "price", "price", 1120838843));
-  var address = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "address", "address", 4161179494));
-  var description = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "description", "description", 3584325486));
-  var imgs_cnt = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "imgs-cnt", "imgs-cnt", 4630463134));
-  var plus_utilities = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "plus-utilities", "plus-utilities", 1251631625));
-  var floor = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
-  var floors = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
-  var thumb = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "thumb", "thumb", 1124246856));
-  var deposit = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "deposit", "deposit", 2568358416));
-  var seoid = cljs.core.get.call(null, map__118837__$1, new cljs.core.Keyword(null, "seoid", "seoid", 1123228074));
+floor16.appsearch.ad_item_view = function ad_item_view(p__128103, owner, opts) {
+  var map__128105 = p__128103;
+  var map__128105__$1 = cljs.core.seq_QMARK_.call(null, map__128105) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128105) : map__128105;
+  var item = map__128105__$1;
+  var price = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "price", "price", 1120838843));
+  var address = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "address", "address", 4161179494));
+  var description = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "description", "description", 3584325486));
+  var imgs_cnt = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "imgs-cnt", "imgs-cnt", 4630463134));
+  var plus_utilities = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "plus-utilities", "plus-utilities", 1251631625));
+  var floor = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
+  var floors = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
+  var thumb = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "thumb", "thumb", 1124246856));
+  var deposit = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "deposit", "deposit", 2568358416));
+  var seoid = cljs.core.get.call(null, map__128105__$1, new cljs.core.Keyword(null, "seoid", "seoid", 1123228074));
   var url = floor16.navigation.url_to.call(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "mode", "mode", 1017261333), new cljs.core.Keyword(null, "ad", "ad", 1013907349), new cljs.core.Keyword(null, "url-params", "url-params", 3432736534), item], null));
   var title = floor16.appsearch.compose_title.call(null, item, new cljs.core.Keyword(null, "area", "area", 1016906751));
   var link_handler = function(url, title) {
     return function(e) {
       if (cljs.core._EQ_.call(null, 0, e.button)) {
         floor16.navigation.goto$.call(null, url);
-        var temp__4090__auto___118838 = document.getElementById("ad");
-        if (cljs.core.truth_(temp__4090__auto___118838)) {
-          var n_118839 = temp__4090__auto___118838;
-          window.scrollTo(0, n_118839.offsetTop);
+        var temp__4090__auto___128106 = document.getElementById("ad");
+        if (cljs.core.truth_(temp__4090__auto___128106)) {
+          var n_128107 = temp__4090__auto___128106;
+          window.scrollTo(0, n_128107.offsetTop);
         } else {
           window.scrollTo(0, 0);
         }
@@ -49232,12 +49248,12 @@ floor16.appsearch.ad_item_view = function ad_item_view(p__118835, owner, opts) {
   ""), React.DOM.div({"className":"price-details"}, cljs.core.truth_(price) ? [cljs.core.str(cljs.core.truth_(deposit) ? "+ \u0434\u0435\u043f\u043e\u0437\u0438\u0442 " : null), cljs.core.str(cljs.core.truth_(plus_utilities) ? "+ \u043a\u043e\u043c.\u043f\u043b\u0430\u0442\u0435\u0436\u0438" : null)].join("") : null), om.core.build.call(null, floor16.appsearch.phone_button, item, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 
   1, [new cljs.core.Keyword(null, "className", "className", 1004015509), "three columns"], null)], null))), React.DOM.span({"className":"additionals offset-by-two nine columns"}, React.DOM.span({"className":"icons"}, floor16.appsearch.render_has.call(null, item, true), floor16.appsearch.render_has.call(null, item, false))));
 };
-floor16.appsearch.compose_areas = function compose_areas(p__118840) {
-  var map__118842 = p__118840;
-  var map__118842__$1 = cljs.core.seq_QMARK_.call(null, map__118842) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118842) : map__118842;
-  var kitchen_area = cljs.core.get.call(null, map__118842__$1, new cljs.core.Keyword(null, "kitchen-area", "kitchen-area", 1575433352));
-  var living_area = cljs.core.get.call(null, map__118842__$1, new cljs.core.Keyword(null, "living-area", "living-area", 2672354467));
-  var total_area = cljs.core.get.call(null, map__118842__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
+floor16.appsearch.compose_areas = function compose_areas(p__128108) {
+  var map__128110 = p__128108;
+  var map__128110__$1 = cljs.core.seq_QMARK_.call(null, map__128110) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128110) : map__128110;
+  var kitchen_area = cljs.core.get.call(null, map__128110__$1, new cljs.core.Keyword(null, "kitchen-area", "kitchen-area", 1575433352));
+  var living_area = cljs.core.get.call(null, map__128110__$1, new cljs.core.Keyword(null, "living-area", "living-area", 2672354467));
+  var total_area = cljs.core.get.call(null, map__128110__$1, new cljs.core.Keyword(null, "total-area", "total-area", 4556748008));
   if (cljs.core.truth_(function() {
     var and__3431__auto__ = total_area;
     if (cljs.core.truth_(and__3431__auto__)) {
@@ -49293,11 +49309,11 @@ floor16.appsearch.compose_areas = function compose_areas(p__118840) {
     }
   }
 };
-floor16.appsearch.compose_floors = function compose_floors(p__118843) {
-  var map__118845 = p__118843;
-  var map__118845__$1 = cljs.core.seq_QMARK_.call(null, map__118845) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118845) : map__118845;
-  var floors = cljs.core.get.call(null, map__118845__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
-  var floor = cljs.core.get.call(null, map__118845__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
+floor16.appsearch.compose_floors = function compose_floors(p__128111) {
+  var map__128113 = p__128111;
+  var map__128113__$1 = cljs.core.seq_QMARK_.call(null, map__128113) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128113) : map__128113;
+  var floors = cljs.core.get.call(null, map__128113__$1, new cljs.core.Keyword(null, "floors", "floors", 4037235033));
+  var floor = cljs.core.get.call(null, map__128113__$1, new cljs.core.Keyword(null, "floor", "floor", 1111431038));
   if (cljs.core.truth_(function() {
     var and__3431__auto__ = floor;
     if (cljs.core.truth_(and__3431__auto__)) {
@@ -49320,15 +49336,15 @@ floor16.appsearch.compose_floors = function compose_floors(p__118843) {
   }
 };
 floor16.appsearch.render_props = function() {
-  var render_props__delegate = function(p__118846, p__118847) {
-    var map__118850 = p__118846;
-    var map__118850__$1 = cljs.core.seq_QMARK_.call(null, map__118850) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118850) : map__118850;
-    var cursor = map__118850__$1;
-    var person_name = cljs.core.get.call(null, map__118850__$1, new cljs.core.Keyword(null, "person-name", "person-name", 541966709));
-    var toilet = cljs.core.get.call(null, map__118850__$1, new cljs.core.Keyword(null, "toilet", "toilet", 4440631679));
-    var building_type = cljs.core.get.call(null, map__118850__$1, new cljs.core.Keyword(null, "building-type", "building-type", 587801125));
-    var vec__118851 = p__118847;
-    var className = cljs.core.nth.call(null, vec__118851, 0, null);
+  var render_props__delegate = function(p__128114, p__128115) {
+    var map__128118 = p__128114;
+    var map__128118__$1 = cljs.core.seq_QMARK_.call(null, map__128118) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128118) : map__128118;
+    var cursor = map__128118__$1;
+    var person_name = cljs.core.get.call(null, map__128118__$1, new cljs.core.Keyword(null, "person-name", "person-name", 541966709));
+    var toilet = cljs.core.get.call(null, map__128118__$1, new cljs.core.Keyword(null, "toilet", "toilet", 4440631679));
+    var building_type = cljs.core.get.call(null, map__128118__$1, new cljs.core.Keyword(null, "building-type", "building-type", 587801125));
+    var vec__128119 = p__128115;
+    var className = cljs.core.nth.call(null, vec__128119, 0, null);
     var areas = floor16.appsearch.compose_areas.call(null, cursor);
     var floors = floor16.appsearch.compose_floors.call(null, cursor);
     var has = floor16.appsearch.get_add_fields.call(null, cursor, true);
@@ -49338,74 +49354,74 @@ floor16.appsearch.render_props = function() {
     React.DOM.td(null, toilet)) : null, cljs.core.seq.call(null, has) || cljs.core.seq.call(null, hasnt) ? React.DOM.tr({"className":"break"}, React.DOM.td(null)) : null, cljs.core.seq.call(null, has) ? React.DOM.tr(null, React.DOM.td({"className":"key"}, floor16.lang.l.call(null, new cljs.core.Keyword(null, "has", "has", 1014007308))), React.DOM.td(null, floor16.appsearch.render_has.call(null, cursor, true, true))) : null, cljs.core.seq.call(null, hasnt) ? React.DOM.tr(null, React.DOM.td({"className":"key"}, 
     floor16.lang.l.call(null, new cljs.core.Keyword(null, "hasnt", "hasnt", 1112954194))), React.DOM.td(null, floor16.appsearch.render_has.call(null, cursor, false, true))) : null, cljs.core.truth_(person_name) ? React.DOM.tr({"className":"break"}, React.DOM.td(null)) : null, cljs.core.truth_(person_name) ? React.DOM.tr(null, React.DOM.td({"className":"key"}, floor16.lang.l.call(null, new cljs.core.Keyword(null, "person-name", "person-name", 541966709))), React.DOM.td(null, person_name)) : null));
   };
-  var render_props = function(p__118846, var_args) {
-    var p__118847 = null;
+  var render_props = function(p__128114, var_args) {
+    var p__128115 = null;
     if (arguments.length > 1) {
-      p__118847 = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0);
+      p__128115 = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0);
     }
-    return render_props__delegate.call(this, p__118846, p__118847);
+    return render_props__delegate.call(this, p__128114, p__128115);
   };
   render_props.cljs$lang$maxFixedArity = 1;
-  render_props.cljs$lang$applyTo = function(arglist__118852) {
-    var p__118846 = cljs.core.first(arglist__118852);
-    var p__118847 = cljs.core.rest(arglist__118852);
-    return render_props__delegate(p__118846, p__118847);
+  render_props.cljs$lang$applyTo = function(arglist__128120) {
+    var p__128114 = cljs.core.first(arglist__128120);
+    var p__128115 = cljs.core.rest(arglist__128120);
+    return render_props__delegate(p__128114, p__128115);
   };
   render_props.cljs$core$IFn$_invoke$arity$variadic = render_props__delegate;
   return render_props;
 }();
-floor16.appsearch.ad_view = function ad_view(p__118853, owner) {
-  var map__118859 = p__118853;
-  var map__118859__$1 = cljs.core.seq_QMARK_.call(null, map__118859) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118859) : map__118859;
-  var cursor = map__118859__$1;
-  var current = cljs.core.get.call(null, map__118859__$1, new cljs.core.Keyword(null, "current", "current", 2140844267));
-  var query = cljs.core.get.call(null, map__118859__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
-  var map__118860 = (new cljs.core.Keyword(null, "data", "data", 1016980252)).cljs$core$IFn$_invoke$arity$1(current);
-  var map__118860__$1 = cljs.core.seq_QMARK_.call(null, map__118860) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118860) : map__118860;
-  var data = map__118860__$1;
-  var price = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "price", "price", 1120838843));
-  var address = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "address", "address", 4161179494));
-  var description = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "description", "description", 3584325486));
-  var plus_utilities = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "plus-utilities", "plus-utilities", 1251631625));
-  var imgs = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "imgs", "imgs", 1017140354));
-  var loading = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "loading", "loading", 1350554798));
-  var appartment_type = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
-  var created = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "created", "created", 2042458714));
-  var deposit = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "deposit", "deposit", 2568358416));
-  var lat = cljs.core.get.call(null, map__118860__$1, new cljs.core.Keyword(null, "lat", "lat", 1014011153));
-  if (typeof floor16.appsearch.t118861 !== "undefined") {
+floor16.appsearch.ad_view = function ad_view(p__128121, owner) {
+  var map__128127 = p__128121;
+  var map__128127__$1 = cljs.core.seq_QMARK_.call(null, map__128127) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128127) : map__128127;
+  var cursor = map__128127__$1;
+  var current = cljs.core.get.call(null, map__128127__$1, new cljs.core.Keyword(null, "current", "current", 2140844267));
+  var query = cljs.core.get.call(null, map__128127__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+  var map__128128 = (new cljs.core.Keyword(null, "data", "data", 1016980252)).cljs$core$IFn$_invoke$arity$1(current);
+  var map__128128__$1 = cljs.core.seq_QMARK_.call(null, map__128128) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128128) : map__128128;
+  var data = map__128128__$1;
+  var price = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "price", "price", 1120838843));
+  var address = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "address", "address", 4161179494));
+  var description = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "description", "description", 3584325486));
+  var plus_utilities = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "plus-utilities", "plus-utilities", 1251631625));
+  var imgs = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "imgs", "imgs", 1017140354));
+  var loading = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "loading", "loading", 1350554798));
+  var appartment_type = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "appartment-type", "appartment-type", 4242935641));
+  var created = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "created", "created", 2042458714));
+  var deposit = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "deposit", "deposit", 2568358416));
+  var lat = cljs.core.get.call(null, map__128128__$1, new cljs.core.Keyword(null, "lat", "lat", 1014011153));
+  if (typeof floor16.appsearch.t128129 !== "undefined") {
   } else {
-    floor16.appsearch.t118861 = function(price, address, query, description, map__118860, plus_utilities, data, imgs, current, p__118853, ad_view, loading, appartment_type, owner, cursor, map__118859, created, deposit, lat, meta118862) {
+    floor16.appsearch.t128129 = function(price, address, query, description, plus_utilities, data, map__128128, imgs, current, ad_view, loading, map__128127, appartment_type, owner, cursor, p__128121, created, deposit, lat, meta128130) {
       this.price = price;
       this.address = address;
       this.query = query;
       this.description = description;
-      this.map__118860 = map__118860;
       this.plus_utilities = plus_utilities;
       this.data = data;
+      this.map__128128 = map__128128;
       this.imgs = imgs;
       this.current = current;
-      this.p__118853 = p__118853;
       this.ad_view = ad_view;
       this.loading = loading;
+      this.map__128127 = map__128127;
       this.appartment_type = appartment_type;
       this.owner = owner;
       this.cursor = cursor;
-      this.map__118859 = map__118859;
+      this.p__128121 = p__128121;
       this.created = created;
       this.deposit = deposit;
       this.lat = lat;
-      this.meta118862 = meta118862;
+      this.meta128130 = meta128130;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.appsearch.t118861.cljs$lang$type = true;
-    floor16.appsearch.t118861.cljs$lang$ctorStr = "floor16.appsearch/t118861";
-    floor16.appsearch.t118861.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t118861");
+    floor16.appsearch.t128129.cljs$lang$type = true;
+    floor16.appsearch.t128129.cljs$lang$ctorStr = "floor16.appsearch/t128129";
+    floor16.appsearch.t128129.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t128129");
     };
-    floor16.appsearch.t118861.prototype.om$core$IRender$ = true;
-    floor16.appsearch.t118861.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.appsearch.t128129.prototype.om$core$IRender$ = true;
+    floor16.appsearch.t128129.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       if (cljs.core.truth_(self__.loading)) {
@@ -49419,27 +49435,27 @@ floor16.appsearch.ad_view = function ad_view(p__118853, owner) {
         om.core.build.call(null, floor16.maps.map_viewer, self__.data, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "opts", "opts", 1017322386), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "className", "className", 1004015509), "row sixteen columns alpha omega"], null)], null))) : null));
       }
     };
-    floor16.appsearch.t118861.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118863) {
+    floor16.appsearch.t128129.prototype.cljs$core$IMeta$_meta$arity$1 = function(_128131) {
       var self__ = this;
-      var _118863__$1 = this;
-      return self__.meta118862;
+      var _128131__$1 = this;
+      return self__.meta128130;
     };
-    floor16.appsearch.t118861.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118863, meta118862__$1) {
+    floor16.appsearch.t128129.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_128131, meta128130__$1) {
       var self__ = this;
-      var _118863__$1 = this;
-      return new floor16.appsearch.t118861(self__.price, self__.address, self__.query, self__.description, self__.map__118860, self__.plus_utilities, self__.data, self__.imgs, self__.current, self__.p__118853, self__.ad_view, self__.loading, self__.appartment_type, self__.owner, self__.cursor, self__.map__118859, self__.created, self__.deposit, self__.lat, meta118862__$1);
+      var _128131__$1 = this;
+      return new floor16.appsearch.t128129(self__.price, self__.address, self__.query, self__.description, self__.plus_utilities, self__.data, self__.map__128128, self__.imgs, self__.current, self__.ad_view, self__.loading, self__.map__128127, self__.appartment_type, self__.owner, self__.cursor, self__.p__128121, self__.created, self__.deposit, self__.lat, meta128130__$1);
     };
-    floor16.appsearch.__GT_t118861 = function __GT_t118861(price__$1, address__$1, query__$1, description__$1, map__118860__$2, plus_utilities__$1, data__$1, imgs__$1, current__$1, p__118853__$1, ad_view__$1, loading__$1, appartment_type__$1, owner__$1, cursor__$1, map__118859__$2, created__$1, deposit__$1, lat__$1, meta118862) {
-      return new floor16.appsearch.t118861(price__$1, address__$1, query__$1, description__$1, map__118860__$2, plus_utilities__$1, data__$1, imgs__$1, current__$1, p__118853__$1, ad_view__$1, loading__$1, appartment_type__$1, owner__$1, cursor__$1, map__118859__$2, created__$1, deposit__$1, lat__$1, meta118862);
+    floor16.appsearch.__GT_t128129 = function __GT_t128129(price__$1, address__$1, query__$1, description__$1, plus_utilities__$1, data__$1, map__128128__$2, imgs__$1, current__$1, ad_view__$1, loading__$1, map__128127__$2, appartment_type__$1, owner__$1, cursor__$1, p__128121__$1, created__$1, deposit__$1, lat__$1, meta128130) {
+      return new floor16.appsearch.t128129(price__$1, address__$1, query__$1, description__$1, plus_utilities__$1, data__$1, map__128128__$2, imgs__$1, current__$1, ad_view__$1, loading__$1, map__128127__$2, appartment_type__$1, owner__$1, cursor__$1, p__128121__$1, created__$1, deposit__$1, lat__$1, meta128130);
     };
   }
-  return new floor16.appsearch.t118861(price, address, query, description, map__118860__$1, plus_utilities, data, imgs, current, p__118853, ad_view, loading, appartment_type, owner, cursor, map__118859__$1, created, deposit, lat, null);
+  return new floor16.appsearch.t128129(price, address, query, description, plus_utilities, data, map__128128__$1, imgs, current, ad_view, loading, map__128127__$1, appartment_type, owner, cursor, p__128121, created, deposit, lat, null);
 };
-floor16.appsearch.agents_view = function agents_view(p__118867, owner) {
-  var map__118873 = p__118867;
-  var map__118873__$1 = cljs.core.seq_QMARK_.call(null, map__118873) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118873) : map__118873;
-  var cursor = map__118873__$1;
-  var query = cljs.core.get.call(null, map__118873__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+floor16.appsearch.agents_view = function agents_view(p__128135, owner) {
+  var map__128141 = p__128135;
+  var map__128141__$1 = cljs.core.seq_QMARK_.call(null, map__128141) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128141) : map__128141;
+  var cursor = map__128141__$1;
+  var query = cljs.core.get.call(null, map__128141__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
   var response_handler = function(x) {
     if (cljs.core._EQ_.call(null, 200, (new cljs.core.Keyword(null, "status", "status", 4416389988)).cljs$core$IFn$_invoke$arity$1(x))) {
       return om.core.set_state_BANG_.call(null, owner, new cljs.core.Keyword(null, "agent", "agent", 1106654839), cljs.core.assoc.call(null, (new cljs.core.Keyword(null, "body", "body", 1016933652)).cljs$core$IFn$_invoke$arity$1(x), new cljs.core.Keyword(null, "phone", "phone", 1120547040), om.core.get_state.call(null, owner, new cljs.core.Keyword(null, "value", "value", 1125876963))));
@@ -49463,8 +49479,8 @@ floor16.appsearch.agents_view = function agents_view(p__118867, owner) {
         ;
       } else {
         om.core.update_state_BANG_.call(null, owner, function(phone, response_handler) {
-          return function(p1__118864_SHARP_) {
-            return cljs.core.dissoc.call(null, p1__118864_SHARP_, new cljs.core.Keyword(null, "error", "error", 1110689146));
+          return function(p1__128132_SHARP_) {
+            return cljs.core.dissoc.call(null, p1__128132_SHARP_, new cljs.core.Keyword(null, "error", "error", 1110689146));
           };
         }(phone, response_handler));
         return floor16.datum.api_get.call(null, new cljs.core.Keyword(null, "agents", "agents", 3889172864), response_handler, phone);
@@ -49474,45 +49490,45 @@ floor16.appsearch.agents_view = function agents_view(p__118867, owner) {
   var format_value = function(response_handler, agent_handler) {
     return function(v) {
       return function(response_handler, agent_handler) {
-        return function(p1__118865_SHARP_) {
-          return cljs.core.subs.call(null, p1__118865_SHARP_, function() {
+        return function(p1__128133_SHARP_) {
+          return cljs.core.subs.call(null, p1__128133_SHARP_, function() {
             var x__3750__auto__ = 0;
-            var y__3751__auto__ = cljs.core.count.call(null, p1__118865_SHARP_) - 10;
+            var y__3751__auto__ = cljs.core.count.call(null, p1__128133_SHARP_) - 10;
             return x__3750__auto__ > y__3751__auto__ ? x__3750__auto__ : y__3751__auto__;
           }());
         };
       }(response_handler, agent_handler).call(null, clojure.string.replace.call(null, v, /\D/, ""));
     };
   }(response_handler, agent_handler);
-  if (typeof floor16.appsearch.t118874 !== "undefined") {
+  if (typeof floor16.appsearch.t128142 !== "undefined") {
   } else {
-    floor16.appsearch.t118874 = function(format_value, agent_handler, response_handler, query, cursor, map__118873, owner, p__118867, agents_view, meta118875) {
+    floor16.appsearch.t128142 = function(format_value, agent_handler, response_handler, query, cursor, map__128141, owner, p__128135, agents_view, meta128143) {
       this.format_value = format_value;
       this.agent_handler = agent_handler;
       this.response_handler = response_handler;
       this.query = query;
       this.cursor = cursor;
-      this.map__118873 = map__118873;
+      this.map__128141 = map__128141;
       this.owner = owner;
-      this.p__118867 = p__118867;
+      this.p__128135 = p__128135;
       this.agents_view = agents_view;
-      this.meta118875 = meta118875;
+      this.meta128143 = meta128143;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.appsearch.t118874.cljs$lang$type = true;
-    floor16.appsearch.t118874.cljs$lang$ctorStr = "floor16.appsearch/t118874";
-    floor16.appsearch.t118874.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t118874");
+    floor16.appsearch.t128142.cljs$lang$type = true;
+    floor16.appsearch.t128142.cljs$lang$ctorStr = "floor16.appsearch/t128142";
+    floor16.appsearch.t128142.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t128142");
     };
-    floor16.appsearch.t118874.prototype.om$core$IRender$ = true;
-    floor16.appsearch.t118874.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
+    floor16.appsearch.t128142.prototype.om$core$IRender$ = true;
+    floor16.appsearch.t128142.prototype.om$core$IRender$render$arity$1 = function(this__4987__auto__) {
       var self__ = this;
       var this__4987__auto____$1 = this;
       return React.DOM.div({"className":"agents-view"}, React.DOM.div({"className":"container"}, React.DOM.h1({"className":"ad-header row sixteen columns"}, "\u0414\u0430\u043d\u043d\u044b\u0435 \u0430\u0433\u0435\u043d\u0442\u0430 \u043f\u043e \u043d\u043e\u043c\u0435\u0440\u0443 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430"), React.DOM.div({"className":"ag-phone sixteen columns"}, React.DOM.span({"className":"label three columns alpha omega"}, "\u0423\u043a\u0430\u0436\u0438\u0442\u0435 \u043d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430:"), 
-      React.DOM.span({"className":"ag-phone-input two columns alpha"}, React.DOM.span(null, "+7 "), om.dom.input.call(null, {"onKeyDown":function(p1__118866_SHARP_) {
-        if (cljs.core._EQ_.call(null, floor16.global.ENTER, floor16.global.key_event__GT_keycode.call(null, p1__118866_SHARP_))) {
-          return self__.agent_handler.call(null, p1__118866_SHARP_);
+      React.DOM.span({"className":"ag-phone-input two columns alpha"}, React.DOM.span(null, "+7 "), om.dom.input.call(null, {"onKeyDown":function(p1__128134_SHARP_) {
+        if (cljs.core._EQ_.call(null, floor16.global.ENTER, floor16.global.key_event__GT_keycode.call(null, p1__128134_SHARP_))) {
+          return self__.agent_handler.call(null, p1__128134_SHARP_);
         } else {
           return null;
         }
@@ -49532,13 +49548,13 @@ floor16.appsearch.agents_view = function agents_view(p__118867, owner) {
       }(), function() {
         var temp__4092__auto__ = om.core.get_state.call(null, self__.owner, new cljs.core.Keyword(null, "agent", "agent", 1106654839));
         if (cljs.core.truth_(temp__4092__auto__)) {
-          var map__118877 = temp__4092__auto__;
-          var map__118877__$1 = cljs.core.seq_QMARK_.call(null, map__118877) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118877) : map__118877;
-          var ag = map__118877__$1;
-          var last_url = cljs.core.get.call(null, map__118877__$1, new cljs.core.Keyword(null, "last-url", "last-url", 3848308010));
-          var last_seen = cljs.core.get.call(null, map__118877__$1, new cljs.core.Keyword(null, "last-seen", "last-seen", 2981002948));
-          var seen = cljs.core.get.call(null, map__118877__$1, new cljs.core.Keyword(null, "seen", "seen", 1017430509));
-          var phone = cljs.core.get.call(null, map__118877__$1, new cljs.core.Keyword(null, "phone", "phone", 1120547040));
+          var map__128145 = temp__4092__auto__;
+          var map__128145__$1 = cljs.core.seq_QMARK_.call(null, map__128145) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128145) : map__128145;
+          var ag = map__128145__$1;
+          var last_url = cljs.core.get.call(null, map__128145__$1, new cljs.core.Keyword(null, "last-url", "last-url", 3848308010));
+          var last_seen = cljs.core.get.call(null, map__128145__$1, new cljs.core.Keyword(null, "last-seen", "last-seen", 2981002948));
+          var seen = cljs.core.get.call(null, map__128145__$1, new cljs.core.Keyword(null, "seen", "seen", 1017430509));
+          var phone = cljs.core.get.call(null, map__128145__$1, new cljs.core.Keyword(null, "phone", "phone", 1120547040));
           return React.DOM.span({"key":"agi", "className":[cljs.core.str("agent sixteen columns "), cljs.core.str(cljs.core._EQ_.call(null, new cljs.core.Keyword(null, "not-found", "not-found", 1197973370), ag) ? "not-found" : null)].join("")}, cljs.core._EQ_.call(null, ag, new cljs.core.Keyword(null, "not-found", "not-found", 1197973370)) ? floor16.lang.l.call(null, new cljs.core.Keyword(null, "agent-not-found-message", "agent-not-found-message", 1660167660)) : null, cljs.core.not_EQ_.call(null, 
           ag, new cljs.core.Keyword(null, "not-found", "not-found", 1197973370)) ? React.DOM.span(null, [cljs.core.str("\u0410\u0433\u0435\u043d\u0442 \u0441 \u043d\u043e\u043c\u0435\u0440\u043e\u043c +7"), cljs.core.str(phone), cljs.core.str(" \u0431\u044b\u043b \u0432\u0441\u0442\u0440\u0435\u0447\u0435\u043d \u043a\u0430\u043a \u043c\u0438\u043d\u0438\u043c\u0443\u043c "), cljs.core.str(seen), cljs.core.str(" "), cljs.core.str(floor16.lang.l.call(null, new cljs.core.Keyword(null, "times", "times", 
           1124268728), seen)), cljs.core.str(". \u041f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 \u0440\u0430\u0437 \u0435\u0433\u043e \u0432\u0438\u0434\u0435\u043b\u0438 "), cljs.core.str(last_seen), cljs.core.str(" \u043f\u043e \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0439 \u0441\u0441\u044b\u043b\u043a\u0435: ")].join(""), React.DOM.a({"target":"_blank", "href":last_url}, "\u041f\u0435\u0440\u0435\u0439\u0442\u0438")) : null);
@@ -49547,56 +49563,56 @@ floor16.appsearch.agents_view = function agents_view(p__118867, owner) {
         }
       }()));
     };
-    floor16.appsearch.t118874.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118876) {
+    floor16.appsearch.t128142.prototype.cljs$core$IMeta$_meta$arity$1 = function(_128144) {
       var self__ = this;
-      var _118876__$1 = this;
-      return self__.meta118875;
+      var _128144__$1 = this;
+      return self__.meta128143;
     };
-    floor16.appsearch.t118874.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118876, meta118875__$1) {
+    floor16.appsearch.t128142.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_128144, meta128143__$1) {
       var self__ = this;
-      var _118876__$1 = this;
-      return new floor16.appsearch.t118874(self__.format_value, self__.agent_handler, self__.response_handler, self__.query, self__.cursor, self__.map__118873, self__.owner, self__.p__118867, self__.agents_view, meta118875__$1);
+      var _128144__$1 = this;
+      return new floor16.appsearch.t128142(self__.format_value, self__.agent_handler, self__.response_handler, self__.query, self__.cursor, self__.map__128141, self__.owner, self__.p__128135, self__.agents_view, meta128143__$1);
     };
-    floor16.appsearch.__GT_t118874 = function __GT_t118874(format_value__$1, agent_handler__$1, response_handler__$1, query__$1, cursor__$1, map__118873__$2, owner__$1, p__118867__$1, agents_view__$1, meta118875) {
-      return new floor16.appsearch.t118874(format_value__$1, agent_handler__$1, response_handler__$1, query__$1, cursor__$1, map__118873__$2, owner__$1, p__118867__$1, agents_view__$1, meta118875);
+    floor16.appsearch.__GT_t128142 = function __GT_t128142(format_value__$1, agent_handler__$1, response_handler__$1, query__$1, cursor__$1, map__128141__$2, owner__$1, p__128135__$1, agents_view__$1, meta128143) {
+      return new floor16.appsearch.t128142(format_value__$1, agent_handler__$1, response_handler__$1, query__$1, cursor__$1, map__128141__$2, owner__$1, p__128135__$1, agents_view__$1, meta128143);
     };
   }
-  return new floor16.appsearch.t118874(format_value, agent_handler, response_handler, query, cursor, map__118873__$1, owner, p__118867, agents_view, null);
+  return new floor16.appsearch.t128142(format_value, agent_handler, response_handler, query, cursor, map__128141__$1, owner, p__128135, agents_view, null);
 };
 floor16.appsearch.not_found_view = function not_found_view(cursor, owner, opts) {
   return React.DOM.div({"className":"not-found container"}, React.DOM.h1({"className":"row sixteen columns"}, floor16.lang.l.call(null, new cljs.core.Keyword(null, "not-found-404-title", "not-found-404-title", 3687861616))), React.DOM.span({"className":"sixteen columns"}, floor16.lang.l.call(null, new cljs.core.Keyword(null, "not-found-404-message", "not-found-404-message", 4558674335))));
 };
-floor16.appsearch.app = function app(p__118878, owner) {
-  var map__118883 = p__118878;
-  var map__118883__$1 = cljs.core.seq_QMARK_.call(null, map__118883) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118883) : map__118883;
-  var cursor = map__118883__$1;
-  var current = cljs.core.get.call(null, map__118883__$1, new cljs.core.Keyword(null, "current", "current", 2140844267));
-  var data = cljs.core.get.call(null, map__118883__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
-  var query = cljs.core.get.call(null, map__118883__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
-  var app_mode = cljs.core.get.call(null, map__118883__$1, new cljs.core.Keyword(null, "app-mode", "app-mode", 2135359809));
-  if (typeof floor16.appsearch.t118884 !== "undefined") {
+floor16.appsearch.app = function app(p__128146, owner) {
+  var map__128151 = p__128146;
+  var map__128151__$1 = cljs.core.seq_QMARK_.call(null, map__128151) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128151) : map__128151;
+  var cursor = map__128151__$1;
+  var current = cljs.core.get.call(null, map__128151__$1, new cljs.core.Keyword(null, "current", "current", 2140844267));
+  var data = cljs.core.get.call(null, map__128151__$1, new cljs.core.Keyword(null, "data", "data", 1016980252));
+  var query = cljs.core.get.call(null, map__128151__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+  var app_mode = cljs.core.get.call(null, map__128151__$1, new cljs.core.Keyword(null, "app-mode", "app-mode", 2135359809));
+  if (typeof floor16.appsearch.t128152 !== "undefined") {
   } else {
-    floor16.appsearch.t118884 = function(app_mode, query, data, current, cursor, map__118883, owner, p__118878, app, meta118885) {
+    floor16.appsearch.t128152 = function(app_mode, query, data, current, cursor, map__128151, owner, p__128146, app, meta128153) {
       this.app_mode = app_mode;
       this.query = query;
       this.data = data;
       this.current = current;
       this.cursor = cursor;
-      this.map__118883 = map__118883;
+      this.map__128151 = map__128151;
       this.owner = owner;
-      this.p__118878 = p__118878;
+      this.p__128146 = p__128146;
       this.app = app;
-      this.meta118885 = meta118885;
+      this.meta128153 = meta128153;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393216;
     };
-    floor16.appsearch.t118884.cljs$lang$type = true;
-    floor16.appsearch.t118884.cljs$lang$ctorStr = "floor16.appsearch/t118884";
-    floor16.appsearch.t118884.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
-      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t118884");
+    floor16.appsearch.t128152.cljs$lang$type = true;
+    floor16.appsearch.t128152.cljs$lang$ctorStr = "floor16.appsearch/t128152";
+    floor16.appsearch.t128152.cljs$lang$ctorPrWriter = function(this__4010__auto__, writer__4011__auto__, opt__4012__auto__) {
+      return cljs.core._write.call(null, writer__4011__auto__, "floor16.appsearch/t128152");
     };
-    floor16.appsearch.t118884.prototype.om$core$IRender$ = true;
-    floor16.appsearch.t118884.prototype.om$core$IRender$render$arity$1 = function(this$) {
+    floor16.appsearch.t128152.prototype.om$core$IRender$ = true;
+    floor16.appsearch.t128152.prototype.om$core$IRender$render$arity$1 = function(this$) {
       var self__ = this;
       var this$__$1 = this;
       return React.DOM.div(null, om.core.build.call(null, floor16.appsearch.simple_filter, self__.query), cljs.core._EQ_.call(null, new cljs.core.Keyword(null, "none", "none", 1017291434), self__.app_mode) ? "" : cljs.core._EQ_.call(null, new cljs.core.Keyword(null, "not-found", "not-found", 1197973370), self__.app_mode) ? om.core.build.call(null, floor16.appsearch.not_found_view, self__.cursor) : cljs.core._EQ_.call(null, new cljs.core.Keyword(null, "ad", "ad", 1013907349), self__.app_mode) ? om.core.build.call(null, 
@@ -49608,8 +49624,8 @@ floor16.appsearch.app = function app(p__118878, owner) {
       new cljs.core.Keyword(null, "order", "order", 1119910592)), new cljs.core.Keyword(null, "className", "className", 1004015509), "three columns", new cljs.core.Keyword(null, "dict", "dict", 1016987432), floor16.datum.dict.call(null, new cljs.core.Keyword(null, "ordersettings", "ordersettings", 4205185251)), new cljs.core.Keyword(null, "after-update", "after-update", 4410540364), floor16.appsearch.after_update.call(null, self__.query)], null)], null)))], null)], null), "eleven columns", "seven columns", 
       new cljs.core.Keyword(null, "ad", "ad", 1013907349), floor16.lang.l.call(null, new cljs.core.Keyword(null, "loading-search", "loading-search", 3456648907)), floor16.appsearch.ad_item_view, floor16.datum.res.call(null, new cljs.core.Keyword(null, "ads", "ads", 1014000674))])], null)) : null);
     };
-    floor16.appsearch.t118884.prototype.om$core$IDidUpdate$ = true;
-    floor16.appsearch.t118884.prototype.om$core$IDidUpdate$did_update$arity$3 = function(this$, prev_props, prev_state) {
+    floor16.appsearch.t128152.prototype.om$core$IDidUpdate$ = true;
+    floor16.appsearch.t128152.prototype.om$core$IDidUpdate$did_update$arity$3 = function(this$, prev_props, prev_state) {
       var self__ = this;
       var this$__$1 = this;
       if (cljs.core._EQ_.call(null, new cljs.core.Keyword(null, "none", "none", 1017291434), self__.app_mode)) {
@@ -49618,30 +49634,30 @@ floor16.appsearch.app = function app(p__118878, owner) {
         return floor16.global.node_visible.call(null, "agreement", false);
       }
     };
-    floor16.appsearch.t118884.prototype.cljs$core$IMeta$_meta$arity$1 = function(_118886) {
+    floor16.appsearch.t128152.prototype.cljs$core$IMeta$_meta$arity$1 = function(_128154) {
       var self__ = this;
-      var _118886__$1 = this;
-      return self__.meta118885;
+      var _128154__$1 = this;
+      return self__.meta128153;
     };
-    floor16.appsearch.t118884.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_118886, meta118885__$1) {
+    floor16.appsearch.t128152.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(_128154, meta128153__$1) {
       var self__ = this;
-      var _118886__$1 = this;
-      return new floor16.appsearch.t118884(self__.app_mode, self__.query, self__.data, self__.current, self__.cursor, self__.map__118883, self__.owner, self__.p__118878, self__.app, meta118885__$1);
+      var _128154__$1 = this;
+      return new floor16.appsearch.t128152(self__.app_mode, self__.query, self__.data, self__.current, self__.cursor, self__.map__128151, self__.owner, self__.p__128146, self__.app, meta128153__$1);
     };
-    floor16.appsearch.__GT_t118884 = function __GT_t118884(app_mode__$1, query__$1, data__$1, current__$1, cursor__$1, map__118883__$2, owner__$1, p__118878__$1, app__$1, meta118885) {
-      return new floor16.appsearch.t118884(app_mode__$1, query__$1, data__$1, current__$1, cursor__$1, map__118883__$2, owner__$1, p__118878__$1, app__$1, meta118885);
+    floor16.appsearch.__GT_t128152 = function __GT_t128152(app_mode__$1, query__$1, data__$1, current__$1, cursor__$1, map__128151__$2, owner__$1, p__128146__$1, app__$1, meta128153) {
+      return new floor16.appsearch.t128152(app_mode__$1, query__$1, data__$1, current__$1, cursor__$1, map__128151__$2, owner__$1, p__128146__$1, app__$1, meta128153);
     };
   }
-  return new floor16.appsearch.t118884(app_mode, query, data, current, cursor, map__118883__$1, owner, p__118878, app, null);
+  return new floor16.appsearch.t128152(app_mode, query, data, current, cursor, map__128151__$1, owner, p__128146, app, null);
 };
-floor16.appsearch.prepare_data = function prepare_data(p__118887) {
-  var map__118889 = p__118887;
-  var map__118889__$1 = cljs.core.seq_QMARK_.call(null, map__118889) ? cljs.core.apply.call(null, cljs.core.hash_map, map__118889) : map__118889;
-  var data = map__118889__$1;
-  var current = cljs.core.get.call(null, map__118889__$1, new cljs.core.Keyword(null, "current", "current", 2140844267));
-  var settings = cljs.core.get.call(null, map__118889__$1, new cljs.core.Keyword(null, "settings", "settings", 2448535445));
-  var query = cljs.core.get.call(null, map__118889__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
-  var app_mode = cljs.core.get.call(null, map__118889__$1, new cljs.core.Keyword(null, "app-mode", "app-mode", 2135359809));
+floor16.appsearch.prepare_data = function prepare_data(p__128155) {
+  var map__128157 = p__128155;
+  var map__128157__$1 = cljs.core.seq_QMARK_.call(null, map__128157) ? cljs.core.apply.call(null, cljs.core.hash_map, map__128157) : map__128157;
+  var data = map__128157__$1;
+  var current = cljs.core.get.call(null, map__128157__$1, new cljs.core.Keyword(null, "current", "current", 2140844267));
+  var settings = cljs.core.get.call(null, map__128157__$1, new cljs.core.Keyword(null, "settings", "settings", 2448535445));
+  var query = cljs.core.get.call(null, map__128157__$1, new cljs.core.Keyword(null, "query", "query", 1121848378));
+  var app_mode = cljs.core.get.call(null, map__128157__$1, new cljs.core.Keyword(null, "app-mode", "app-mode", 2135359809));
   if (cljs.core.truth_(query)) {
     return cljs.core.assoc.call(null, data, new cljs.core.Keyword(null, "query", "query", 1121848378), cljs.core.merge.call(null, settings, query, cljs.core.truth_(function() {
       var and__3431__auto__ = current;

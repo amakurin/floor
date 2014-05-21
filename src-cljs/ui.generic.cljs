@@ -112,11 +112,15 @@
   (om/component
    (let [v (bool-get data-key cursor )
          caption (or caption (l data-key))]
-     (dom/div #js{:className (str "gen-checkbtn " className)}
+     (dom/div #js{:className (str "gen-checkbtn " className)
+                  :onClick (fn [e]
+                             (bool-upd data-key (not v) cursor)
+                             (when after-update (after-update)))}
               (dom/input #js {:type "checkbox" :checked (boolean v)
                               :onChange (fn [e]
                                           (bool-upd data-key (.. e -target -checked) cursor)
-                                          (when after-update (after-update)))})
+                                          (when after-update (after-update)))
+                              :onClick (fn [e] (.stopPropagation e))})
               (dom/label nil caption)))))
 
 (defn checkbtn-list [cursor owner
@@ -268,14 +272,16 @@
 
 (defn box-group [cursor owner {:keys [init-opened
                                       view
-                                      caption] :as opts}]
+                                      caption
+                                      group-class
+                                      caption-class]:as opts}]
   (reify
     om/IInitState
     (init-state [_] {:opened init-opened})
     om/IRenderState
     (render-state [this {:keys [opened]}]
-                  (dom/div #js {:className "box-group"}
-                           (dom/span #js{:className "box-group-header clearfix"
+                  (dom/div #js {:className (str "box-group " group-class)}
+                           (dom/span #js{:className "box-group-header"
                                          :onMouseDown (fn [e]
                                                     (om/set-state! owner :opened(not opened))
                                                     (.preventDefault e))}
@@ -284,7 +290,7 @@
                                                        (if opened
                                                          "arrow-down"
                                                          "arrow-right"))})
-                                     (dom/span #js{:className "box-caption"} caption))
+                                     (dom/span #js{:className (str "box-caption " caption-class)} caption))
                            (when opened
                              (dom/div #js{:className "box-group-content"}
                                       view))))))

@@ -59,3 +59,555 @@
 
 
 
+
+
+
+/*====== User Head ======*/
+#login-link, #menu .exit-link {
+  text-transform: capitalize;
+  color: #00618b;
+  cursor: pointer;
+}
+
+#user-login{
+float: right;
+margin: 2px 30px 0 0;
+}
+
+#user-login .login {
+  float: right;
+  padding-top: 17px;
+}
+
+.login input {
+  float: left;
+  border: 1px #00618b solid;
+  width: 100px;
+  margin-right: 10px;
+}
+
+
+
+.login .enter-link {
+  float: left;
+  line-height: 28px;
+  font-family: sans-serif;
+  font-size: 13px;
+  color: #00618b;
+  cursor: pointer;
+}
+
+.login .error {
+  float: left;
+  line-height: 11px;
+  font-family: sans-serif;
+  font-size: 11px;
+  color: #D32626;
+  display: block;
+}
+
+.login .error.link {
+  margin-left: 5px;
+  border-bottom: 1px dotted;
+}
+
+
+/*------Todo!!------*/
+
+#user-panel{
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+}
+
+
+#user-panel.active {
+  background-color: rgba(8, 70, 85, 0.98);
+  color: #ddd;
+  padding: 15px 90px 20px 20px;
+  width: 210px;
+}
+
+#user-panel.closed {
+  background-color: transparent;
+  margin: 10px 20px;
+  font-size: 38px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.52);
+  display: block;
+  cursor: pointer;
+}
+
+#user-panel.closed:hover {
+  color: rgba(0, 0, 0, 0.80);
+}
+
+#user-panel .close {
+  position: absolute;
+  top: 19px;
+  right: 22px;
+  background: url("/img/close.png") no-repeat 50% 50%;
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+#user-pic{
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  float: left;
+  margin-right: 10px;
+  background-color: #ddd;
+}
+
+#user-name{
+  display: block;
+  font-size: 16px;
+}
+
+#user-roles{
+  font-family: sans-serif;
+  display: block;
+  font-size: 13px;
+}
+
+#user-roles{
+  font-family: sans-serif;
+  display: block;
+  font-size: 13px;
+}
+
+/*====End of User Head ======*/
+
+
+
+sup {
+  vertical-align: super;
+  font-size: 50%;
+  line-height: 0;
+}
+
+/* #Page Styles
+================================================== */
+.radio-list{
+  list-style: none;
+  height: 35px;
+  margin: 0 18px;
+}
+.radio-list li {
+  float: left;
+  margin-right: 5px;
+  position:relative;
+}
+
+.radio-list li label{
+  height: 35px;
+  min-width: 15px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  background: #00618b;
+  color: #349cb5;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 36px;
+  padding: 0 13px;
+  font-family: open-sans;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.radio-list li input[type=radio]{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.radio-list li input[type=radio]:checked + label{
+  color: #ffc742!important;
+}
+
+
+.radio-list li input[type=radio]:hover + label{
+  color: #63B1C7;
+}
+
+.radio-list li input[type=radio]:focus + label{
+
+}
+
+
+.radio-list li input[type=radio]:hover, .checkbox-list input[type=checkbox]:hover {
+  cursor: pointer;
+}
+
+.popup-select {
+  padding-right: 14px;
+  position:relative;
+}
+
+.popup-select .choise, .popup-select .cancel{
+  position: relative;
+  z-index: 1;
+  display:block;
+  height: 23px;
+  min-width: 15px;
+  border-radius: 4px;
+  background: #ffc742;
+  color: #00618b;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 23px;
+  padding: 0 7px;
+  border-top: #ffc742 1px solid;
+  border-bottom: #ffc742 1px solid;
+}
+.popup-select .choise {
+  width: 100%;
+  text-decoration: none;
+}
+
+
+.popup-select.chosen .cancel {
+  border-radius: 0;
+  position: absolute;
+  right: 28px;
+  top: -1px;
+  font-size: 17px;
+  line-height: 25px;
+  width: 26px;
+  padding:0;
+  text-align:center;
+  border-left: #00618b 1px solid;
+}
+
+.popup-select .choise:hover, .popup-select .cancel:hover, .popup-select.select-visible .choise {
+  border-top: #FFF2D2 1px solid;
+  border-bottom: #C29937 1px solid;
+  text-shadow: 0px 1px 0px #FFF2D2;
+}
+
+.popup-select .triangle{
+  position: absolute;
+  right: 1px;
+  top: -1px;
+  font-size: 11px;
+  line-height: 26px;
+  width: 26px;
+  text-align: center;
+  color: #00618b;
+  border-left: #00618b 1px solid;
+}
+
+.popup-select.select-visible{
+  z-index: 1;
+}
+
+.popup-select.select-visible .triangle{
+  font-size: 15px;
+}
+
+/*============== Popup ======*/
+
+.popup-wrap {
+  position: relative;
+}
+
+.popup-wrap.popped{
+  z-index: 1;
+}
+
+.popup {
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  background: #00618b;
+  border: 1px solid #13516B;
+  border-radius: 6px;
+  box-shadow: 0px 1px 2px rgba(4, 22, 27, 0.69);
+  z-index: 1;
+}
+
+.popup.drop-down {
+  top: -40px;
+  padding-top: 60px;
+}
+
+.popup.drop-up {
+  bottom: -20px;
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+
+.popup ul{
+  margin: 20px 20px 8px 20px;
+}
+
+.popup ul:last-child:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+.popup .hole-fake{
+  position: absolute;
+  display: block;
+  height: 25px;
+  margin-left: 18px;
+  border-bottom: 1px solid #3C93B3;
+  border-top: 1px solid #13516B;
+  border-radius: 5px;
+  background: #15485E;
+  padding: 1px;
+}
+
+.popup.drop-up .hole-fake{
+  bottom: 17px;
+}
+
+.popup.drop-down .hole-fake{
+  top: 37px;
+}
+
+.popup.autosize {
+  right: auto;
+}
+
+.popup h2 {
+  position: absolute;
+  top: 14px;
+  left: 19px;
+}
+
+/* CHECKS  */
+
+.checkbox-list {
+  list-style: none;
+}
+
+.checkbox-list li {
+  float:left;
+  margin-right: 5px;
+  position:relative;
+}
+
+.checkbox-list li input[type=checkbox]{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-list li input[type=checkbox]:checked + label{
+  background: #ff6c00!important;
+  border-bottom-color: #FF903F!important;
+  border-top-color: #7E5232!important;
+  padding-top: 1px;
+  height: 22px;
+  color: #014868;
+  text-shadow: 0px 1px 0px #FF903F!important;
+}
+
+.checkbox-list li input[type=checkbox]:hover + label{
+  border-top: #FFF2D2 1px solid;
+  border-bottom: #C29937 1px solid;
+  text-shadow: 0px 1px 0px #FFF2D2;
+}
+
+.checkbox-list li input[type=checkbox]:focus + label{
+
+}
+
+.checkbox-list li label{
+  height: 23px;
+  min-width: 15px;
+  border-radius: 4px;
+  background: #ffc742;
+  color: #00618b;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 23px;
+  padding: 0 7px;
+  text-align: center;
+  border-top: #ffc742 1px solid;
+  border-bottom: #ffc742 1px solid;
+}
+
+
+/* MOSCOW METRO AND SOME TRASH */
+
+
+#btn-submit-filter{
+  /*background: #ff4033 -webkit-linear-gradient(top, #ff4033 0%,#db3420 100%);*/
+  background: #ff4033 -webkit-linear-gradient(top, #ff4033 0%,#ff4033 100%);
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 18px;
+  font-family: open-sans;
+  border: 1px solid #ff4033;
+  border-radius: 4px;
+  margin: 17px 0 0 0;
+}
+
+#btn-submit-filter:hover{
+  border-top-color: #FF7A71;
+  border-bottom-color: #C03D34;
+}
+
+#filter-submit{
+  text-align: right;
+}
+
+.moscow-metro-map {
+  position:relative;
+  background: transparent url(../img/moscow-metro-map.png) no-repeat 0 0;
+  display: block;
+  width: 915px;
+  height: 1080px;
+  margin-top: -50px;
+}
+
+.moscow-metro-map .station{
+  position: absolute;
+  display: block;
+}
+
+.moscow-metro-map .station .station-text{
+  font-size: 11px;
+  color: #DDDFEF;
+  line-height: 11px;
+  display: block;
+  cursor: pointer;
+  text-shadow: 1px 1px 0px #13516B;
+}
+
+
+.moscow-metro-map .station.small .station-text{
+  font-size: 9px;
+  line-height: 10px;
+}
+
+.moscow-metro-map .station.right .station-text{
+  text-align:right;
+}
+
+.moscow-metro-map .station.center .station-text{
+  text-align:center;
+}
+
+.moscow-metro-map .station .station-point
+{
+  position: absolute;
+  display:block;
+  width: 15px;
+  height: 15px;
+  border-radius: 9px;
+  font-size: 14px;
+  line-height: 11px;
+  cursor: pointer;
+}
+
+.moscow-metro-map.has-selected .station .station-text{
+  color: #72AACA;
+  text-shadow: none;
+}
+
+
+.moscow-metro-map .station.selected .station-point,
+.moscow-metro-map .station:hover .station-point
+{
+  width: 12px;
+  height: 12px;
+  background: #ffc742;
+  margin: 0px 0 0 0px;
+  border: #13516B 2px solid;
+}
+.moscow-metro-map .station.small.selected .station-point,
+.moscow-metro-map .station.small:hover .station-point
+{
+  width: 9px;
+  height: 9px;
+}
+
+
+.moscow-metro-map .station.selected .station-text
+{
+  color: #ffc742;
+  text-shadow: 1px 1px 0px #13516B;
+}
+
+.moscow-metro-map .station:hover .station-text {
+  color: #97C4DD;
+}
+
+.moscow-metro-map .station:hover .station-point {
+  background: #97C4DD;
+}
+
+.moscow-metro-map .station.selected:hover .station-text {
+  color: #FFD779;
+}
+
+.moscow-metro-map .station.selected:hover .station-point {
+  background: #FFD779;
+}
+
+.moscow-metro-map div.autocomplete-wrap{
+  position: absolute;
+  top: 65px;
+  margin: 0 0 0 18px ;
+}
+
+.moscow-metro-map input[type=text].autocomplete {
+  display: block;
+  height: 23px;
+  border: 0;
+  border-bottom: 1px solid #3C93B3;
+  border-top: 1px solid #13516B;
+  border-radius: 5px;
+  padding: 1px 5px;
+  width: 97%;
+}
+
+.autocomplete-wrap ul.menu{
+  margin: 0;
+  background: white;
+  z-index: 1;
+  position: relative;
+  border: 1px solid #13516B;
+  border-radius: 6px;
+  box-shadow: 0px 1px 2px rgba(4, 22, 27, 0.69);
+}
+
+.autocomplete-wrap .menu li{
+  font-size: 13px;
+  line-height: 20px;
+  padding: 3px 5px;
+  border-top: #00618b 1px solid;
+  margin: 0;
+  color: #13516B;
+  cursor:pointer;
+}
+
+.autocomplete-wrap .menu li.not-found{
+  color: #777;
+}
+
+
+.autocomplete-wrap .menu li.current{
+  background:#97C4DD;
+}
+
+
+
+

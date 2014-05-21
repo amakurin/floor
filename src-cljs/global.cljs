@@ -37,6 +37,9 @@
   (when-let [node (gd/$ id)]
     (gs/showElement node vis)))
 
+(defn node-set-props [node props]
+  (gd/setProperties node props))
+
 (defn price-to-str [price]
   (->> (str price)
        reverse
