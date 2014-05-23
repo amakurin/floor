@@ -49,6 +49,13 @@
       (.scrollTo js/window 0 (get-offset-vbound node vbound))
       (.scrollTo js/window 0 0))))
 
+
+(defn load-script [src & [cb]]
+  (let [script (.createElement js/document "script")]
+    (set! (.-type script) "text/javascript")
+    (set! (.-src script) src)
+    (.appendChild (.-body js/document) script)))
+
 (defn price-to-str [price]
   (->> (str price)
        reverse

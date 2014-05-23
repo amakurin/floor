@@ -134,11 +134,12 @@
 
 (defn do-route [rkw rc req]
   (if (validate-params (:params req) rc)
-    (let [{:keys [template app make-state]} rc
+    (let [{:keys [template app make-state mode]} rc
           template (or template "base.html")
           app (when app (str app-base-ns "." app))
           contex {:rkw rkw :rconf rc :req req}
           app-state (when app (if make-state (make-state contex) (default-make-state contex)))
+          app-state (assoc app-state :gmap-url "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=ru")
           error (:error app-state)
           app-html (when app (react/render app app-state))
           ;app-html ""
@@ -149,6 +150,7 @@
                        (assoc :app-html app-html)
                        (assoc :title (get-title app-state rc))
                        (assoc :description (get-description app-state rc))
+                       (assoc :loadmaps (= mode :ad))
                        (#(if error (assoc % :error error) %))))]
         (lt/render template params))
     (http/redirect-to "/")))
@@ -254,4 +256,6 @@
             :create-seo-title (fn [_] "Страница не найдена")
             :create-seo-description (fn [_] "Страница не найдена, возможно она была удалена, либо вы неправильно ввели ссылку.")}
         ]
-     (status (.render (do-route :not-found rc req) req) 404)))
+    (if (:old-ie? req)
+      (.render (lt/render "oldbrowser.html") req)
+      (status (.render (do-route :not-found rc req) req) 404))))
