@@ -19,7 +19,7 @@
          {:id 7 :mnemo :last-week :name "за неделю"}
          {:id 1 :mnemo :last-day :name "за сутки"}])
 
-(def os [{:id 0 :mnemo [:created :DESC] :name "дате публикации"}
+(def os [{:id 0 :mnemo [:pub.created :DESC] :name "дате публикации"}
          {:id 1 :mnemo [:price :ASC] :name "цене жилья"}])
 
 (defn appartment-type-pred [k v]
@@ -245,10 +245,11 @@
           (let [td (tc/today)
                 yd (tc/minus td (tc/days 1))
                 created (tco/from-sql-time created)
+                time-formatter (tf/formatter "HH:mm" (tc/default-time-zone))
                 created-str (cond
-                             (same-date? created td)(str "Сегодня в " (tf/unparse (tf/formatters :hour-minute) created))
-                             (same-date? created yd)(str "Вчера в "(tf/unparse (tf/formatters :hour-minute) created))
-                             :else (tf/unparse (tf/formatter "dd.MM.yy в hh:mm") created))]
+                             (same-date? created td)(str "Сегодня в " (tf/unparse time-formatter created))
+                             (same-date? created yd)(str "Вчера в "(tf/unparse time-formatter created))
+                             :else (tf/unparse (tf/formatter "dd.MM.yy в HH:mm" (tc/default-time-zone)) created))]
             (assoc % :created created-str))
           %))))
 
@@ -289,7 +290,9 @@
           (#(if order (apply k/order % order) %))
           (k/offset offset)
           (k/limit limit)
-          (k/exec))
+          (k/exec)
+;;           (#(do (println (k/as-sql %)) (k/exec %)))
+          )
       (map post-process)
       (map #(apply exclude-fields % exclude-field-preds))
       vec
@@ -422,7 +425,8 @@
      {} q)))
 
 (defn empty-query [req]
-  {:city (default-city req)})
+  {:city (default-city req)
+   :order 0})
 
 (defn decode-query [qstr & [req]]
   (let [q (try (edn/read-string qstr)
