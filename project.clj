@@ -24,7 +24,8 @@
    [clj-time "0.6.0"]
    [om "0.6.2"]
    [gered/clj-rhino "0.2.2"]
-   [com.linuxense/javadbf	"0.4.0"]]
+   [com.linuxense/javadbf	"0.4.0"]
+   [http-kit "2.1.18"]]
   :cljsbuild
   {:builds
    [{:id "dev"
@@ -95,7 +96,8 @@
    ]
   :description
   "FIXME: write description"
-  :min-lein-version "2.0.0")
+  :min-lein-version "2.0.0"
+  :main floor16.hkit)
 
 
 
