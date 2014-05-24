@@ -21,9 +21,9 @@
    app is deployed as a servlet on\r
    an app server such as Tomcat\r
    put any initialization code here"
-  []
+  [& [db]]
   (when (env :selmer-dev) (parser/cache-off!))
-  (store/initialize (env :database)))
+  (store/initialize (or db (env :database))))
 
 (defn destroy
   "destroy will be called when your application\r
@@ -38,3 +38,10 @@
 
 (def app (-> all-routes api mw/wrap-check-browser))
 
+(defn nginx-handler [req]
+  (init {:subprotocol "mysql"
+                   :subname "//localhost/caterpillar"
+                   :user "caterpillar"
+                   :password "111111"
+                   :delimiters "`"})
+  (app req))

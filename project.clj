@@ -76,15 +76,16 @@
    :dev
    {:ring {:auto-reload? true, :reload-paths ["src" "resources"]}
     :dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]],
-    :env {:selmer-dev true
-          :api-url "/api"
-          :img-server-url "http://img.floor16.loc/"
-          :default-select-limit 20
-          :database {:subprotocol "mysql"
-                     :subname "//localhost/caterpillar"
-                     :user "caterpillar"
-                     :password "111111"
-                     :delimiters "`"}}}}
+;    :env {:selmer-dev true
+;          :api-url "/api"
+;          :img-server-url "http://img.floor16.loc/"
+;          :default-select-limit 20
+;          :database {:subprotocol "mysql"
+;                   :subname "//localhost/caterpillar"
+;                   :user "caterpillar"
+;                   :password "111111"
+;                   :delimiters "`"}}
+    }}
   :url
   "http://example.com/FIXME"
   :plugins

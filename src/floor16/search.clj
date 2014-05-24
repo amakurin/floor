@@ -267,7 +267,8 @@
                                        exclude-field-preds [(val-nil?)]}}]]
   (let [query (or query {})
         page (dec (or (try-parse-int page) 1))
-        limit (or limit (env :default-select-limit))
+        raw-limit(env :default-select-limit)
+        limit (or limit (if (string? raw-limit) (or (try-parse-int raw-limit) 20) raw-limit))
         offset (page->offset page limit)
         condition (q-convert query)
         cnt (->>
