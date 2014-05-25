@@ -14,9 +14,13 @@
         <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
         <!-- scripts and styles -->
+        {% if dev-debug %}
         {% style "/css/base.css" %}
         {% style "/css/layout.css" %}
         {% style "/css/skeleton.css" %}
+        {% else %}
+        {% style "/css/prod.css" %}
+        {% endif %}
         {% if dev-debug %}
         <script type='text/javascript' id='lt_ws' src='http://localhost:53388/socket.io/lighttable/ws.js'></script>
         {% endif %}
