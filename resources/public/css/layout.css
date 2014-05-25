@@ -16,6 +16,11 @@
 
 /* #Site Styles
 ================================================== */
+sup {
+  vertical-align: super;
+  font-size: 60%;
+  line-height: 0;
+}
 
 html, body, #wrap {
   height: 100%;
