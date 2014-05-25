@@ -77,7 +77,8 @@
    :dev
    {:ring {:auto-reload? true, :reload-paths ["src" "resources"]}
     :dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]],
-;    :env {:selmer-dev true
+    :env {:dev-debug true
+          }
 ;          :api-url "/api"
 ;          :img-server-url "http://img.floor16.loc/"
 ;          :default-select-limit 20
@@ -97,6 +98,7 @@
   :description
   "FIXME: write description"
   :min-lein-version "2.0.0"
+  :jvm-opts ["-Xms512m" "-Xmx1024m"]
   :main floor16.hkit)
 
 

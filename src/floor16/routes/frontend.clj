@@ -7,6 +7,7 @@
             [floor16.storage :as db]
             [floor16.search :as srch]
             [clojure.string :as s]
+            [environ.core :refer [env]]
             [korma.core :as k]
             [clojure.tools.reader.edn :as edn]
             [clj-rhino :as js]))
@@ -151,6 +152,7 @@
                        (assoc :title (get-title app-state rc))
                        (assoc :description (get-description app-state rc))
                        (assoc :loadmaps (= mode :ad))
+                       (assoc :dev-debug (env :dev-debug))
                        (#(if error (assoc % :error error) %))))]
         (lt/render template params))
     (http/redirect-to "/")))

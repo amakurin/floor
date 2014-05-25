@@ -18,12 +18,14 @@
 
 (defn init
   "init will be called once when\r
-   app is deployed as a servlet on\r
-   an app server such as Tomcat\r
-   put any initialization code here"
+  app is deployed as a servlet on\r
+  an app server such as Tomcat\r
+  put any initialization code here"
   [& [db]]
-  (when (env :selmer-dev) (parser/cache-off!))
-  (store/initialize (or db (env :database))))
+  (let [db (or db (env :database))
+        db (if (string? db) (read-string db) db)]
+    (when (env :dev-debug) (parser/cache-off!))
+    (store/initialize (or db (env :database)))))
 
 (defn destroy
   "destroy will be called when your application\r
@@ -38,10 +40,3 @@
 
 (def app (-> all-routes api mw/wrap-check-browser))
 
-(defn nginx-handler [req]
-  (init {:subprotocol "mysql"
-                   :subname "//localhost/caterpillar"
-                   :user "caterpillar"
-                   :password "111111"
-                   :delimiters "`"})
-  (app req))
