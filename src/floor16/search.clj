@@ -245,11 +245,11 @@
           (let [td (tc/today)
                 yd (tc/minus td (tc/days 1))
                 created (tco/from-sql-time created)
-                created (tc/local-date-time (tc/year created)(tc/month created)(tc/day created)(tc/hour created)(tc/minute created))
+                ;created (tc/local-date-time (tc/year created)(tc/month created)(tc/day created)(tc/hour created)(tc/minute created))
                 time-formatter (tf/formatter "HH:mm" (tc/default-time-zone))
                 created-str (cond
-                             (same-date? created td)(str "Сегодня в " (tf/unparse time-formatter created))
-                             (same-date? created yd)(str "Вчера в "(tf/unparse time-formatter created))
+                             (same-date? (tco/to-local-date created) td)(str "Сегодня в " (tf/unparse time-formatter created))
+                             (same-date? (tco/to-local-date created) yd)(str "Вчера в "(tf/unparse time-formatter created))
                              :else (tf/unparse (tf/formatter "dd.MM.yy в HH:mm" (tc/default-time-zone)) created))]
             (assoc % :created created-str))
           %))))
