@@ -244,7 +244,7 @@
       (#(if created
           (let [td (tc/today)
                 yd (tc/minus td (tc/days 1))
-                created (tco/from-sql-time created)(tc/default-time-zone)
+                created (tco/from-sql-time created)
                 created (tc/date-time (tc/year created)(tc/month created)(tc/day created)(tc/hour created)(tc/minute created))
                 time-formatter (tf/formatter "HH:mm" (tc/default-time-zone))
                 created-str (cond
