@@ -1120,6 +1120,39 @@ li.pager-item.prev {
 
 }
 
+/*STATIC*/
+#static thead td {
+font-size: 12px;
+padding: 10px;
+border: 1px solid #DDD;
+color: #666;
+}
+
+#static tbody td {
+text-align: center;
+padding: 10px;
+border: 1px solid #EEE;
+}
+
+#static li {
+margin-left: 45px;
+margin-top: 5px;
+}
+#static ul {
+margin-bottom: 0;
+list-style: inherit;
+}
+
+.copyright a {
+color: #AAA;
+text-decoration: none;
+}
+
+.copyright a:hover {
+color: #777;
+text-decoration: underline;
+}
+
 /* #Media Queries
 ================================================== */
 
@@ -1216,6 +1249,7 @@ width: 100px!important;
 
   nav#main-menu ul li:first-child{
   margin-left: 0;
+  margin-right: 20px;
   }
 
 #app-search .simple-filter {
@@ -1489,6 +1523,17 @@ font-size: 17px;
 .copyright {
 text-align: left!important;
   font-size: 9px;
+}
+
+#static tbody td {
+padding: 10px 5px;
+  font-size:11px;
+}
+
+#static thead td
+{
+padding: 10px 5px;
+  font-size:11px;
 }
 
 }

@@ -1,0 +1,14 @@
+{% extends "floor16/views/templates/base.html" %}
+{% block content %}
+<section id="sec-home" >
+    <div id="app-search">
+        {{app-html|safe}}
+    </div>
+</section>
+<div id="static" class="container">
+    <div class="sixteen columns">
+        {% block static %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

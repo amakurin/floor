@@ -229,6 +229,27 @@
                        :dicts (dicts-set-default)
                        :create-seo-title (fn [_]"Пользовательское соглашение")
                        :create-seo-description (fn [_]"Пользовательское соглашение")}
+                      :instruction
+                      {:route "/instruction/"
+                       :template "instruction.html"
+                       :app "appsearch"
+                       :mode :none
+                       :view-type :static
+                       :spec-state static-state
+                       :dicts (dicts-set-default)
+                       :create-seo-title (fn [_]"Инструкция по эксплуатации")
+                       :create-seo-description
+                       (fn [_] "Робот ЭТАЖ-16 для поиска объявлений по аренде квартир, комнат и другой жилой недвижимости напрямую от собственников, минуя агентов и прочих посредников. Руководство по правильной эксплуатации.")}
+                      :mech
+                      {:route "/mech/"
+                       :template "mech.html"
+                       :app "appsearch"
+                       :mode :none
+                       :view-type :static
+                       :spec-state static-state
+                       :dicts (dicts-set-default)
+                       :create-seo-title (fn [_]"Механизм поиска жилья без посредников")
+                       :create-seo-description (fn [_]"Описание основных принципов работы поискового Робота ЭТАЖ-16")}
                       }
                      ))
 
@@ -245,7 +266,9 @@
   (r-get :ads-search)
   (r-get :ads-item)
   (r-get :agents)
-  (r-get :agreement))
+  (r-get :agreement)
+  (r-get :instruction)
+  (r-get :mech))
 
 (defn response-not-found [req]
   (let [rc {:route ""

@@ -578,8 +578,8 @@
     (did-update [this prev-props prev-state]
 ;;     WARN! awful dirty code from lazy ars. Remove asap by implementing static pages!
                 (if (= :none app-mode)
-                  (glo/node-visible "agreement" true)
-                  (glo/node-visible "agreement" false)))
+                  (glo/node-visible "static" true)
+                  (glo/node-visible "static" false)))
     om/IRender
     (render [this]
             (dom/div nil
