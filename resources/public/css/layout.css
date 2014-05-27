@@ -500,6 +500,12 @@ background: url('/img/icon.png') -222px 4px no-repeat;
 color: #AAA;
 }
 
+h2.address {
+font-family: inherit;
+margin-top: 0!important;
+line-height: 18px;
+}
+
 .ad-item .address, .info .address {
 font-size: 18px;
 font-weight: bold;
@@ -931,6 +937,7 @@ width: 28px;
 
 .drop-arrow {
 margin: 11px auto;
+  display: block;
 }
 
 .arrow-down {

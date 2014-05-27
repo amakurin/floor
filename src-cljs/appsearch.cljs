@@ -391,10 +391,10 @@
                     (when (and imgs-cnt (< 0 imgs-cnt))
                       (dom/span #js{:className "photo-count"} imgs-cnt)))
              (dom/div #js{:className "descr six columns"}
-                      (dom/a #js{:className "address six columns"
-                                 :href url :title title
+                      (dom/h2 #js{:className "address six columns"}
+                       (dom/a #js{:href url :title title
                                  :onClick link-handler}
-                             (if address address (l :no-address)))
+                             (if address address (l :no-address))))
                       (compose-digest item))
              (dom/div #js{:className "cond three columns"}
                       (render-price item "")

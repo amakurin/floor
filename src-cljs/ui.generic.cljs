@@ -83,7 +83,7 @@
                            (dom/span #js{:className "placeholder"} placeholder)
                            (dom/span #js{:className "value"} display-name))
                          (dom/span #js{:className "btn"}
-                                   (dom/div #js{:className (str "drop-arrow " (if (active? owner) "arrow-up" "arrow-down"))}))
+                                   (dom/span #js{:className (str "drop-arrow " (if (active? owner) "arrow-up" "arrow-down"))}))
                          (when (active? owner)
                            (om/build self-closeable cursor {:opts {:view selector
                                                                    :data-key data-key
@@ -284,7 +284,7 @@
                                          :onMouseDown (fn [e]
                                                     (om/set-state! owner :opened(not opened))
                                                     (.preventDefault e))}
-                                     (dom/div #js{:className
+                                     (dom/span #js{:className
                                                   (str "box-arrow "
                                                        (if opened
                                                          "arrow-down"

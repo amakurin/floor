@@ -371,9 +371,9 @@
          (map (fn [p]
                 (let [cnt (count p)]
                   (cond (= 10 cnt)
-                        (str country-code "(" (subs p 0 3) ")" (subs p 3 6)"-"(subs p 6 8)"-"(subs p 8))
+                        (str country-code "(" (subs p 0 3) ") " (subs p 3 6)"-"(subs p 6 8)"-"(subs p 8))
                         (= 7 cnt)
-                        (str country-code "(" city-code ")" (subs p 0 3)"-"(subs p 3 5)"-"(subs p 5))
+                        (str country-code "(" city-code ") " (subs p 0 3)"-"(subs p 3 5)"-"(subs p 5))
                         :else p
                         ))))
          vec)}))
