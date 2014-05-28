@@ -139,6 +139,8 @@
 (defn response-redirect [req]
     (http/redirect-to "/"))
 
+(declare do-route)
+
 (defn response-not-found [req]
   (let [rc {:route ""
             :template "app-search.html"
