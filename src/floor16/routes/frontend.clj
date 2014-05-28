@@ -14,6 +14,9 @@
 
 (def app-base-ns "floor16")
 
+(defn dicts-set-default []
+  [:cities :layout-types :building-types])
+
 (defn get-query-dicts [q]
   (let [city (:city q)
         pubsettings {:pubsettings srch/ps}
@@ -187,9 +190,6 @@
   (and
    (or (not page) (when-let [p (srch/try-parse-int page)] (> p 0)))
    (or (not q) (srch/try-decode-query q))))
-
-(defn dicts-set-default []
-  [:cities :layout-types :building-types])
 
 (def route-conf (atom
                      {:init
