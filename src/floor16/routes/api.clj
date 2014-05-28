@@ -56,7 +56,9 @@
                           (http/method-not-allowed [:options])))
             (context "/pub" []
                      (GET "/:id" [id]
-                          (http/generic-response (srch/by-seoid id)))
+                          (if-let [found (srch/by-seoid id)]
+                            (http/generic-response found)
+                            (not-found {:id id})))
                      (GET "/" req
                           (let [{:keys [page q] :as params} (:params req)
                                 query (if q (srch/decode-query q req) (srch/empty-query req))

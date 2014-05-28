@@ -133,6 +133,27 @@
 (defn agents-description [state]
   "Полная база агентов по аренде недвижимости в Самаре. Проверка по номеру телефона.")
 
+(defn response-redirect [req]
+    (http/redirect-to "/"))
+
+(defn response-not-found [req]
+  (let [rc {:route ""
+            :template "app-search.html"
+            :app "appsearch"
+            :mode :not-found
+            :view-type :static
+            :spec-state static-state
+            :dicts (dicts-set-default)
+            :create-seo-title (fn [_] "Страница не найдена")
+            :create-seo-description (fn [_] "Страница не найдена, возможно она была удалена, либо вы неправильно ввели ссылку.")}
+        ]
+    (if (:old-ie? req)
+      (.render (lt/render "oldbrowser.html") req)
+      (status (.render (do-route :not-found rc req) req) 404))))
+
+(defn process-invalid [{:keys [invalid-action] :or {invalid-action response-not-found} :as rc} req]
+  (invalid-action req))
+
 (defn do-route [rkw rc req]
   (if (validate-params (:params req) rc)
     (let [{:keys [template app make-state mode]} rc
@@ -155,7 +176,7 @@
                        (assoc :dev-debug (env :dev-debug))
                        (#(if error (assoc % :error error) %))))]
         (lt/render template params))
-    (http/redirect-to "/")))
+    (process-invalid rc req)))
 
 (defn item-validate [{:keys [seoid]}]
   (and (not (nil? seoid))
@@ -180,6 +201,7 @@
                        :dicts (dicts-set-default)
                        :spec-state list-specific-state
                        :validate list-validate
+                       :invalid-action response-redirect
                        :create-seo-title list-title
                        :create-seo-description list-description}
                       :ads-search
@@ -192,6 +214,7 @@
                        :spec-state list-specific-state
                        :resource-key :pub
                        :validate list-validate
+                       :invalid-action response-redirect
                        :create-seo-title list-title
                        :create-seo-description list-description}
                       :ads-item
@@ -270,17 +293,3 @@
   (r-get :instruction)
   (r-get :mech))
 
-(defn response-not-found [req]
-  (let [rc {:route ""
-            :template "app-search.html"
-            :app "appsearch"
-            :mode :not-found
-            :view-type :static
-            :spec-state static-state
-            :dicts (dicts-set-default)
-            :create-seo-title (fn [_] "Страница не найдена")
-            :create-seo-description (fn [_] "Страница не найдена, возможно она была удалена, либо вы неправильно ввели ссылку.")}
-        ]
-    (if (:old-ie? req)
-      (.render (lt/render "oldbrowser.html") req)
-      (status (.render (do-route :not-found rc req) req) 404))))

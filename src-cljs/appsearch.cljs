@@ -462,6 +462,12 @@
                                     (dom/td #js{:className "key"} (l :person-name))
                                     (dom/td nil person-name)))
                           ))))
+(defn not-found-view [cursor owner opts]
+  (dom/div #js{:className "not-found container"}
+           (dom/h1 #js{:className "row sixteen columns"} (l :not-found-404-title))
+           (dom/span #js{:className "sixteen columns"}
+                     (l :not-found-404-message))
+           ))
 
 (defn ad-view [{:keys [query current] :as cursor} owner]
   (let [{:keys [appartment-type
@@ -469,11 +475,13 @@
                 address lat
                 imgs
                 description created
-                loading] :as data} (:data current)]
+                loading
+                not-found?] :as data} (:data current)]
     (om/component
-     (if loading
-       (dom/div nil loading)
-       (dom/div #js{:className "ad-view" :id "ad"}
+     (cond
+      loading (dom/div nil loading)
+      not-found? (om/build not-found-view cursor)
+      :else (dom/div #js{:className "ad-view" :id "ad"}
                 (dom/div #js{:className "container"}
                          (dom/h1 #js{:className "ad-header row sixteen columns"}
                                  (dom/span #js{:className "twelve columns alpha"}
@@ -564,13 +572,6 @@
                                           ". Последний раз его видели " last-seen " по следующей ссылке: ")
                                      (dom/a #js{:href last-url :target "_blank"} "Перейти")))))
                        )))))
-
-(defn not-found-view [cursor owner opts]
-  (dom/div #js{:className "not-found container"}
-           (dom/h1 #js{:className "row sixteen columns"} (l :not-found-404-title))
-           (dom/span #js{:className "sixteen columns"}
-                     (l :not-found-404-message))
-           ))
 
 (defn app [{:keys [app-mode query data current] :as cursor} owner]
   (reify

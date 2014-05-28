@@ -1247,9 +1247,20 @@ width: 100px!important;
   font-size:17px;
   }
 
-  nav#main-menu ul li:first-child{
+  nav#main-menu ul li{
   margin-left: 0;
-  margin-right: 20px;
+  margin-right: 9px;
+  }
+  nav#main-menu ul li:last-child{
+  margin-right: 0px;
+  }
+
+  #footer-menu li{
+  margin-left: 0;
+  margin-right: 9px;
+  }
+  #footer-menu li:last-child{
+  margin-right: 0px;
   }
 
 #app-search .simple-filter {
@@ -1392,7 +1403,7 @@ margin-top: 40px!important;
 }
 
 #footer-menu li a {
-font-size: 17px;
+font-size: 16px;
 }
 
 .copyright {

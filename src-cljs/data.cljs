@@ -100,7 +100,10 @@
 (defn request-res [res-key cb & [{:keys [q id] :as context}]]
   (if (:local? @system) (cb {})
     (let [url (get-res-url res-key context)]
-      (xhr/cb-request {:method :get :url url} #(cb (:body %))))))
+      (xhr/cb-request {:method :get :url url}
+                      #(if (= 200 (:status %))
+                         (cb (:body %))
+                         (cb {:not-found? true}))))))
 
 (defn kconj [korks k]
   (cond (nil? korks) [k]

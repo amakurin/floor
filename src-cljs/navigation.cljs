@@ -175,7 +175,8 @@
     (if (= link (.getToken history))
       (when always-update? (sec/dispatch! (str "/" link)))
       (.setToken history (if (= \/ (first link)) (subs link 1) link))
-      )))
+      )
+    (set! (.-title js/document) "ЭТАЖ-16")))
 
 (defn url-update [context]
   (goto (url-to (assoc context :url-update? true)) true))
