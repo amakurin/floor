@@ -1,6 +1,8 @@
 cd /home/floor/caterpillar
+sudo service caterpillar stop
 git pull origin
-sudo service caterpillar restart
+lein clj-sql-up migrate
+sudo service caterpillar start
 cd /home/floor/floor16
 git pull origin
 rm -R target/*
