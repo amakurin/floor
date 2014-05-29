@@ -382,7 +382,7 @@
                          ;WARN! this one dont work, cuz of full remount i guess.
                          (glo/scroll-to-or-top "sf" :bottom)
                          (.preventDefault e)))]
-    (dom/div #js{:className "ad-item eleven columns"}
+    (dom/div #js{:className "obj-item eleven columns"}
              (dom/span #js{:className "pub-date"} (get-time-text item))
              (dom/a #js{:className "thumb two columns"
                         :href url :title (compose-title item :photo)
