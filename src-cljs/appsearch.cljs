@@ -481,9 +481,9 @@
      (cond
       loading (dom/div nil loading)
       not-found? (om/build not-found-view cursor)
-      :else (dom/div #js{:className "ad-view" :id "ad"}
+      :else (dom/div #js{:className "obj-view" :id "obj"}
                 (dom/div #js{:className "container"}
-                         (dom/h1 #js{:className "ad-header row sixteen columns"}
+                         (dom/h1 #js{:className "obj-header row sixteen columns"}
                                  (dom/span #js{:className "twelve columns alpha"}
                                            (dom/span #js{:className "rent-word"} "сдается ")
                                            (dom/span #js{:className "app-type"} (str " " appartment-type))
