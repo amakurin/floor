@@ -476,7 +476,8 @@
                 imgs
                 description created
                 loading
-                not-found?] :as data} (:data current)]
+                not-found?
+                unpub] :as data} (:data current)]
     (om/component
      (cond
       loading (dom/div nil loading)
@@ -494,6 +495,7 @@
                                                      (when price
                                                        (str (when deposit "+ депозит ")
                                                             (when plus-utilities "+ ком.платежи"))))))
+                         (when unpub (dom/span #js{:className "unpub row sixteen columns"} (l :unpub)))
                          (dom/div #js{:className "six columns"}
                                   (dom/div #js{:className (str "info" (when (empty? imgs) " auto"))}
 

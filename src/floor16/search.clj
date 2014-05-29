@@ -117,6 +117,7 @@
            :pets           {:pred as-is-pred }
            :not-only-russo {:pred as-is-pred }
            :only-russo     {:pred as-is-pred }
+           :unpub          {:pred as-is-pred }
            })
 (defn default-city [req] 0)
 
@@ -132,7 +133,8 @@
                :toilet []
                :building-type []
                :metro []
-               :district []})))
+               :district []
+               :unpub 0})))
 
 (defn convert-russo [{:keys [only-russo not-only-russo] :as q}]
   (let [only-russo (true? only-russo)
@@ -326,7 +328,8 @@
                                   [:districts.name :district]
                                   [:appartment-types.name :appartment-type]
                                   [:building-types.name :building-type]
-                                  [:metros.name :metro]]
+                                  [:metros.name :metro]
+                                  :unpub]
                          :joins search-joins
                          :order (when order (:mnemo (get os order)))
                          :post-process #(post-process % #{:imgs-cnt :thumb})
@@ -356,7 +359,8 @@
                                    [:building-types.name :building-type]
                                    [:layout-types.name :toilet]
                                    [:metros.name :metro]
-                                   :lat :lng :person-name]
+                                   :lat :lng :person-name
+                                   :unpub]
                           :joins search-joins
                           :post-process #(post-process % #{:imgs-cnt :imgs :description :lat-lng :appartment-type-mnemo})
                           })
@@ -426,7 +430,8 @@
 
 (defn empty-query [req]
   {:city (default-city req)
-   :order 0})
+   :order 0
+   :unpub 0})
 
 (defn decode-query [qstr & [req]]
   (let [q (try (edn/read-string qstr)
