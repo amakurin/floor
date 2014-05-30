@@ -46,7 +46,20 @@
              }))
      ((fn [x] {:tag :urlset
                :attrs {:xmlns sitemap-xmlns}
-               :content x}))
+               :content
+               (concat
+                [{:tag :url
+                  :content
+                  [
+                   {:tag :loc :content [base-url]}
+                   {:tag :lastmod
+                    :content [(tf/unparse
+                               (tf/formatter "yyyy-MM-dd'T'HH:mm:ssZZ" (tc/default-time-zone))
+                               (tc/now))]}
+                   {:tag :changefreq :content ["hourly"]}
+                   {:tag :priority :content ["0.9"]}
+                   ]}]
+                x)}))
      xml/emit with-out-str)))
 
 (defn make-index-map [{:keys [base-url lastmod-static]
