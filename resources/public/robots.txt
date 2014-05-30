@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+Sitemap: https://floor16.ru/maps/smstatic.xml
+Sitemap: https://floor16.ru/maps/smads.xml
+Host: floor16.ru

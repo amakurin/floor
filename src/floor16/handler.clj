@@ -9,6 +9,7 @@
             [compojure.route :as route]
             [floor16.storage :as store]
             [compojure.handler :refer [api]]
+            [floor16.sitemaps :as sm]
             ))
 
 (defroutes
@@ -25,7 +26,9 @@
   (let [db (or db (env :database))
         db (if (string? db) (read-string db) db)]
     (when (env :dev-debug) (parser/cache-off!))
-    (store/initialize (or db (env :database)))))
+    (store/initialize (or db (env :database)))
+    (sm/start-map-gen)
+    ))
 
 (defn destroy
   "destroy will be called when your application\r

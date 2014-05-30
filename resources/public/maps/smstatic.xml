@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <url>
+      <loc>https://floor16.ru/instruction/</loc>
+      <lastmod>2014-30-05</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.2</priority>
+   </url>
+
+   <url>
+      <loc>https://floor16.ru/mech/</loc>
+      <lastmod>2014-30-05</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.2</priority>
+   </url>
+
+   <url>
+      <loc>https://floor16.ru/agreement/</loc>
+      <lastmod>2014-30-05</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.2</priority>
+   </url>
+
+   <url>
+      <loc>https://floor16.ru/agents/</loc>
+      <lastmod>2014-30-05</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.2</priority>
+   </url>
+
+</urlset>

@@ -25,6 +25,7 @@
    [om "0.6.2"]
    [gered/clj-rhino "0.2.2"]
    [com.linuxense/javadbf	"0.4.0"]
+   [im.chit/cronj "1.0.1"]
    [http-kit "2.1.18"]]
   :cljsbuild
   {:builds
@@ -57,10 +58,8 @@
      :source-paths ["src-cljs"],
      :compiler
      {:optimizations :advanced,
-      ;:source-map "resources/public/js/site2.js.map",
       :pretty-print false,
       :output-to "resources/public/js/site-prod.js",
-      ;:output-dir "resources/public/js/out",
       :preamble ["react/react.min.js"]
       :externs ["react/externs/react.js" "externs/google_maps_api_v3.js"]
       :closure-warnings {:non-standard-jsdoc :off}
