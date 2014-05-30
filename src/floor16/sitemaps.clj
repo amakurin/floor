@@ -64,7 +64,7 @@
 
 (defn make-index-map [{:keys [base-url lastmod-static]
                        :or {base-url (str hostname "maps/")
-                            lastmod-static "2014-30-05"}}]
+                            lastmod-static "2014-05-30T06:28:12+04:00"}}]
   (let [im {:tag :sitemapindex
             :attrs {:xmlns sitemap-xmlns}
             :content
