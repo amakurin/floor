@@ -21,7 +21,7 @@
    ))
 
 (def baseurl "https://floor16.ru/ads/")
-(def imgs-path "D:/Projects/cljr/caterpillar/resources/img/")
+(def imgs-path "/home/floor/catimgs/")
 (def social-schedule "1 /10 * * * * *")
 (def after-method-sleep 500)
 
