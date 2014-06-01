@@ -26,7 +26,8 @@
    [gered/clj-rhino "0.2.2"]
    [com.linuxense/javadbf	"0.4.0"]
    [im.chit/cronj "1.0.1"]
-   [http-kit "2.1.18"]]
+   [http-kit "2.1.18"]
+   [cheshire "5.3.1"]]
   :cljsbuild
   {:builds
    [{:id "dev"

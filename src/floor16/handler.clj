@@ -10,6 +10,7 @@
             [floor16.storage :as store]
             [compojure.handler :refer [api]]
             [floor16.sitemaps :as sm]
+            [floor16.social :as soc]
             ))
 
 (defroutes
@@ -28,6 +29,7 @@
     (when (env :dev-debug) (parser/cache-off!))
     (store/initialize (or db (env :database)))
     (sm/start-map-gen)
+    (soc/start-social)
     ))
 
 (defn destroy

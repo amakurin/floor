@@ -16,7 +16,7 @@
 (def sitemap-xmlns "http://www.sitemaps.org/schemas/sitemap/0.9")
 (def hostname "https://floor16.ru/")
 (def map-path "resources/public/maps/")
-(def create-maps-schedule "1 /10 * * * * *")
+(def create-maps-schedule "1 /59 * * * * *")
 
 (defn make-ads-map [{:keys [base-url priority changefreq lim skip-hours]
                  :or {base-url (str hostname "ads/")
@@ -102,5 +102,5 @@
 
 (defn start-map-gen []
   (let [cj (:cj (reset! sys {:cj (sched/cronj :entries [])}))]
-    (create-maps)
+    (.start (Thread. create-maps))
     (schedule-task cj (create-task))))

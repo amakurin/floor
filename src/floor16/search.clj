@@ -78,6 +78,9 @@
     {k v}
     {}))
 
+(defn as-is-pred-safe [k v]
+    {k v})
+
 (def conf {:total-area {:pred range-pred
                         :bounds {:btm 0 :top 200}}
            :living-area {:pred range-pred
@@ -118,6 +121,8 @@
            :not-only-russo {:pred as-is-pred }
            :only-russo     {:pred as-is-pred }
            :unpub          {:pred as-is-pred }
+           :soc-vk         {:pred as-is-pred-safe }
+           :created        {:pred as-is-pred-safe }
            })
 (defn default-city [req] 0)
 
@@ -335,32 +340,33 @@
                          :post-process #(post-process % #{:imgs-cnt :thumb})
                          }))
 
+(def by-id-fields [:seoid :created :price
+                   :floor :floors
+                   :address :distance
+                   :total-area :living-area :kitchen-area
+                   :description :imgs :thumb
+                   :deposit :counters :plus-utilities
+                   :plus-electricity :plus-water :plus-gas
+                   :balcony :loggia :bow-window
+                   :furniture :internet
+                   :tv :frige :washer :conditioner
+                   :parking :intercom :security :concierge
+                   :only-russo :kids :pets :addiction
+                   [:cities.name :city]
+                   [:districts.name :district]
+                   [:appartment-types.mnemo :appartment-type-mnemo]
+                   [:appartment-types.fullname :appartment-type]
+                   [:building-types.name :building-type]
+                   [:layout-types.name :toilet]
+                   [:metros.name :metro]
+                   :lat :lng :person-name
+                   :unpub])
 
 (defn by-seoid [seoid]
   (->>
    (select-resource :pub {:query {:seoid seoid} :page 1 :limit 1
                           :q-convert #(default-converter % conf)
-                          :fields [:seoid :created :price
-                                   :floor :floors
-                                   :address :distance
-                                   :total-area :living-area :kitchen-area
-                                   :description :imgs :thumb
-                                   :deposit :counters :plus-utilities
-                                   :plus-electricity :plus-water :plus-gas
-                                   :balcony :loggia :bow-window
-                                   :furniture :internet
-                                   :tv :frige :washer :conditioner
-                                   :parking :intercom :security :concierge
-                                   :only-russo :kids :pets :addiction
-                                   [:cities.name :city]
-                                   [:districts.name :district]
-                                   [:appartment-types.mnemo :appartment-type-mnemo]
-                                   [:appartment-types.fullname :appartment-type]
-                                   [:building-types.name :building-type]
-                                   [:layout-types.name :toilet]
-                                   [:metros.name :metro]
-                                   :lat :lng :person-name
-                                   :unpub]
+                          :fields by-id-fields
                           :joins search-joins
                           :post-process #(post-process % #{:imgs-cnt :imgs :description :lat-lng :appartment-type-mnemo})
                           })
