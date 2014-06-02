@@ -150,10 +150,11 @@
                     pub-imgs
                     (remove nil?)
                     (s/join ","))
-          attachments (str imgs ","(str baseurl (urlencode seoid)))
+          url (str baseurl (urlencode seoid))
+          attachments (str imgs "," url)
           post-id (get
                    (method-post {:method :wall-post
-                                 :message txt
+                                 :message (str txt "\n\n" url)
                                  :owner_id (str "-"(-> @sys :conf :owner-id))
                                  :from_group 1
                                  :attachments attachments
