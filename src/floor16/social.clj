@@ -125,6 +125,7 @@
        (when description (str "\n\nОПИСАНИЕ:\n" description))))
 
 (defn task-handler []
+  (println "Social-task started")
   (doseq [{:keys [seoid imgs appartment-type description] :as ad}
           (->>
            (search/select-resource
@@ -134,7 +135,7 @@
                      :soc-vk nil
                      :created [kf/pred-> (tf/unparse
                                   (tf/with-zone (tf/formatters :mysql) (tc/default-time-zone))
-                                  (tc/minus (tc/now)(tc/days 1)))]
+                                  (tc/minus (tc/now)(tc/days 8)))]
                      } :page 1 :limit 200
              :q-convert #(search/default-converter % search/conf)
              :fields (concat search/by-id-fields [:soc-vk :id])
@@ -161,6 +162,7 @@
         (update :pub
                 (set-fields {:soc-vk post-id})
                 (where {:id (:id ad)})))
+      (println "Published id:" (:id ad) " seoid:" seoid)
       (Thread/sleep after-method-sleep)))
   (doseq [{:keys [soc-vk id] :as unpub} (select :pub (fields :soc-vk :id) (where {:unpub true :soc-vk [not= nil]}))]
     (method-get {:method :wall-delete
@@ -170,7 +172,9 @@
     (update :pub
             (set-fields {:soc-vk nil})
             (where {:id id}))
-    (Thread/sleep after-method-sleep)))
+    (println "UNPUBLISHED id:" id)
+    (Thread/sleep after-method-sleep))
+  )
 
 (defn create-task []
   {:id :social-vk-task
