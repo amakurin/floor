@@ -185,5 +185,6 @@
         conf (read-conf :vk)]
     (when conf
       (.start (Thread. task-handler))
-      (schedule-task cj (create-task)))))
+      (schedule-task cj (create-task))
+      (sched/start! cj))))
 

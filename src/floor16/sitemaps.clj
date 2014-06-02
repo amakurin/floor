@@ -103,4 +103,5 @@
 (defn start-map-gen []
   (let [cj (:cj (reset! sys {:cj (sched/cronj :entries [])}))]
     (.start (Thread. create-maps))
-    (schedule-task cj (create-task))))
+    (schedule-task cj (create-task))
+    (sched/start! cj)))
