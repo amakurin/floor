@@ -135,7 +135,7 @@
                      :soc-vk nil
                      :created [kf/pred-> (tf/unparse
                                   (tf/with-zone (tf/formatters :mysql) (tc/default-time-zone))
-                                  (tc/minus (tc/now)(tc/days 8)))]
+                                  (tc/minus (tc/now)(tc/days 1)))]
                      } :page 1 :limit 200
              :q-convert #(search/default-converter % search/conf)
              :fields (concat search/by-id-fields [:soc-vk :id])
