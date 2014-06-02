@@ -173,7 +173,7 @@
     (Thread/sleep after-method-sleep)))
 
 (defn create-task []
-  {:id :map-create-task
+  {:id :social-vk-task
    :handler task-handler
    :schedule social-schedule})
 
