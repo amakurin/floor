@@ -124,7 +124,7 @@
        (when address (str "\n\nПО АДРЕСУ: " address))
        (when description (str "\n\nОПИСАНИЕ:\n" description))))
 
-(defn task-handler []
+(defn task-handler [& [t opts]]
   (println "Social-task started")
   (doseq [{:keys [seoid imgs appartment-type description] :as ad}
           (->>
