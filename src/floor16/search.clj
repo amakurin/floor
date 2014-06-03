@@ -14,7 +14,7 @@
             [environ.core :refer [env]]
             [clj-rhino :as js]))
 
-(def ps [{:id 0 :mnemo :all-the-time :name "за все время"}
+(def ps [{:id 0 :mnemo :all-the-time :name "за всё время"}
          {:id 30 :mnemo :last-month :name "за месяц"}
          {:id 7 :mnemo :last-week :name "за неделю"}
          {:id 1 :mnemo :last-day :name "за сутки"}])

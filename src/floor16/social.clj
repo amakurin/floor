@@ -165,7 +165,7 @@
                 (where {:id (:id ad)})))
       (println "Published id:" (:id ad) " seoid:" seoid)
       (Thread/sleep after-method-sleep)))
-  (doseq [{:keys [soc-vk id] :as unpub} (select :pub (fields :soc-vk :id) (where {:unpub true :soc-vk [not= nil]}))]
+  (doseq [{:keys [soc-vk id] :as unpub} (select :pub (fields :soc-vk :id) (where {:unpub [> 0] :soc-vk [not= nil]}))]
     (method-get {:method :wall-delete
                  :owner_id (str "-"(-> @sys :conf :owner-id))
                  :post_id soc-vk

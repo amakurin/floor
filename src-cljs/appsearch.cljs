@@ -495,7 +495,8 @@
                                                      (when price
                                                        (str (when deposit "+ депозит ")
                                                             (when plus-utilities "+ ком.платежи"))))))
-                         (when unpub (dom/span #js{:className "unpub row sixteen columns"} (l :unpub)))
+                         (when (and unpub (> unpub 0)) (dom/span #js{:className "unpub row sixteen columns"}
+                                                                 (if (= unpub 1)(l :unpub)(l :unpub2))))
                          (dom/div #js{:className "six columns"}
                                   (dom/div #js{:className (str "info" (when (empty? imgs) " auto"))}
 
