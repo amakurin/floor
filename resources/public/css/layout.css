@@ -1157,6 +1157,116 @@ color: #777;
 text-decoration: underline;
 }
 
+/*USER PANEL*/
+
+li#user-panel {
+min-width: 27px;
+  font-size: 14px;
+  color: #555;
+  text-transform:none;
+}
+
+nav#user-panel.active {
+position: fixed;
+right: 0;
+bottom: 0;
+top: 0;
+background: rgba(255, 255, 255, 0.98);
+margin: 0;
+z-index: 11;
+  cursor: auto;
+box-shadow: 0px 0px 7px 0px #333;
+border-left: 1px solid #AAA;
+}
+
+.active .user-panel-inner {
+padding: 80px 30px 30px 30px;
+color: #EEE;
+}
+
+.login input[type=text],.login input[type=password],.login-btn {
+  display: block;
+  margin: 0px auto 10px auto;
+}
+
+img#user-pic {
+border: #eee 1px solid;
+border-radius: 3px;
+background: #bbb;
+display: inline;
+vertical-align: top;
+margin-right: 10px;
+position: absolute;
+top: 0;
+left: -60px;
+}
+
+div.logout {
+color: #555;
+margin-left: 60px;
+position: relative;
+}
+
+.user-real-name,.user-name,.user-roles {
+display: block;
+margin-bottom:10px;
+}
+
+.user-real-name {
+font-family: 'open-sans';
+font-size: 15px;
+}
+
+.user-name,.user-roles {
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.logout-btn, .login-btn {
+background: #3D77E3;
+color: #fff;
+border-radius: 3px;
+height: 30px;
+line-height: 30px;
+cursor: pointer;
+font-size: 15px;
+display: block;
+width: 100px;
+text-align: center;
+}
+
+div#user-info {
+font-size: 13px;
+display: inline;
+vertical-align: top;
+}
+
+nav#user-panel {
+font-family: Arial;
+font-size: 30px;
+line-height: 13px;
+  cursor:pointer;
+}
+
+
+span.close {
+/* background: url('/img/close.png') transparent 0 0; */
+display: block;
+width: 30px;
+height: 30px;
+position: absolute;
+top: 20px;
+right: 20px;
+cursor: pointer;
+font-size: 50px;
+line-height: 30px;
+overflow: hidden;
+color: #BBB;
+}
+
+span.close:hover {
+color: #EEE;
+}
 /* #Media Queries
 ================================================== */
 

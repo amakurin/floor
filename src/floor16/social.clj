@@ -146,6 +146,7 @@
            :items)]
     (let [txt (compose-str ad)
           imgs (->> imgs
+					(take 4)
                     (map #(s/replace % #"^.*/" imgs-path))
                     pub-imgs
                     (remove nil?)
